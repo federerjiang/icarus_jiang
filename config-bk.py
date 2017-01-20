@@ -226,16 +226,16 @@ RESULTS_FORMAT = 'PICKLE'
 
 # Number of times each experiment is replicated
 # This is necessary for extracting confidence interval of selected metrics
-N_REPLICATIONS = 1
+N_REPLICATIONS = 3
 
 # List of metrics to be measured in the experiments
 # The implementation of data collectors are located in ./icaurs/execution/collectors.py
 # Remove collectors not needed
 DATA_COLLECTORS = [
            'CACHE_HIT_RATIO',   # Measure cache hit ratio 
-           # 'LATENCY',           # Measure request and response latency (based on static link delays)
-           # 'LINK_LOAD',         # Measure link loads
-           # 'PATH_STRETCH',      # Measure path stretch
+           'LATENCY',           # Measure request and response latency (based on static link delays)
+           'LINK_LOAD',         # Measure link loads
+           'PATH_STRETCH',      # Measure path stretch
                    ]
 
 
@@ -261,25 +261,22 @@ REQ_RATE = 1.0
 CACHE_POLICY = 'LRU'
 
 # Zipf alpha parameter, remove parameters not needed
-# ALPHA = [0.6, 0.8, 1.0]
-ALPHA = [0.6]
+ALPHA = [0.6, 0.8, 1.0]
 
 # Total size of network cache as a fraction of content population
 # Remove sizes not needed
 NETWORK_CACHE = [0.004, 0.002]
 
-HEIGHT = 7
-BRANCH = [2, 3, 4, 5]
 
 # List of topologies tested
 # Topology implementations are located in ./icarus/scenarios/topology.py
 # Remove topologies not needed
-# TOPOLOGIES =  [
-        # 'GEANT',
-        # 'WIDE',
-        # 'GARR',
-        # 'TISCALI',
-              # ]
+TOPOLOGIES =  [
+        'GEANT',
+        'WIDE',
+        'GARR',
+        'TISCALI',
+              ]
 
 # List of caching and routing strategies
 # The code is located in ./icarus/models/strategy.py
@@ -287,16 +284,16 @@ BRANCH = [2, 3, 4, 5]
 STRATEGIES = [
      'LCE',             # Leave Copy Everywhere
      'NO_CACHE',        # No caching, shortest-path routing
-     # 'HR_SYMM',         # Symmetric hash-routing
-     # 'HR_ASYMM',        # Asymmetric hash-routing
-     # 'HR_MULTICAST',    # Multicast hash-routing
-     # 'HR_HYBRID_AM',    # Hybrid Asymm-Multicast hash-routing
-     # 'HR_HYBRID_SM',    # Hybrid Symm-Multicast hash-routing
-     # 'CL4M',            # Cache less for more
+     'HR_SYMM',         # Symmetric hash-routing
+     'HR_ASYMM',        # Asymmetric hash-routing
+     'HR_MULTICAST',    # Multicast hash-routing
+     'HR_HYBRID_AM',    # Hybrid Asymm-Multicast hash-routing
+     'HR_HYBRID_SM',    # Hybrid Symm-Multicast hash-routing
+     'CL4M',            # Cache less for more
      'PROB_CACHE',      # ProbCache
      'LCD',             # Leave Copy Down
-     # 'RAND_CHOICE',     # Random choice: cache in one random cache on path
-     # 'RAND_BERNOULLI',  # Random Bernoulli: cache randomly in caches on path
+     'RAND_CHOICE',     # Random choice: cache in one random cache on path
+     'RAND_BERNOULLI',  # Random Bernoulli: cache randomly in caches on path
              ]
 
 # Instantiate experiment queue
@@ -310,15 +307,11 @@ default['workload'] = {'name':       'STATIONARY',
                        'n_warmup':   N_WARMUP_REQUESTS,
                        'n_measured': N_MEASURED_REQUESTS,
                        'rate':       REQ_RATE}
-
 default['cache_placement']['name'] = 'UNIFORM'
 default['content_placement']['name'] = 'UNIFORM'
 default['cache_policy']['name'] = CACHE_POLICY
-default['topology']['name'] = 'TREE'
-default['topology']['h'] = HEIGHT
 
 # Create experiments multiplexing all desired parameters
-'''
 for alpha in ALPHA:
     for strategy in STRATEGIES:
         for topology in TOPOLOGIES:
@@ -330,17 +323,4 @@ for alpha in ALPHA:
                 experiment['cache_placement']['network_cache'] = network_cache
                 experiment['desc'] = "Alpha: %s, strategy: %s, topology: %s, network cache: %s" \
                                      % (str(alpha), strategy, topology, str(network_cache))
-                EXPERIMENT_QUEUE.append(experiment)
-'''
-for alpha in ALPHA:
-    for degree in BRANCH:
-        for strategy in STRATEGIES:
-            for network_cache in NETWORK_CACHE:
-                experiment = copy.deepcopy(default)
-                experiment['workload']['alpha'] = alpha
-                experiment['topology']['k'] = degree
-                experiment['strategy']['name'] = strategy
-                experiment['cache_placement']['network_cache'] = network_cache
-                experiment['desc'] = "Alpha: %s, branching factor: %s, strategy: %s, topology: %s, network cache: %s" \
-                                     % (str(alpha), str(degree), strategy, 'TREE-7', str(network_cache))
                 EXPERIMENT_QUEUE.append(experiment)
