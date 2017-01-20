@@ -286,7 +286,7 @@ BRANCH = [2, 3, 4, 5]
 # Remove strategies not needed
 STRATEGIES = [
      'LCE',             # Leave Copy Everywhere
-     'NO_CACHE',        # No caching, shortest-path routing
+     # 'NO_CACHE',        # No caching, shortest-path routing
      # 'HR_SYMM',         # Symmetric hash-routing
      # 'HR_ASYMM',        # Asymmetric hash-routing
      # 'HR_MULTICAST',    # Multicast hash-routing
