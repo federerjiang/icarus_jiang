@@ -266,10 +266,10 @@ ALPHA = [0.6]
 
 # Total size of network cache as a fraction of content population
 # Remove sizes not needed
-NETWORK_CACHE = [0.004, 0.002]
+NETWORK_CACHE = [0.004]
 
-HEIGHT = 7
-BRANCH = [2, 3, 4, 5]
+HEIGHT = 6
+BRANCH = [5]
 
 # List of topologies tested
 # Topology implementations are located in ./icarus/scenarios/topology.py
