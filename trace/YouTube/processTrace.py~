@@ -1,0 +1,55 @@
+import math, sys, operator, os.path, os
+
+def process(path):
+  os.getcwd()
+  filePath =  os.getcwd() + "/" + path
+  pathWrite = filePath + ".out.dat"
+  
+  if os.path.exists(pathWrite) == False:
+    f = open(filePath, 'r')
+    fwrite = open(pathWrite, 'w') 
+    countIndex = 0
+    contentIndex = 1
+    items = {}
+    statItems = {}
+    for line in f:
+      #countIndex = countIndex + 1
+      spl = line.split(' ')
+      if spl[4] in items:
+	fwrite.write(str(items[spl[4]]))
+	statItems[spl[4]] = statItems[spl[4]] + 1 # Couting the frequency
+      else:
+	items[spl[4]] = contentIndex
+	fwrite.write(str(items[spl[4]]))
+	contentIndex = contentIndex + 1
+
+	statItems[spl[4]] = 1 # Couting the frequency
+	
+      fwrite.write("\n")  
+    f.close()
+    fwrite.close()
+    
+    fwriteStat = open(filePath + ".stat.dat", 'w')
+    sorted_stateItems = sorted(statItems.items(), key=operator.itemgetter(1), reverse=True)
+    fwriteStat.write("Content" + "\t\t" + "Number of requests\n")
+    for item in sorted_stateItems:
+      fwriteStat.write(str(item[0]) + "\t\t" + str(item[1]))
+      fwriteStat.write("\n")
+    
+    fwriteStat.write("\n")
+    fwriteStat.write("Finished with " + str(len(items.keys())) + " items" + "\n")
+    fwriteStat.write("Number of requests: " + str(countIndex))
+    
+    fwriteStat.close()  
+    
+    print "Finished with ", str(len(items.keys())), " items"
+    print "Number of requests: ", countIndex
+    
+  else:
+    print "File already exists."
+
+ 
+argument = sys.argv
+path = argument[1]
+print "Processing trace: ", path
+process(path)
