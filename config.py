@@ -209,7 +209,7 @@ LOG_LEVEL = 'INFO'
 
 # If True, executes simulations in parallel using multiple processes
 # to take advantage of multicore CPUs
-PARALLEL_EXECUTION = False
+PARALLEL_EXECUTION = True
 
 # Number of processes used to run simulations in parallel.
 # This option is ignored if PARALLEL_EXECUTION = False
@@ -233,7 +233,7 @@ N_REPLICATIONS = 1
 # Remove collectors not needed
 DATA_COLLECTORS = [
            'CACHE_HIT_RATIO',   # Measure cache hit ratio 
-           # 'LATENCY',           # Measure request and response latency (based on static link delays)
+           'LATENCY',           # Measure request and response latency (based on static link delays)
            # 'LINK_LOAD',         # Measure link loads
            # 'PATH_STRETCH',      # Measure path stretch
                    ]
@@ -245,14 +245,14 @@ DATA_COLLECTORS = [
 # Default experiment values, i.e. values shared by all experiments
 
 # Number of content objects
-N_CONTENTS = 3*10**5
+N_CONTENTS = 3*10**4
 
 # Number of content requests generated to pre-populate the caches
 # These requests are not logged
-N_WARMUP_REQUESTS = 3*10**5
+N_WARMUP_REQUESTS = 2*10**6
 
 # Number of content requests that are measured after warmup
-N_MEASURED_REQUESTS = 6*10**5
+N_MEASURED_REQUESTS = 6*10**6
 
 # Number of requests per second (over the whole network)
 REQ_RATE = 1.0
@@ -262,14 +262,14 @@ CACHE_POLICY = 'LRU'
 
 # Zipf alpha parameter, remove parameters not needed
 # ALPHA = [0.6, 0.8, 1.0]
-ALPHA = [0.6]
+ALPHA = [0.4, 0.8, 1.2, 1.6]
 
 # Total size of network cache as a fraction of content population
 # Remove sizes not needed
-NETWORK_CACHE = [0.004]
+NETWORK_CACHE = [0.1, 0.5, 1, 10, 20, 30]
 
-HEIGHT = 6
-BRANCH = [5]
+HEIGHT = 4
+BRANCH = [2, 3, 4, 5]
 
 # List of topologies tested
 # Topology implementations are located in ./icarus/scenarios/topology.py
@@ -305,12 +305,37 @@ EXPERIMENT_QUEUE = deque()
 # Build a default experiment configuration which is going to be used by all
 # experiments of the campaign
 default = Tree()
+
 default['workload'] = {'name':       'STATIONARY',
                        'n_contents': N_CONTENTS,
                        'n_warmup':   N_WARMUP_REQUESTS,
                        'n_measured': N_MEASURED_REQUESTS,
                        'rate':       REQ_RATE}
 
+
+'''
+trace_folder = "/Users/federerjiang/lcarus/icarus-0.6.0/trace/YouTube/"
+trace_file = trace_folder + "6100s_012908.dat.out.dat"
+contents = trace_folder + "contents.txt"
+N_CONTENTS = 303332
+N_WARMUP_REQUESTS =  200000
+N_MEASURED_REQUESTS = 411000
+default['workload'] = {'name':  'TRACE_DRIVEN',
+                       'reqs_file': trace_file,
+                       'contents_file': contents,
+                       'n_contents': N_CONTENTS,
+                       'n_warmup': N_WARMUP_REQUESTS,
+                       'n_measured': N_MEASURED_REQUESTS}
+'''
+'''
+* name: TRACE_DRIVEN
+ * args:
+    * reqs_file: the path to the requests file
+    * contents_file: the path to the contents file
+    * n_contents: number of content objects
+    * n_warmup: number of warmup requests
+    * n_measured: number of measured requests
+'''
 default['cache_placement']['name'] = 'UNIFORM'
 default['content_placement']['name'] = 'UNIFORM'
 default['cache_policy']['name'] = CACHE_POLICY
@@ -342,5 +367,5 @@ for alpha in ALPHA:
                 experiment['strategy']['name'] = strategy
                 experiment['cache_placement']['network_cache'] = network_cache
                 experiment['desc'] = "Alpha: %s, branching factor: %s, strategy: %s, topology: %s, network cache: %s" \
-                                     % (str(alpha), str(degree), strategy, 'TREE-6', str(network_cache))
+                                     % (str(alpha), str(degree), strategy, 'TREE', str(network_cache))
                 EXPERIMENT_QUEUE.append(experiment)
