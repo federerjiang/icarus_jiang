@@ -95,7 +95,6 @@ class IcnTopology(fnss.Topology):
                    if 'stack' in self.node[v]
                    and self.node[v]['stack'][0] == 'receiver')
 
-
 @register_topology_factory('TREE')
 def topology_tree(k, h, delay=1, **kwargs):
     """Returns a tree topology, with a source at the root, receivers at the
@@ -116,13 +115,23 @@ def topology_tree(k, h, delay=1, **kwargs):
         The topology object
     """
     topology = fnss.k_ary_tree_topology(k, h)
-    receivers = [v for v in topology.nodes_iter()
-                 if topology.node[v]['depth'] == h]
+
+    leafs = [v for v in topology.nodes_iter()
+             if topology.node[v]['depth'] == h]
     sources = [v for v in topology.nodes_iter()
                if topology.node[v]['depth'] == 0]
     routers = [v for v in topology.nodes_iter()
               if topology.node[v]['depth'] > 0
-              and topology.node[v]['depth'] < h]
+              and topology.node[v]['depth'] <= h]
+              
+    total_node = k ** (h+1) - 1
+    for v in range(0, len(leafs)):
+        topology.add_node(total_node + v, type="requester")
+        topology.add_edge(total_node + v, leafs[v])
+
+    receivers = [v for v in topology.nodes_iter() 
+                if topology.node[v]['type'] == "requester"]
+
     topology.graph['icr_candidates'] = set(routers)
     for v in sources:
         fnss.add_stack(topology, v, 'source')
