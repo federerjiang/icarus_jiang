@@ -259,7 +259,7 @@ class TraceDrivenWorkload(object):
         self.contents = []
         with open(contents_file, 'r', buffering=self.buffering) as f:
             for content in f:
-                self.contents.append(content)
+                self.contents.append(int(content)) # transform content to int type
         self.beta = beta
         if beta != 0:
             degree = nx.degree(topology)
@@ -279,7 +279,7 @@ class TraceDrivenWorkload(object):
                 else:
                     receiver = self.receivers[self.receiver_dist.rv() - 1]
                 log = (req_counter >= self.n_warmup)
-                event = {'receiver': receiver, 'content': content, 'log': log}
+                event = {'receiver': receiver, 'content': int(content), 'log': log}
                 yield (t_event, event)
                 req_counter += 1
                 if(req_counter >= self.n_warmup + self.n_measured):
