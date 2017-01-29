@@ -707,7 +707,12 @@ class NetworkController(object):
         Return:
         v's neighbors
         """
-        neighbors = self.model.topology.neighbors(v)
+        node_neighbors = self.model.topology.neighbors(v)
+        neighbors = []
+        for node in node_neighbors:
+            if node in self.model.cache:
+                neighbors.append(node)
+        
         return neighbors
 
     def remove_node(self, v, recompute_paths=True):
