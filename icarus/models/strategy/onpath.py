@@ -14,6 +14,7 @@ __all__ = [
        'Edge',
        'MeshEdge',
        'CoorMeshEdge',
+       'CoorLeaveCopyEverywhere',
        'LeaveCopyEverywhere',
        'LeaveCopyDown',
        'ProbCache',
@@ -204,7 +205,7 @@ class CoorMeshEdge(Strategy):
                     break
                 for neigh in neighbors:
                     if self.controller.get_content(neigh):
-                        serving_node = v
+                        serving_node = neigh
                         tag = True
                         break
                 if tag:
@@ -219,6 +220,56 @@ class CoorMeshEdge(Strategy):
         self.controller.forward_content_path(serving_node, receiver, path)
         if serving_node != edge_cache:
             self.controller.put_content(edge_cache)
+        self.controller.end_session()
+
+
+@register_strategy('CLCE')
+class CoorLeaveCopyEverywhere(Strategy):
+    """Leave Copy Everywhere (LCE) strategy.
+
+    In this strategy a copy of a content is replicated at any cache on the
+    path between serving node and receiver.
+    """
+
+    @inheritdoc(Strategy)
+    def __init__(self, view, controller, **kwargs):
+        super(CoorLeaveCopyEverywhere, self).__init__(view, controller)
+
+    @inheritdoc(Strategy)
+    def process_event(self, time, receiver, content, log):
+        # get all required data
+        source = self.view.content_source(content)
+        path = self.view.shortest_path(receiver, source)
+        # Route requests to original source and queries caches on the path
+        self.controller.start_session(time, receiver, content, log)
+        serving_node = None
+        tag = False
+        for u, v in path_links(path):
+            self.controller.forward_request_hop(u, v)
+            if self.view.has_cache(v):
+                neighbors = self.controller.get_neighbors(v)
+                if self.controller.get_content(v):
+                    serving_node = v
+                    tag = True
+                    break
+                for neigh in neighbors:
+                    if self.controller.get_content(neigh):
+                        serving_node = neigh
+                        tag = True
+                        break
+                if tag:
+                    break
+        if tag == False:
+            # No cache hits, get content from source
+            self.controller.get_content(source)
+            serving_node = source
+        # Return content
+        path = list(reversed(self.view.shortest_path(receiver, serving_node)))
+        for u, v in path_links(path):
+            self.controller.forward_content_hop(u, v)
+            if self.view.has_cache(v):
+                # insert content
+                self.controller.put_content(v)
         self.controller.end_session()
 
 
