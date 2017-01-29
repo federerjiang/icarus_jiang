@@ -12,6 +12,7 @@ from .base import Strategy
 __all__ = [
        'Partition',
        'Edge',
+       'MeshEdge',
        'LeaveCopyEverywhere',
        'LeaveCopyDown',
        'ProbCache',
@@ -114,6 +115,49 @@ class Edge(Strategy):
             self.controller.put_content(edge_cache)
         self.controller.end_session()
 
+# new strategy added by Jiang Xiaolan
+@register_strategy('MEDGE')
+class MeshEdge(Strategy):
+    """Edge caching strategy for mesh topology.
+
+    In this strategy the content requested will only be cached in the cache near the 
+    consumer. And this strategy will be used in the mesh topology.
+    """
+
+    @inheritdoc(Strategy)
+    def __init__(self, view, controller):
+        super(MeshEdge, self).__init__(view, controller)
+
+    @inheritdoc(Strategy)
+    def process_event(self, time, receiver, content, log):
+        # get all required data
+        source = self.view.content_source(content)
+        path = self.view.shortest_path(receiver, source)
+        # Route requests to original source and queries caches on the path
+        self.controller.start_session(time, receiver, content, log)
+        edge_cache = None
+        # First find the edge cache
+        for u, v in path_links(path):
+            if self.view.has_cache(v):
+                edge_cache = v
+                break
+        # Then get the content from the source, and cache it on the edge cache
+        for u, v in path_links(path):
+            self.controller.forward_request_hop(u, v)
+            if self.view.has_cache(v):
+                if self.controller.get_content(v):
+                    serving_node = v
+                    break
+            # No cache hits, get content from source
+            self.controller.get_content(v)
+            serving_node = v
+
+        # Return content
+        path = list(reversed(self.view.shortest_path(receiver, serving_node)))
+        self.controller.forward_content_path(serving_node, receiver, path)
+        if serving_node != edge_cache:
+            self.controller.put_content(edge_cache)
+        self.controller.end_session()
 
 @register_strategy('LCE')
 class LeaveCopyEverywhere(Strategy):
