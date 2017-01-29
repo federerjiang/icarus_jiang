@@ -148,6 +148,72 @@ def topology_tree(k, h, delay=1, **kwargs):
     return IcnTopology(topology)
 
 
+@register_topology_factory('SINET')
+def topology_sinet(**kwargs):
+    """Returns a sinet topology, with a source at the node "server", receivers connected to all
+    the nodes in the network.
+
+    Returns
+    -------
+    topology : IcnTopology
+        The topology object
+    """
+    topology = IcnTopology()
+    sources = [0]
+    routers = range(1, 51)
+    receivers = range(101, 151)
+
+    topology.add_path(1,2,3,4,5,6,7,8)
+    topology.add_edge(8,1)
+    topology.add_edge(1,7)
+    topology.add_edge(1,4)
+    topology.add_edge(1,3)
+    topology.add_edge(4,7)
+    topology.add_edge(5,7)
+
+    topology.add_node(0)
+    topology.add_edge(0,1)
+
+    for v in range(9,51):
+        topology.add_node(v)
+    for u in range(9,20):
+        topology.add_edge(u, 1)
+    for u in range(20, 21):
+        topology.add_edge(u, 2)
+    for u in range(21, 26):
+        topology.add_edge(u, 3)
+    for u in range(26, 28):
+        topology.add_edge(u, 4)
+    for u in range(28, 32):
+        topology.add_edge(u, 5)
+    for u in range(32, 40):
+        topology.add_edge(u, 6)
+    for u in range(40,49):
+        topology.add_edge(u, 7)
+    for u in range(49, 51):
+        topology.add_edge(u, 8)
+              
+    for v in receivers:
+        topology.add_node(v)
+        topology.add_edge(int(v-100), v)
+
+
+    topology.graph['icr_candidates'] = set(routers)
+    for v in sources:
+        fnss.add_stack(topology, v, 'source')
+    for v in receivers:
+        fnss.add_stack(topology, v, 'receiver')
+    for v in routers:
+        fnss.add_stack(topology, v, 'router')
+    # set weights and delays on all links
+    fnss.set_weights_constant(topology, 1.0)
+    fnss.set_delays_constant(topology, delay, 'ms')
+    # label links as internal
+    for u, v in topology.edges_iter():
+        topology.edge[u][v]['type'] = 'internal'
+    return IcnTopology(topology)
+
+
 @register_topology_factory('PATH')
 def topology_path(n, delay=1, **kwargs):
     """Return a path topology with a receiver on node `0` and a source at node

@@ -696,6 +696,20 @@ class NetworkController(object):
             shortest_path = nx.all_pairs_dijkstra_path(self.model.topology)
             self.model.shortest_path = symmetrify_paths(shortest_path)
 
+    def get_neighbors(self, v):
+        """Get the neighbors of node v
+        
+        Parameters
+        ----------
+        v : any hashable type
+            Node to find its neighbors
+
+        Return:
+        v's neighbors
+        """
+        neighbors = self.model.topology.neighbors(v)
+        return neighbors
+
     def remove_node(self, v, recompute_paths=True):
         """Remove a node from the topology and update the network model.
 
