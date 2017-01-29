@@ -149,7 +149,7 @@ def topology_tree(k, h, delay=1, **kwargs):
 
 
 @register_topology_factory('SINET')
-def topology_sinet(**kwargs):
+def topology_sinet(delay=1, **kwargs):
     """Returns a sinet topology, with a source at the node "server", receivers connected to all
     the nodes in the network.
 
@@ -163,7 +163,7 @@ def topology_sinet(**kwargs):
     routers = range(1, 51)
     receivers = range(101, 151)
 
-    topology.add_path(1,2,3,4,5,6,7,8)
+    topology.add_path([1,2,3,4,5,6,7,8])
     topology.add_edge(8,1)
     topology.add_edge(1,7)
     topology.add_edge(1,4)
