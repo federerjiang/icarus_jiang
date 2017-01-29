@@ -137,22 +137,25 @@ class MeshEdge(Strategy):
         # Route requests to original source and queries caches on the path
         self.controller.start_session(time, receiver, content, log)
         edge_cache = None
+        serving_node = None
         # First find the edge cache
         for u, v in path_links(path):
             if self.view.has_cache(v):
                 edge_cache = v
                 break
         # Then get the content from the source, and cache it on the edge cache
+        tag = False
         for u, v in path_links(path):
             self.controller.forward_request_hop(u, v)
             if self.view.has_cache(v):
                 if self.controller.get_content(v):
                     serving_node = v
+                    tag = True
                     break
             # No cache hits, get content from source
-        else:
-            self.controller.get_content(v)
-            serving_node = v
+        if tag == False:
+            self.controller.get_content(source)
+            serving_node = source
 
         # Return content
         path = list(reversed(self.view.shortest_path(receiver, serving_node)))
@@ -183,6 +186,7 @@ class CoorMeshEdge(Strategy):
         # Route requests to original source and queries caches on the path
         self.controller.start_session(time, receiver, content, log)
         edge_cache = None
+        serving_node = None
         # First find the edge cache
         for u, v in path_links(path):
             if self.view.has_cache(v):
