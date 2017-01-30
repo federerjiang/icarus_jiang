@@ -277,7 +277,7 @@ def topology_tree_coor_edge(k, h, delay=1, **kwargs):
         topology.edge[u][v]['type'] = 'internal'
     return IcnTopology(topology)
 
-
+'''
 def read_telstra():
     """ Read telstra topology from telstra-link.txt
 
@@ -372,6 +372,66 @@ def read_telstra():
     highest = sorted_degrees[0]
     # print "Node with the highest degree:"
     # print sorted_degrees[0]
+    return graph, list_leaf, list_gw, list_bb, highest
+'''
+def read_telstra():
+    """ Read telstra topology from telstra-link.txt
+
+    return : all the links and nodes
+    """
+    f_read_topology = open(path.join(TOPOLOGY_RESOURCES_DIR,
+                                    'telstra-link.txt'))
+    node_label_runner = 0
+    labels= {}
+    graph = []
+    f_read_topology = open(filepath_data_set)
+    list_bb = []
+    list_gw = []
+    list_leaf = []
+    for line in f_read_topology:
+        splt = line.split("\t")
+  
+        node1 = splt[0]
+  
+        if "bb" in node1:
+            if node1 not in list_bb:
+                list_bb.append(node1)
+                labels[node1] = " "
+      
+        elif "gw" in node1:
+            if node1 not in list_gw:
+            list_gw.append(node1)
+            labels[node1] = " "
+      
+        elif "leaf" in node1:
+            if node1 not in list_leaf:
+                list_leaf.append(node1)
+                node_label_runner = node_label_runner + 1
+                labels[node1] = node_label_runner
+    
+    
+        node2 = splt[1]
+  
+        if "bb" in node2:
+            if node2 not in list_bb:
+                list_bb.append(node2)
+                labels[node2] = " "
+      
+        elif "gw" in node2:
+            if node2 not in list_gw:
+                list_gw.append(node2)
+                labels[node2] = " "
+      
+        elif "leaf" in node2:
+            if node2 not in list_leaf:
+                list_leaf.append(node2)
+                node_label_runner = node_label_runner + 1
+                labels[node2] = node_label_runner
+  
+        graph.append((node1, node2))
+    f_read_topology.close()
+
+    highest = 'bb-1784'
     return graph, list_leaf, list_gw, list_bb, highest
 
 
@@ -496,7 +556,7 @@ def topology_telstra_coor_edge(delay=1, **kwargs):
     for edge in graph:
         topology.add_edge(edge[0], edge[1])
 
-    sources = [0]
+    sources = (0)
     routers = list_leaf + list_gw
     receivers = range(1000, 1000+len(list_leaf))
     gateways = list_bb

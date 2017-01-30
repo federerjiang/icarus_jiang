@@ -108,5 +108,5 @@ print len(graph)
     # f_write.write(str(node[1]) + "\t" + str(node[0]) + "\n")
 # f_write.close()  
 
-# draw_graph(graph, list_bb, list_gw, list_leaf, labels)
+draw_graph(graph, list_bb, list_gw, list_leaf, labels)
 
