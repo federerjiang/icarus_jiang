@@ -293,47 +293,62 @@ def read_telstra():
     list_bb = []
     list_gw = []
     list_leaf = []
+    bb_labels = {}
+    gw_labels = {}
+    leaf_labels = {}
+
+    node_runner = 0
+    labels = {}
+    list_node = []
+
     for line in f_read_topology:
         splt = line.split()
   
         node1 = splt[0]
-  
-        if "bb" in node1:
-            if node1 not in list_bb:
-                list_bb.append(node1)
+        if node1 not in list_node:
+            list_node.append(node1)
+            node_runner = node_runner + 1
+            labels[node1] = node_runner
+            if "bb" in node1:
+                if labels[node1] not in list_bb:
+                    list_bb.append(labels[node1])
+
             # labels[node1] = " "
       
-        elif "gw" in node1:
-            if node1 not in list_gw:
-                list_gw.append(node1)
+           elif "gw" in node1:
+                if labels[node1] not in list_gw:
+                    list_gw.append(labels[node1])
                 # labels[node1] = " "
       
-        elif "leaf" in node1:
-            if node1 not in list_leaf:
-                list_leaf.append(node1)
+            elif "leaf" in node1:
+                if labels[node1] not in list_leaf:
+                    list_leaf.append(labels[node1])
                 # node_label_runner = node_label_runner + 1
                 # labels[node1] = node_label_runner
     
     
         node2 = splt[1]
-  
-        if "bb" in node2:
-            if node2 not in list_bb:
-                list_bb.append(node2)
+        if node1 not in list_node:
+            list_node.append(node2)
+            node_runner = node_runner + 1
+            labels[node2] = node_runner
+            if "bb" in node2:
+                if labels[node2] not in list_bb:
+                    list_bb.append(labels[node2])
                 # labels[node2] = " "
       
-        elif "gw" in node2:
-            if node2 not in list_gw:
-               list_gw.append(node2)
+            elif "gw" in node2:
+                if labels[node2] not in list_gw:
+                   list_gw.append(labels[node2])
                # labels[node2] = " "
       
-        elif "leaf" in node2:
-            if node2 not in list_leaf:
-                list_leaf.append(node2)
+            elif "leaf" in node2:
+                if labels[node2] not in list_leaf:
+                    list_leaf.append(labels[node2])
                 # node_label_runner = node_label_runner + 1
                 # labels[node2] = node_label_runner
   
-    graph.append((node1, node2))
+    graph.append((labels[node1], labels[node2]))
     f_read_topology.close()
     return graph, list_leaf, list_gw, list_bb
 
