@@ -329,7 +329,7 @@ def read_telstra():
     
     
         node2 = splt[1]
-        if node1 not in list_node:
+        if node2 not in list_node:
             list_node.append(node2)
             node_runner = node_runner + 1
             labels[node2] = node_runner
@@ -349,7 +349,7 @@ def read_telstra():
                 # node_label_runner = node_label_runner + 1
                 # labels[node2] = node_label_runner
   
-    graph.append((labels[node1], labels[node2]))
+        graph.append((labels[node1], labels[node2]))
     f_read_topology.close()
 
     # extract nodes from graph
