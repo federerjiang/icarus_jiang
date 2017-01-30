@@ -89,7 +89,7 @@ class StationaryWorkload(object):
         if beta < 0:
             raise ValueError('beta must be positive')
         self.receivers = [v for v in topology.nodes_iter()
-                     if 'stack' in self.node[v]
+                     if 'stack' in topology.node[v]
                      and topology.node[v]['stack'][0] == 'receiver']
         self.zipf = TruncatedZipfDist(alpha, n_contents)
         self.n_contents = n_contents
@@ -162,7 +162,7 @@ class GlobetraffWorkload(object):
         if beta < 0:
             raise ValueError('beta must be positive')
         self.receivers = [v for v in topology.nodes_iter()
-                     if 'stack' in self.node[v]
+                     if 'stack' in topology.node[v]
                      and topology.node[v]['stack'][0] == 'receiver']
         self.n_contents = 0
         with open(contents_file, 'r') as f:
@@ -257,7 +257,7 @@ class TraceDrivenWorkload(object):
         self.reqs_file = reqs_file
         self.rate = rate
         self.receivers = [v for v in topology.nodes_iter()
-                          if 'stack' in self.node[v]
+                          if 'stack' in topology.node[v]
                           and topology.node[v]['stack'][0] == 'receiver']
         self.contents = []
         with open(contents_file, 'r', buffering=self.buffering) as f:
