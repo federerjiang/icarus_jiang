@@ -288,7 +288,8 @@ def read_telstra():
     graph = []
     # f_read_topology = open(filepath_data_set, 'r')
     f_read_topology = open(path.join(TOPOLOGY_RESOURCES_DIR,
-                                    'telstra-link.txt')
+                                    'telstra-link.txt'))
+
     list_bb = []
     list_gw = []
     list_leaf = []
