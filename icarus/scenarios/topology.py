@@ -396,13 +396,11 @@ def read_telstra():
         if "bb" in node1:
             if node1 not in list_bb:
                 list_bb.append(node1)
-                labels[node1] = " "
-      
+                labels[node1] = " "     
         elif "gw" in node1:
             if node1 not in list_gw:
-            list_gw.append(node1)
-            labels[node1] = " "
-      
+                list_gw.append(node1)
+                labels[node1] = " "     
         elif "leaf" in node1:
             if node1 not in list_leaf:
                 list_leaf.append(node1)
@@ -415,13 +413,11 @@ def read_telstra():
         if "bb" in node2:
             if node2 not in list_bb:
                 list_bb.append(node2)
-                labels[node2] = " "
-      
+                labels[node2] = " "     
         elif "gw" in node2:
             if node2 not in list_gw:
                 list_gw.append(node2)
-                labels[node2] = " "
-      
+                labels[node2] = " "     
         elif "leaf" in node2:
             if node2 not in list_leaf:
                 list_leaf.append(node2)
