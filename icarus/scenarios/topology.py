@@ -350,7 +350,28 @@ def read_telstra():
   
     graph.append((labels[node1], labels[node2]))
     f_read_topology.close()
-    return graph, list_leaf, list_gw, list_bb
+
+    # extract nodes from graph
+    nodes = set([n1 for n1, n2 in graph] + [n2 for n1, n2 in graph])
+
+    # create networkx graph
+    G=nx.Graph()
+
+    # add nodes
+    for node in nodes:
+        G.add_node(node)
+    
+    # add edges
+    for edge in graph:
+        G.add_edge(edge[0], edge[1])
+    degrees = {}    
+    for node in nodes:
+      degrees[node] = nx.degree(G, node)    
+    sorted_degrees = sorted(degrees.items(), key=operator.itemgetter(0))
+    highest = sorted_degrees[0]
+    # print "Node with the highest degree:"
+    # print sorted_degrees[0]
+    return graph, list_leaf, list_gw, list_bb, highest
 
 
 @register_topology_factory('TELSTRA')
@@ -364,7 +385,7 @@ def topology_telstra(delay=1, **kwargs):
     topology : IcnTopology
         The topology object
     """
-    graph, list_leaf, list_gw, list_bb = read_telstra()
+    graph, list_leaf, list_gw, list_bb, highest = read_telstra()
     nodes = set([n1 for n1, n2 in graph] + [n2 for n1, n2 in graph])
 
     topology = IcnTopology()
@@ -383,7 +404,7 @@ def topology_telstra(delay=1, **kwargs):
         topology.add_edge(list_leaf[v-1000], v)
     for v in sources:
         topology.add_node(v)
-        topology.add_edge(v, 'bb-1784')
+        topology.add_edge(v, highest)
 
 
     topology.graph['icr_candidates'] = set(routers)
@@ -413,7 +434,7 @@ def topology_telstra_edge(delay=1, **kwargs):
     topology : IcnTopology
         The topology object
     """
-    graph, list_leaf, list_gw, list_bb = read_telstra()
+    graph, list_leaf, list_gw, list_bb, highest = read_telstra()
     nodes = set([n1 for n1, n2 in graph] + [n2 for n1, n2 in graph])
 
     topology = IcnTopology()
@@ -433,7 +454,7 @@ def topology_telstra_edge(delay=1, **kwargs):
         topology.add_edge(list_leaf[v-1000], v)
     for v in sources:
         topology.add_node(v)
-        topology.add_edge(v, 'bb-1784')
+        topology.add_edge(v, highest)
 
 
     topology.graph['icr_candidates'] = set(routers)
@@ -465,7 +486,7 @@ def topology_telstra_coor_edge(delay=1, **kwargs):
     topology : IcnTopology
         The topology object
     """
-    graph, list_leaf, list_gw, list_bb = read_telstra()
+    graph, list_leaf, list_gw, list_bb, highest = read_telstra()
     nodes = set([n1 for n1, n2 in graph] + [n2 for n1, n2 in graph])
 
     topology = IcnTopology()
@@ -485,7 +506,7 @@ def topology_telstra_coor_edge(delay=1, **kwargs):
         topology.add_edge(list_leaf[v-1000], v)
     for v in sources:
         topology.add_node(v)
-        topology.add_edge(v, 'bb-1784')
+        topology.add_edge(v, highest)
 
 
     topology.graph['icr_candidates'] = set(routers)
