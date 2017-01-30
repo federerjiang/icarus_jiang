@@ -554,7 +554,7 @@ def topology_telstra_coor_edge(delay=1, **kwargs):
     for edge in graph:
         topology.add_edge(edge[0], edge[1])
 
-    sources = (0)
+    sources = [0]
     routers = list_leaf + list_gw
     receivers = range(1000, 1000+len(list_leaf))
     gateways = list_bb
