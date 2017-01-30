@@ -69,7 +69,7 @@ ALPHA = [0.6]
 
 # Total size of network cache as a fraction of content population
 # Remove sizes not needed
-NETWORK_CACHE = [1]
+NETWORK_CACHE = [1, 5]
 
 
 
