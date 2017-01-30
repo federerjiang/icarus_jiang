@@ -249,10 +249,10 @@ N_CONTENTS = 3*10**4
 
 # Number of content requests generated to pre-populate the caches
 # These requests are not logged
-N_WARMUP_REQUESTS = 2*10**6
+N_WARMUP_REQUESTS = 5*10**6
 
 # Number of content requests that are measured after warmup
-N_MEASURED_REQUESTS = 6*10**6
+N_MEASURED_REQUESTS = 10*10**6
 
 # Number of requests per second (over the whole network)
 REQ_RATE = 1.0
@@ -262,16 +262,13 @@ CACHE_POLICY = 'LRU'
 
 # Zipf alpha parameter, remove parameters not needed
 # ALPHA = [0.6, 0.8, 1.0]
-# ALPHA = [0.4, 0.8, 1.2, 1.6]
 ALPHA = [0.6]
 
 # Total size of network cache as a fraction of content population
 # Remove sizes not needed
-# NETWORK_CACHE = [0.1, 0.5, 1, 10, 20, 30]
 NETWORK_CACHE = [1]
 
-HEIGHT = 4
-BRANCH = [2, 3, 4, 5]
+
 
 # List of topologies tested
 # Topology implementations are located in ./icarus/scenarios/topology.py
@@ -297,7 +294,10 @@ STRATEGIES = [
      # 'CL4M',            # Cache less for more
      'PROB_CACHE',      # ProbCache
      'LCD',             # Leave Copy Down
+     # 'MEDGE',
+     # 'CMEDGE',
      'CLCE',
+     # 'CTEDGE',
      # 'RAND_CHOICE',     # Random choice: cache in one random cache on path
      # 'RAND_BERNOULLI',  # Random Bernoulli: cache randomly in caches on path
              ]
@@ -342,8 +342,8 @@ default['workload'] = {'name':  'TRACE_DRIVEN',
 default['cache_placement']['name'] = 'UNIFORM'
 default['content_placement']['name'] = 'UNIFORM'
 default['cache_policy']['name'] = CACHE_POLICY
-default['topology']['name'] = 'TREE'
-default['topology']['h'] = HEIGHT
+default['topology']['name'] = 'TELSTRA'
+# default['topology']['h'] = HEIGHT
 
 # Create experiments multiplexing all desired parameters
 '''
@@ -361,14 +361,12 @@ for alpha in ALPHA:
                 EXPERIMENT_QUEUE.append(experiment)
 '''
 for alpha in ALPHA:
-    for degree in BRANCH:
-        for strategy in STRATEGIES:
-            for network_cache in NETWORK_CACHE:
-                experiment = copy.deepcopy(default)
-                experiment['workload']['alpha'] = alpha
-                experiment['topology']['k'] = degree
-                experiment['strategy']['name'] = strategy
-                experiment['cache_placement']['network_cache'] = network_cache
-                experiment['desc'] = "Alpha: %s, branching factor: %s, strategy: %s, topology: %s, network cache: %s" \
-                                     % (str(alpha), str(degree), strategy, 'TREE', str(network_cache))
-                EXPERIMENT_QUEUE.append(experiment)
+    for network_cache in NETWORK_CACHE:
+        for strategy in STRATEGIES:    
+            experiment = copy.deepcopy(default)
+            experiment['workload']['alpha'] = alpha
+            experiment['strategy']['name'] = strategy
+            experiment['cache_placement']['network_cache'] = network_cache
+            experiment['desc'] = "Alpha: %s, strategy: %s, topology: %s, network cache: %s" \
+                                 % (str(alpha), strategy, 'TELSTRA', str(network_cache))
+            EXPERIMENT_QUEUE.append(experiment)

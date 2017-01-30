@@ -298,7 +298,7 @@ STRATEGIES = [
      'MEDGE',
      # 'CMEDGE',
      # 'CLCE',
-     'CTEDGE',
+     # 'CTEDGE',
      # 'RAND_CHOICE',     # Random choice: cache in one random cache on path
      # 'RAND_BERNOULLI',  # Random Bernoulli: cache randomly in caches on path
              ]
@@ -362,12 +362,14 @@ for alpha in ALPHA:
                 EXPERIMENT_QUEUE.append(experiment)
 '''
 for alpha in ALPHA:
-    for strategy in STRATEGIES:
+    for degree in BRANCH:
         for network_cache in NETWORK_CACHE:
-            experiment = copy.deepcopy(default)
-            experiment['workload']['alpha'] = alpha
-            experiment['strategy']['name'] = strategy
-            experiment['cache_placement']['network_cache'] = network_cache
-            experiment['desc'] = "Alpha: %s, strategy: %s, topology: %s, network cache: %s" \
-                                 % (str(alpha), strategy, 'SINET', str(network_cache))
-            EXPERIMENT_QUEUE.append(experiment)
+            for strategy in STRATEGIES:        
+                experiment = copy.deepcopy(default)
+                experiment['workload']['alpha'] = alpha
+                experiment['topology']['k'] = degree
+                experiment['strategy']['name'] = strategy
+                experiment['cache_placement']['network_cache'] = network_cache
+                experiment['desc'] = "Alpha: %s, branching factor: %s, strategy: %s, topology: %s, network cache: %s" \
+                                     % (str(alpha), str(degree), strategy, 'TREE-EDGE', str(network_cache))
+                EXPERIMENT_QUEUE.append(experiment)
