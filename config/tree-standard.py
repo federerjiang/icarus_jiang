@@ -287,7 +287,7 @@ BRANCH = [2, 3, 4, 5]
 # The code is located in ./icarus/models/strategy.py
 # Remove strategies not needed
 STRATEGIES = [
-     'LCE',             # Leave Copy Everywhere
+     # 'LCE',             # Leave Copy Everywhere
      # 'NO_CACHE',        # No caching, shortest-path routing
      # 'HR_SYMM',         # Symmetric hash-routing
      # 'HR_ASYMM',        # Asymmetric hash-routing
@@ -295,7 +295,7 @@ STRATEGIES = [
      # 'HR_HYBRID_AM',    # Hybrid Asymm-Multicast hash-routing
      # 'HR_HYBRID_SM',    # Hybrid Symm-Multicast hash-routing
      # 'CL4M',            # Cache less for more
-     'PROB_CACHE',      # ProbCache
+     # 'PROB_CACHE',      # ProbCache
      'LCD',             # Leave Copy Down
      'CLCE',
      # 'RAND_CHOICE',     # Random choice: cache in one random cache on path
