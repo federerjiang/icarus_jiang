@@ -196,6 +196,7 @@ class CoorMeshEdge(Strategy):
                 break
         # Then get the content from the source, and cache it on the edge cache
         tag = False
+        tag_neigh = False
         for u, v in path_links(path):
             self.controller.forward_request_hop(u, v)
             if self.view.has_cache(v):
@@ -207,11 +208,11 @@ class CoorMeshEdge(Strategy):
                 for neigh in neighbors:
                     if self.controller.get_content(neigh):
                         serving_node = neigh
-                        tag = True
+                        tag_neigh = True
                         break
                 if tag:
                     break
-        if tag == False:
+        if tag == False and tag_neigh == False:
             # No cache hits, get content from source
             self.controller.get_content(source)
             serving_node = source
@@ -219,17 +220,17 @@ class CoorMeshEdge(Strategy):
         # Return content
         path = list(reversed(self.view.shortest_path(receiver, serving_node)))
         self.controller.forward_content_path(serving_node, receiver, path)
-        if serving_node != edge_cache:
+        if serving_node != edge_cache and tag_neigh == False:
             self.controller.put_content(edge_cache)
         self.controller.end_session()
 
 
 @register_strategy('CTEDGE')
 class CoorTelstraEdge(Strategy):
-    """Coordinated Edge caching strategy for mesh topology.
+    """Coordinated Edge caching strategy for tree topology.
 
     In this strategy the content requested will only be cached in the cache near the 
-    consumer. And this strategy will be used in the mesh topology.
+    consumer. And this strategy will be used in the tree topology.
     """
 
     @inheritdoc(Strategy)

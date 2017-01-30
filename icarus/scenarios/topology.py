@@ -24,6 +24,12 @@ from icarus.registry import register_topology_factory
 __all__ = [
         'IcnTopology',
         'topology_tree',
+        'topology_tree_edge',
+        'topology_tree_coor_edge',
+        'topology_telstra',
+        'topology_telstra_edge',
+        'topology_telstra_coor_edge',
+        'topology_sinet',
         'topology_path',
         'topology_ring',
         'topology_mesh',
@@ -148,10 +154,332 @@ def topology_tree(k, h, delay=1, **kwargs):
     return IcnTopology(topology)
 
 
+@register_topology_factory('TREE-EDGE')
+def topology_tree_edge(k, h, delay=1, **kwargs):
+    """Returns a tree topology, with a source at the root, caches at only leaf nodes,
+    and receivers connect to only leaf nodes.
+
+
+    Cooresponding strategy : MEDGE
+
+
+    Parameters
+    ----------
+    h : int
+        The height of the tree
+    k : int
+        The branching factor of the tree
+    delay : float
+        The link delay in milliseconds
+
+    Returns
+    -------
+    topology : IcnTopology
+        The topology object
+    """
+    topology = fnss.k_ary_tree_topology(k, h)
+
+    leafs = [v for v in topology.nodes_iter()
+             if topology.node[v]['depth'] == h]
+    sources = [v for v in topology.nodes_iter()
+               if topology.node[v]['depth'] == 0]
+    routers = leafs
+    # routers = [v for v in topology.nodes_iter()
+              # if topology.node[v]['depth'] > 0
+              # and topology.node[v]['depth'] <= h]
+              
+    total_node = k ** (h+1) - 1
+    for v in range(0, len(leafs)):
+        topology.add_node(total_node + v, type="requester")
+        topology.add_edge(total_node + v, leafs[v])
+
+    receivers = [v for v in topology.nodes_iter() 
+                if topology.node[v]['type'] == "requester"]
+
+    topology.graph['icr_candidates'] = set(routers)
+    for v in sources:
+        fnss.add_stack(topology, v, 'source')
+    for v in receivers:
+        fnss.add_stack(topology, v, 'receiver')
+    for v in routers:
+        fnss.add_stack(topology, v, 'router')
+    # set weights and delays on all links
+    fnss.set_weights_constant(topology, 1.0)
+    fnss.set_delays_constant(topology, delay, 'ms')
+    # label links as internal
+    for u, v in topology.edges_iter():
+        topology.edge[u][v]['type'] = 'internal'
+    return IcnTopology(topology)
+
+
+@register_topology_factory('TREE-COOR-EDGE')
+def topology_tree_coor_edge(k, h, delay=1, **kwargs):
+    """Returns a tree topology, with a source at the root, receivers at the
+    leafs and caches at all intermediate nodes.
+
+    Cooresponding strategy : CTEDGE
+
+    Parameters
+    ----------
+    h : int
+        The height of the tree
+    k : int
+        The branching factor of the tree
+    delay : float
+        The link delay in milliseconds
+
+    Returns
+    -------
+    topology : IcnTopology
+        The topology object
+    """
+    topology = fnss.k_ary_tree_topology(k, h)
+
+    leafs = [v for v in topology.nodes_iter()
+             if topology.node[v]['depth'] == h]
+    sources = [v for v in topology.nodes_iter()
+               if topology.node[v]['depth'] == 0]
+    routers = [v for v in topology.nodes_iter()
+              if topology.node[v]['depth'] >= h-1
+              and topology.node[v]['depth'] <= h]
+              
+    total_node = k ** (h+1) - 1
+    for v in range(0, len(leafs)):
+        topology.add_node(total_node + v, type="requester")
+        topology.add_edge(total_node + v, leafs[v])
+
+    receivers = [v for v in topology.nodes_iter() 
+                if topology.node[v]['type'] == "requester"]
+
+    topology.graph['icr_candidates'] = set(routers)
+    for v in sources:
+        fnss.add_stack(topology, v, 'source')
+    for v in receivers:
+        fnss.add_stack(topology, v, 'receiver')
+    for v in routers:
+        fnss.add_stack(topology, v, 'router')
+    # set weights and delays on all links
+    fnss.set_weights_constant(topology, 1.0)
+    fnss.set_delays_constant(topology, delay, 'ms')
+    # label links as internal
+    for u, v in topology.edges_iter():
+        topology.edge[u][v]['type'] = 'internal'
+    return IcnTopology(topology)
+
+
+def read_telstra():
+    """ Read telstra topology from telstra-link.txt
+
+    return : all the links and nodes
+    """
+    # node_label_runner = 0
+    # labels= {}
+    filepath_data_set = "telstra-link.txt"
+    graph = []
+    f_read_topology = open(filepath_data_set)
+    list_bb = []
+    list_gw = []
+    list_leaf = []
+    for line in f_read_topology:
+        splt = line.split("\t")
+  
+        node1 = splt[0]
+  
+        if "bb" in node1:
+            if node1 not in list_bb:
+                list_bb.append(node1)
+            # labels[node1] = " "
+      
+        elif "gw" in node1:
+            if node1 not in list_gw:
+                list_gw.append(node1)
+                # labels[node1] = " "
+      
+        elif "leaf" in node1:
+            if node1 not in list_leaf:
+                list_leaf.append(node1)
+                # node_label_runner = node_label_runner + 1
+                # labels[node1] = node_label_runner
+    
+    
+        node2 = splt[1]
+  
+        if "bb" in node2:
+            if node2 not in list_bb:
+                list_bb.append(node2)
+                # labels[node2] = " "
+      
+        elif "gw" in node2:
+            if node2 not in list_gw:
+               list_gw.append(node2)
+               # labels[node2] = " "
+      
+        elif "leaf" in node2:
+            if node2 not in list_leaf:
+                list_leaf.append(node2)
+                # node_label_runner = node_label_runner + 1
+                # labels[node2] = node_label_runner
+  
+    graph.append((node1, node2))
+    f_read_topology.close()
+    return graph, list_leaf, list_gw, list_bb
+
+
+@register_topology_factory('TELSTRA')
+def topology_telstra(delay=1, **kwargs):
+    """Returns a telstra topology, with source to the core nodes, receivers connected to all
+    the leaf nodes in the network.
+
+
+    Returns
+    -------
+    topology : IcnTopology
+        The topology object
+    """
+    graph, list_leaf, list_gw, list_bb = read_telstra()
+    nodes = set([n1 for n1, n2 in graph] + [n2 for n1, n2 in graph])
+
+    topology = IcnTopology()
+    for node in nodes:
+        topology.add_node(node)
+    for edge in graph:
+        topology.add_edge(edge[0], edge[1])
+
+    sources = [0]
+    routers = list_leaf + list_gw + list_bb
+    receivers = range(1000, 1000+len(list_leaf))
+
+              
+    for v in receivers:
+        topology.add_node(v)
+        topology.add_edge(list_leaf[v-1000], v)
+    for v in sources:
+        topology.add_node(v)
+        topology.add_edge(v, 'bb-1784')
+
+
+    topology.graph['icr_candidates'] = set(routers)
+    for v in sources:
+        fnss.add_stack(topology, v, 'source')
+    for v in receivers:
+        fnss.add_stack(topology, v, 'receiver')
+    for v in routers:
+        fnss.add_stack(topology, v, 'router')
+    # set weights and delays on all links
+    fnss.set_weights_constant(topology, 1.0)
+    fnss.set_delays_constant(topology, delay, 'ms')
+    # label links as internal
+    for u, v in topology.edges_iter():
+        topology.edge[u][v]['type'] = 'internal'
+    return IcnTopology(topology)
+
+
+@register_topology_factory('TELSTRA-EDGE')
+def topology_telstra_edge(delay=1, **kwargs):
+    """Returns a telstra topology, with source to the core nodes, receivers connected to all
+    the leaf nodes in the network.
+
+
+    Returns
+    -------
+    topology : IcnTopology
+        The topology object
+    """
+    graph, list_leaf, list_gw, list_bb = read_telstra()
+    nodes = set([n1 for n1, n2 in graph] + [n2 for n1, n2 in graph])
+
+    topology = IcnTopology()
+    for node in nodes:
+        topology.add_node(node)
+    for edge in graph:
+        topology.add_edge(edge[0], edge[1])
+
+    sources = [0]
+    routers = list_leaf
+    receivers = range(1000, 1000+len(list_leaf))
+
+              
+    for v in receivers:
+        topology.add_node(v)
+        topology.add_edge(list_leaf[v-1000], v)
+    for v in sources:
+        topology.add_node(v)
+        topology.add_edge(v, 'bb-1784')
+
+
+    topology.graph['icr_candidates'] = set(routers)
+    for v in sources:
+        fnss.add_stack(topology, v, 'source')
+    for v in receivers:
+        fnss.add_stack(topology, v, 'receiver')
+    for v in routers:
+        fnss.add_stack(topology, v, 'router')
+    # set weights and delays on all links
+    fnss.set_weights_constant(topology, 1.0)
+    fnss.set_delays_constant(topology, delay, 'ms')
+    # label links as internal
+    for u, v in topology.edges_iter():
+        topology.edge[u][v]['type'] = 'internal'
+    return IcnTopology(topology)
+
+
+@register_topology_factory('TELSTRA-COOR-EDGE')
+def topology_telstra_coor_edge(delay=1, **kwargs):
+    """Returns a telstra topology, with source to the core nodes, receivers connected to all
+    the leaf nodes in the network.
+
+
+    Returns
+    -------
+    topology : IcnTopology
+        The topology object
+    """
+    graph, list_leaf, list_gw, list_bb = read_telstra()
+    nodes = set([n1 for n1, n2 in graph] + [n2 for n1, n2 in graph])
+
+    topology = IcnTopology()
+    for node in nodes:
+        topology.add_node(node)
+    for edge in graph:
+        topology.add_edge(edge[0], edge[1])
+
+    sources = [0]
+    routers = list_leaf + list_gw
+    receivers = range(1000, 1000+len(list_leaf))
+
+              
+    for v in receivers:
+        topology.add_node(v)
+        topology.add_edge(list_leaf[v-1000], v)
+    for v in sources:
+        topology.add_node(v)
+        topology.add_edge(v, 'bb-1784')
+
+
+    topology.graph['icr_candidates'] = set(routers)
+    for v in sources:
+        fnss.add_stack(topology, v, 'source')
+    for v in receivers:
+        fnss.add_stack(topology, v, 'receiver')
+    for v in routers:
+        fnss.add_stack(topology, v, 'router')
+    # set weights and delays on all links
+    fnss.set_weights_constant(topology, 1.0)
+    fnss.set_delays_constant(topology, delay, 'ms')
+    # label links as internal
+    for u, v in topology.edges_iter():
+        topology.edge[u][v]['type'] = 'internal'
+    return IcnTopology(topology)
+
+
 @register_topology_factory('SINET')
 def topology_sinet(delay=1, **kwargs):
     """Returns a sinet topology, with a source at the node "server", receivers connected to all
     the nodes in the network.
+
+
+    Cooresponding strategy : CMEDGE
+
 
     Returns
     -------
