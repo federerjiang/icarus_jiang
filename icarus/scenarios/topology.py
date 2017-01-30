@@ -294,7 +294,7 @@ def read_telstra():
     list_gw = []
     list_leaf = []
     for line in f_read_topology:
-        splt = line.split("\t")
+        splt = line.split()
   
         node1 = splt[0]
   
@@ -350,8 +350,7 @@ def topology_telstra(delay=1, **kwargs):
         The topology object
     """
     graph, list_leaf, list_gw, list_bb = read_telstra()
-    # nodes = set([n1 for n1, n2 in graph] + [n2 for n1, n2 in graph])
-    nodes = list_bb + list_leaf + list_gw
+    nodes = set([n1 for n1, n2 in graph] + [n2 for n1, n2 in graph])
 
     topology = IcnTopology()
     for node in nodes:
