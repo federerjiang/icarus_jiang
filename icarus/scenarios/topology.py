@@ -284,9 +284,11 @@ def read_telstra():
     """
     # node_label_runner = 0
     # labels= {}
-    filepath_data_set = "/Users/federerjiang/icarus_jiang/icarus/scenarios/telstra-link.txt"
+    # filepath_data_set = "/Users/federerjiang/icarus_jiang/icarus/scenarios/telstra-link.txt"
     graph = []
-    f_read_topology = open(filepath_data_set)
+    # f_read_topology = open(filepath_data_set, 'r')
+    f_read_topology = open(path.join(TOPOLOGY_RESOURCES_DIR,
+                                    'telstra-link.txt')
     list_bb = []
     list_gw = []
     list_leaf = []
