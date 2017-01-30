@@ -384,7 +384,7 @@ def read_telstra():
     node_label_runner = 0
     labels= {}
     graph = []
-    f_read_topology = open(filepath_data_set)
+    # f_read_topology = open(filepath_data_set)
     list_bb = []
     list_gw = []
     list_leaf = []
