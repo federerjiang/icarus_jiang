@@ -184,6 +184,9 @@ def topology_tree_edge(k, h, delay=1, **kwargs):
     sources = [v for v in topology.nodes_iter()
                if topology.node[v]['depth'] == 0]
     routers = leafs
+    gateways = [v for v in topology.nodes_iter()
+                if topology.node[v]['depth'] > 0
+                and topology.node[v]['depth'] < h]
     # routers = [v for v in topology.nodes_iter()
               # if topology.node[v]['depth'] > 0
               # and topology.node[v]['depth'] <= h]
@@ -203,6 +206,8 @@ def topology_tree_edge(k, h, delay=1, **kwargs):
         fnss.add_stack(topology, v, 'receiver')
     for v in routers:
         fnss.add_stack(topology, v, 'router')
+    for v in gateways:
+        fnss.add_stack(topology, v, 'gateway')
     # set weights and delays on all links
     fnss.set_weights_constant(topology, 1.0)
     fnss.set_delays_constant(topology, delay, 'ms')
@@ -242,6 +247,9 @@ def topology_tree_coor_edge(k, h, delay=1, **kwargs):
     routers = [v for v in topology.nodes_iter()
               if topology.node[v]['depth'] >= h-1
               and topology.node[v]['depth'] <= h]
+    gateways = [v for v in topology.nodes_iter()
+                if topology.node[v]['depth'] > 0
+                and topology.node[v]['depth'] < h-1]
               
     total_node = k ** (h+1) - 1
     for v in range(0, len(leafs)):
@@ -258,6 +266,8 @@ def topology_tree_coor_edge(k, h, delay=1, **kwargs):
         fnss.add_stack(topology, v, 'receiver')
     for v in routers:
         fnss.add_stack(topology, v, 'router')
+    for v in gateways:
+        fnss.add_stack(topology, v, 'gateway')
     # set weights and delays on all links
     fnss.set_weights_constant(topology, 1.0)
     fnss.set_delays_constant(topology, delay, 'ms')
@@ -397,6 +407,7 @@ def topology_telstra_edge(delay=1, **kwargs):
     sources = [0]
     routers = list_leaf
     receivers = range(1000, 1000+len(list_leaf))
+    gateways = list_gw + list_bb
 
               
     for v in receivers:
@@ -414,6 +425,8 @@ def topology_telstra_edge(delay=1, **kwargs):
         fnss.add_stack(topology, v, 'receiver')
     for v in routers:
         fnss.add_stack(topology, v, 'router')
+    for v in gateways:
+        fnss.add_stack(topology, v, 'gateway')
     # set weights and delays on all links
     fnss.set_weights_constant(topology, 1.0)
     fnss.set_delays_constant(topology, delay, 'ms')
@@ -446,6 +459,7 @@ def topology_telstra_coor_edge(delay=1, **kwargs):
     sources = [0]
     routers = list_leaf + list_gw
     receivers = range(1000, 1000+len(list_leaf))
+    gateways = list_bb
 
               
     for v in receivers:
@@ -463,6 +477,8 @@ def topology_telstra_coor_edge(delay=1, **kwargs):
         fnss.add_stack(topology, v, 'receiver')
     for v in routers:
         fnss.add_stack(topology, v, 'router')
+    for v in gateways:
+        fnss.add_stack(topology, v, 'gateway')
     # set weights and delays on all links
     fnss.set_weights_constant(topology, 1.0)
     fnss.set_delays_constant(topology, delay, 'ms')
