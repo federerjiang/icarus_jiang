@@ -3,7 +3,7 @@
 # Enable command echo
 set -v
 
-rm results.pickle
+# rm results.pickle
 
 
 # Run experiments
