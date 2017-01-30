@@ -14,6 +14,7 @@ A valid ICN topology must have the following attributes:
 from __future__ import division
 
 from os import path
+import operator
 
 import networkx as nx
 import fnss
