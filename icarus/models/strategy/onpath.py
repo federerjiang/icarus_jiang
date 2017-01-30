@@ -197,8 +197,11 @@ class CoorMeshEdge(Strategy):
         # Then get the content from the source, and cache it on the edge cache
         tag = False
         tag_neigh = False
+        count = False
+        path_count = 0
         for u, v in path_links(path):
             self.controller.forward_request_hop(u, v)
+            path_count = path_count + 1
             if self.view.has_cache(v):
                 neighbors = self.controller.get_neighbors(v)
                 if self.controller.get_content(v):
@@ -209,6 +212,9 @@ class CoorMeshEdge(Strategy):
                     if self.controller.get_content(neigh):
                         serving_node = neigh
                         tag_neigh = True
+                        if path_count == 2:
+                            count = True
+                            self.controller.put_content(v)
                         break
                 if tag:
                     break
@@ -220,7 +226,7 @@ class CoorMeshEdge(Strategy):
         # Return content
         path = list(reversed(self.view.shortest_path(receiver, serving_node)))
         self.controller.forward_content_path(serving_node, receiver, path)
-        if serving_node != edge_cache and tag_neigh == False:
+        if serving_node != edge_cache and count == False:
             self.controller.put_content(edge_cache)
         self.controller.end_session()
 
