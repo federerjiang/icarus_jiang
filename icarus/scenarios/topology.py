@@ -315,7 +315,7 @@ def read_telstra():
 
             # labels[node1] = " "
       
-           elif "gw" in node1:
+            elif "gw" in node1:
                 if labels[node1] not in list_gw:
                     list_gw.append(labels[node1])
                 # labels[node1] = " "
