@@ -266,7 +266,7 @@ ALPHA = [0.6]
 
 # Total size of network cache as a fraction of content population
 # Remove sizes not needed
-NETWORK_CACHE = [1]
+NETWORK_CACHE = [0.4, 0.8, 1.2]
 
 
 
@@ -360,8 +360,8 @@ for alpha in ALPHA:
                 EXPERIMENT_QUEUE.append(experiment)
 '''
 for alpha in ALPHA:
-    for strategy in STRATEGIES:
-        for network_cache in NETWORK_CACHE:
+    for network_cache in NETWORK_CACHE:
+        for strategy in STRATEGIES:
             experiment = copy.deepcopy(default)
             experiment['workload']['alpha'] = alpha
             experiment['strategy']['name'] = strategy
