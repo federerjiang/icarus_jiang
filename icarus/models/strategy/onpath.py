@@ -207,6 +207,8 @@ class CoorMeshEdge(Strategy):
                 if self.controller.get_content(v):
                     serving_node = v
                     tag = True
+                    if path_count == 2:
+                        count = True
                     break
                 for neigh in neighbors:
                     if self.controller.get_content(neigh):
@@ -216,7 +218,7 @@ class CoorMeshEdge(Strategy):
                             count = True
                             self.controller.put_content(v)
                         break
-                if tag:
+                if tag_neigh:
                     break
         if tag == False and tag_neigh == False:
             # No cache hits, get content from source
