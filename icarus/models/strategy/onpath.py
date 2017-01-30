@@ -15,6 +15,7 @@ __all__ = [
        'MeshEdge',
        'CoorMeshEdge',
        'CoorTelstraEdge',
+       'NewCoorTelstraEdge',
        'CoorLeaveCopyEverywhere',
        'LeaveCopyEverywhere',
        'LeaveCopyDown',
@@ -271,14 +272,14 @@ class CoorTelstraEdge(Strategy):
                     serving_node = v
                     tag = True
                     break
-                elif path_count == 2:
-                    neighbors = self.controller.get_neighbors(v)
-                    for neigh in neighbors:
-                        if self.controller.get_content(neigh):
-                            self.controller.put_content(v)
-                            serving_node = neigh
-                            tag_neigh = True
-                            break
+            if path_count == 2:
+                neighbors = self.controller.get_neighbors(v)
+                for neigh in neighbors:
+                    if self.controller.get_content(neigh):
+                        self.controller.put_content(v)
+                        serving_node = neigh
+                        tag_neigh = True
+                        break
             if tag_neigh:
                 break
 
@@ -293,6 +294,69 @@ class CoorTelstraEdge(Strategy):
         if serving_node != edge_cache and tag_neigh == False:
             self.controller.put_content(edge_cache)
         self.controller.end_session()
+
+
+@register_strategy('NCTEDGE')
+class NewCoorTelstraEdge(Strategy):
+    """Coordinated Edge caching strategy for tree topology.
+
+    In this strategy the content requested will only be cached in the cache near the 
+    consumer. And this strategy will be used in the tree topology.
+    """
+
+    @inheritdoc(Strategy)
+    def __init__(self, view, controller):
+        super(NewCoorTelstraEdge, self).__init__(view, controller)
+
+    @inheritdoc(Strategy)
+    def process_event(self, time, receiver, content, log):
+        # get all required data
+        source = self.view.content_source(content)
+        path = self.view.shortest_path(receiver, source)
+        # Route requests to original source and queries caches on the path
+        self.controller.start_session(time, receiver, content, log)
+        edge_cache = None
+        serving_node = None
+        # First find the edge cache
+        for u, v in path_links(path):
+            if self.view.has_cache(v):
+                edge_cache = v
+                break
+        # Then get the content from the source, and cache it on the edge cache
+        tag = False
+        tag_neigh = False
+        path_count = 0
+        for u, v in path_links(path):
+            self.controller.forward_request_hop(u, v)
+            path_count = path_count + 1
+            if self.view.has_cache(v):
+                if self.controller.get_content(v):
+                    serving_node = v
+                    tag = True
+                    break
+            if path_count == 2:
+                neighbors = self.controller.get_neighbors(v)
+                for neigh in neighbors:
+                    if self.controller.get_content(neigh):
+                        # self.controller.put_content(v)
+                        serving_node = neigh
+                        tag_neigh = True
+                        break
+            if tag_neigh:
+                break
+
+        if tag == False and tag_neigh == False:
+            # No cache hits, get content from source
+            self.controller.get_content(source)
+            serving_node = source
+
+        # Return content
+        path = list(reversed(self.view.shortest_path(receiver, serving_node)))
+        self.controller.forward_content_path(serving_node, receiver, path)
+        if serving_node != edge_cache and tag_neigh == False:
+            self.controller.put_content(edge_cache)
+        self.controller.end_session()
+
 
 
 @register_strategy('CLCE')

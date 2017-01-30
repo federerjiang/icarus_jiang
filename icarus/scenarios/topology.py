@@ -277,6 +277,8 @@ def topology_tree_coor_edge(k, h, delay=1, **kwargs):
         topology.edge[u][v]['type'] = 'internal'
     return IcnTopology(topology)
 
+
+
 '''
 def read_telstra():
     """ Read telstra topology from telstra-link.txt
