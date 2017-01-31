@@ -8,10 +8,10 @@ set -v
 
 # Run experiments
 echo "Run tree standard experiments"
-# python icarus.py --results results-standard.pickle config/tree-standard.py
+python icarus.py --results results-standard.pickle config/tree-standard.py
 echo "Simulation is finished"
 echo "Get Results: Latency and Hit Ratios"
-# python printresults.py results-standard.pickle > results/results-tree-standard.txt
+python printresults.py results-standard.pickle > results/results-tree-standard-5-10.txt
 echo "Results are saved to file results.txt"
 
 
@@ -19,12 +19,12 @@ echo "Run tree edge experiments"
 python icarus.py --results results-edge.pickle config/tree-edge.py
 echo "Simulation is finished"
 echo "Get Results: Latency and Hit Ratios"
-python printresults.py results-edge.pickle > results/results-tree-edge.txt
+python printresults.py results-edge.pickle > results/results-tree-edge-5-10.txt
 echo "Results are saved to file results.txt"
 
 echo "Run tree coordinated edge experiments"
 python icarus.py --results results-coor-edge.pickle config/tree-coor-edge.py
 echo "Simulation is finished"
 echo "Get Results: Latency and Hit Ratios"
-python printresults.py results-coor-edge.pickle > results/results-tree-coor-edge.txt
+python printresults.py results-coor-edge.pickle > results/results-tree-coor-edge-5-10.txt
 echo "Results are saved to file results.txt"
