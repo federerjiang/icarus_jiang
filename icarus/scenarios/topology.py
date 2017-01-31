@@ -401,9 +401,19 @@ def read_random():
             nodes.append(des)
         if src not in nodes:
             nodes.append(src)
+    deg = {}
+    for node in nodes:
+        deg[node] = 0
+    for edge in graph:
+        deg[edge[0]] = deg[edge[0]] + 1
+        deg[edge[1]] = deg[edge[1]] + 1
+    for node in nodes:
+        if deg[node] == 7:
+            highest = node
+            break
 
-    highest = 'node1'
     return graph, nodes, highest
+
 
 @register_topology_factory('RANDOM')
 def topology_random(delay=1, **kwargs):
