@@ -385,8 +385,8 @@ def read_random():
 
     return : all the links and nodes
     """
-    f_read_topology = open(path.join(TOPOLOGY_RESOURCES_DIR,
-                                    'random_1.json'))
+    # f_read_topology = open(path.join(TOPOLOGY_RESOURCES_DIR,
+                                    # 'random_1.json'))
     with open(path.join(TOPOLOGY_RESOURCES_DIR, "random_1.json")) as data_file:
         data = json.load(data_file)
 
