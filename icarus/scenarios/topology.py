@@ -387,8 +387,8 @@ def read_random():
     """
     f_read_topology = open(path.join(TOPOLOGY_RESOURCES_DIR,
                                     'random_1.json'))
-    with open("random_1.json") as data_file:
-    data = json.load(data_file)
+    with open(path.join(TOPOLOGY_RESOURCES_DIR, "random_1.json")) as data_file:
+        data = json.load(data_file)
 
     graph = []
     nodes = []
