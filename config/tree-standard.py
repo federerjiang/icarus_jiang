@@ -252,7 +252,7 @@ N_CONTENTS = 3*10**4
 N_WARMUP_REQUESTS = 2*10**6
 
 # Number of content requests that are measured after warmup
-N_MEASURED_REQUESTS = 6*10**6
+N_MEASURED_REQUESTS = 5*10**6
 
 # Number of requests per second (over the whole network)
 REQ_RATE = 1.0
@@ -268,10 +268,10 @@ ALPHA = [0.6]
 # Total size of network cache as a fraction of content population
 # Remove sizes not needed
 # NETWORK_CACHE = [0.1, 0.5, 1, 10, 20, 30]
-NETWORK_CACHE = [5, 10]
+NETWORK_CACHE = [5]
 
-HEIGHT = 4
-BRANCH = [2, 3, 4, 5]
+HEIGHT = 5
+BRANCH = [4, 5]
 
 # List of topologies tested
 # Topology implementations are located in ./icarus/scenarios/topology.py
