@@ -367,5 +367,5 @@ for alpha in ALPHA:
             experiment['strategy']['name'] = strategy
             experiment['cache_placement']['network_cache'] = network_cache
             experiment['desc'] = "Alpha: %s, strategy: %s, topology: %s, network cache: %s" \
-                                 % (str(alpha), strategy, 'SINET', str(network_cache))
+                                 % (str(alpha), strategy, 'RANDOM', str(network_cache))
             EXPERIMENT_QUEUE.append(experiment)
