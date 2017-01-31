@@ -33,7 +33,7 @@ def process(filepath):
 argument = sys.argv
 result_file = argument[1]
 results = process(result_file)
-f = open("result_cluster.txt", "w")
+f = open("telstra-snm-stat.txt", "w")
 f.write("strategy\t\t\tsize\t\t\tlatency\t\t\thit\n")
 for exp in results:
 	# print("experiment : ")

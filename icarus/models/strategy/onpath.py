@@ -161,8 +161,8 @@ class MeshEdge(Strategy):
             serving_node = source
 
         # Return content
-        path = list(reversed(self.view.shortest_path(receiver, serving_node)))
-        self.controller.forward_content_path(serving_node, receiver, path)
+        # path = list(reversed(self.view.shortest_path(receiver, serving_node)))
+        # self.controller.forward_content_path(serving_node, receiver, path)
         if serving_node != edge_cache:
             self.controller.put_content(edge_cache)
         self.controller.end_session()
@@ -227,8 +227,8 @@ class CoorMeshEdge(Strategy):
             serving_node = source
 
         # Return content
-        path = list(reversed(self.view.shortest_path(receiver, serving_node)))
-        self.controller.forward_content_path(serving_node, receiver, path)
+        # path = list(reversed(self.view.shortest_path(receiver, serving_node)))
+        # self.controller.forward_content_path(serving_node, receiver, path)
         if serving_node != edge_cache and count == False:
             self.controller.put_content(edge_cache)
         self.controller.end_session()
@@ -289,8 +289,8 @@ class CoorTelstraEdge(Strategy):
             serving_node = source
 
         # Return content
-        path = list(reversed(self.view.shortest_path(receiver, serving_node)))
-        self.controller.forward_content_path(serving_node, receiver, path)
+        # path = list(reversed(self.view.shortest_path(receiver, serving_node)))
+        # self.controller.forward_content_path(serving_node, receiver, path)
         if serving_node != edge_cache and tag_neigh == False:
             self.controller.put_content(edge_cache)
         self.controller.end_session()
@@ -351,8 +351,8 @@ class NewCoorTelstraEdge(Strategy):
             serving_node = source
 
         # Return content
-        path = list(reversed(self.view.shortest_path(receiver, serving_node)))
-        self.controller.forward_content_path(serving_node, receiver, path)
+        # path = list(reversed(self.view.shortest_path(receiver, serving_node)))
+        # self.controller.forward_content_path(serving_node, receiver, path)
         if serving_node != edge_cache and tag_neigh == False:
             self.controller.put_content(edge_cache)
         self.controller.end_session()
@@ -402,7 +402,7 @@ class CoorLeaveCopyEverywhere(Strategy):
         # Return content
         path = list(reversed(self.view.shortest_path(receiver, serving_node)))
         for u, v in path_links(path):
-            self.controller.forward_content_hop(u, v)
+            # self.controller.forward_content_hop(u, v)
             if self.view.has_cache(v):
                 # insert content
                 self.controller.put_content(v)
@@ -440,7 +440,7 @@ class LeaveCopyEverywhere(Strategy):
         # Return content
         path = list(reversed(self.view.shortest_path(receiver, serving_node)))
         for u, v in path_links(path):
-            self.controller.forward_content_hop(u, v)
+            # self.controller.forward_content_hop(u, v)
             if self.view.has_cache(v):
                 # insert content
                 self.controller.put_content(v)
@@ -489,7 +489,7 @@ class LeaveCopyDown(Strategy):
         # caching node
         copied = False
         for u, v in path_links(path):
-            self.controller.forward_content_hop(u, v)
+            # self.controller.forward_content_hop(u, v)
             if not copied and v != receiver and self.view.has_cache(v):
                 self.controller.put_content(v)
                 copied = True
@@ -556,7 +556,7 @@ class ProbCache(Strategy):
                      if n in self.cache_size])
             if v in self.cache_size:
                 x += 1
-            self.controller.forward_content_hop(u, v)
+            # self.controller.forward_content_hop(u, v)
             if v != receiver and v in self.cache_size:
                 # The (x/c) factor raised to the power of "c" according to the
                 # extended version of ProbCache published in IEEE TPDS
