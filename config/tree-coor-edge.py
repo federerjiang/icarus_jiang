@@ -267,7 +267,7 @@ ALPHA = [0.6]
 # Total size of network cache as a fraction of content population
 # Remove sizes not needed
 NETWORK_CACHE = [5]
-HEIGHT = 5
+HEIGHT = 4
 BRANCH = [5]
 
 
