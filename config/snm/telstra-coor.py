@@ -82,7 +82,7 @@ default = Tree()
 
 
 
-trace_folder = "/Users/federerjiang/lcarus/icarus-0.6.0/trace/Trace4/"
+trace_folder = "/home/federerjiang/workplace/icarus_jiang/trace/Trace4/"
 trace_file = trace_folder + "SNMtrace.txt"
 contents = trace_folder + "contents.txt"
 N_CONTENTS = 1761204
