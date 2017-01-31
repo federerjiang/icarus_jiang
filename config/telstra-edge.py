@@ -69,22 +69,10 @@ ALPHA = [0.6]
 
 # Total size of network cache as a fraction of content population
 # Remove sizes not needed
-NETWORK_CACHE = [1, 5]
+NETWORK_CACHE = [0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 2, 3]
 
 
 
-# List of topologies tested
-# Topology implementations are located in ./icarus/scenarios/topology.py
-# Remove topologies not needed
-# TOPOLOGIES =  [
-        # 'GEANT',
-        # 'WIDE',
-        # 'GARR',
-        # 'TISCALI',
-              # ]
-
-# List of caching and routing strategies
-# The code is located in ./icarus/models/strategy.py
 # Remove strategies not needed
 STRATEGIES = [
      # 'LCE',             # Leave Copy Everywhere
@@ -120,50 +108,13 @@ default['workload'] = {'name':       'STATIONARY',
                        'rate':       REQ_RATE}
 
 
-'''
-trace_folder = "/Users/federerjiang/lcarus/icarus-0.6.0/trace/YouTube/"
-trace_file = trace_folder + "6100s_012908.dat.out.dat"
-contents = trace_folder + "contents.txt"
-N_CONTENTS = 303332
-N_WARMUP_REQUESTS =  200000
-N_MEASURED_REQUESTS = 411000
-default['workload'] = {'name':  'TRACE_DRIVEN',
-                       'reqs_file': trace_file,
-                       'contents_file': contents,
-                       'n_contents': N_CONTENTS,
-                       'n_warmup': N_WARMUP_REQUESTS,
-                       'n_measured': N_MEASURED_REQUESTS}
-'''
-'''
-* name: TRACE_DRIVEN
- * args:
-    * reqs_file: the path to the requests file
-    * contents_file: the path to the contents file
-    * n_contents: number of content objects
-    * n_warmup: number of warmup requests
-    * n_measured: number of measured requests
-'''
 default['cache_placement']['name'] = 'UNIFORM'
 default['content_placement']['name'] = 'UNIFORM'
 default['cache_policy']['name'] = CACHE_POLICY
 default['topology']['name'] = 'TELSTRA-EDGE'
 # default['topology']['h'] = HEIGHT
 
-# Create experiments multiplexing all desired parameters
-'''
-for alpha in ALPHA:
-    for strategy in STRATEGIES:
-        for topology in TOPOLOGIES:
-            for network_cache in NETWORK_CACHE:
-                experiment = copy.deepcopy(default)
-                experiment['workload']['alpha'] = alpha
-                experiment['strategy']['name'] = strategy
-                experiment['topology']['name'] = topology
-                experiment['cache_placement']['network_cache'] = network_cache
-                experiment['desc'] = "Alpha: %s, strategy: %s, topology: %s, network cache: %s" \
-                                     % (str(alpha), strategy, topology, str(network_cache))
-                EXPERIMENT_QUEUE.append(experiment)
-'''
+
 for alpha in ALPHA:
     for network_cache in NETWORK_CACHE:
         for strategy in STRATEGIES:    

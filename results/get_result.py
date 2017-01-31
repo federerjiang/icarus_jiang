@@ -33,8 +33,8 @@ def process(filepath):
 argument = sys.argv
 result_file = argument[1]
 results = process(result_file)
-
-sizes = [0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 2, 3]
+print(len(results))
+sizes = ['0.1', '0.3', '0.5', '0.7', '0.9', '1.1', '1.3', '2', '3']
 
 f = open("telstra-snm-stat.txt", "w")
 f.write("size\t\t\tstrategy\t\t\tlatency\t\t\thit\n")
@@ -47,4 +47,5 @@ for size in sizes:
 			f.write(exp['latency']+"\t\t\t")
 			f.write(exp['hit'])
 			f.write("\n")
+	f.write("\n")
 f.close()
