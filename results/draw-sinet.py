@@ -36,8 +36,8 @@ result_file = argument[1]
 results = process(result_file)
 print(len(results))
 sizes = ['0.1', '0.3', '0.5', '0.7', '0.9', '1.1', '1.3', '2', '3']
-
-f = open("sinet-irm-stat.txt", "w")
+'''
+f = open("telstra-snm-stat.txt", "w")
 f.write("size\t\t\tstrategy\t\t\tlatency\t\t\thit\n")
 for size in sizes:
 	for exp in results:
@@ -50,42 +50,46 @@ for size in sizes:
 			f.write("\n")
 	f.write("\n")
 f.close()
-
-
 '''
-strategys = ['LCE', 'LCD', 'PROB_CACHE', 'MEDGE', 'CTEDGE']
+strategys = ['LCE', 'LCD', 'PROB_CACHE', 'MEDGE', 'CMEDGE', 'CLCE']
 graph_latency = {}
 for strategy in strategys:
-	graph[strategy] = []
+	graph_latency[strategy] = []
 	for size in sizes:
 		for exp in results:
 			if exp["strategy"] == strategy and exp["size"] == size:
-				graph[strategy].append(exp["latency"])
+				graph_latency[strategy].append(exp["latency"])
 
 graph_hit = {}
 for strategy in strategys:
-	graph[strategy] = []
+	graph_hit[strategy] = []
 	for size in sizes:
 		for exp in results:
 			if exp["strategy"] == strategy and exp["size"] == size:
-				graph[strategy].append(exp["hit"])
+				graph_hit[strategy].append(exp["hit"])
 
 lce_latency = graph_latency["LCE"]
 lcd_latency = graph_latency['LCD']
 edge_latency = graph_latency['MEDGE']
-coor_latency = graph_latency['CTEDGE']
+coor_latency = graph_latency['CMEDGE']
+clce_latency = graph_latency['CLCE']
 
 lce_hit = graph_hit['LCE']
 lcd_hit = graph_hit['LCD']
 edge_hit = graph_hit['MEDGE']
-coor_hit = graph_hit['CTEDGE']
+coor_hit = graph_hit['CMEDGE']
+clce_hit = graph_hit['CLCE']
 
-line_up, = plt.plot(size, lru_global, "ro-")
-line_down, = plt.plot(size, lru_small, "y.-")
-line_upp, = plt.plot(size, lru_filter, "b*-")
-plt.xlabel("cache size ")
-plt.ylabel("Hit Probability")
-plt.legend([line_upp, line_up, line_down], ['Coordinated with filter', 'Coordinated', 'Independent'], bbox_to_anchor=(1, 0.8))
+line_lce, = plt.plot(sizes, lce_latency , "k+-")
+line_lcd, = plt.plot(sizes, lcd_latency , "y.-")
+line_edge, = plt.plot(sizes, edge_latency , "b*-")
+line_coor, = plt.plot(sizes, coor_latency , "ro-")
+line_clce, = plt.plot(sizes, clce_latency, "g>-")
+
+plt.xlabel("Cache Size")
+plt.ylabel("Average Hop")
+plt.ylim([0, 6])
+plt.legend([line_lce, line_lcd, line_edge, line_coor, line_clce], ['LCE', 'LCD', 'EDGE', 'COOR', 'COOR'], bbox_to_anchor=(1, 0.6))
 plt.show()
-'''
+
 
