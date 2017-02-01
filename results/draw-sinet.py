@@ -88,8 +88,8 @@ line_clce, = plt.plot(sizes, clce_latency, "g>-")
 
 plt.xlabel("Cache Size")
 plt.ylabel("Average Hop")
-plt.ylim([0, 4])
-plt.legend([line_lce, line_lcd, line_edge, line_coor, line_clce], ['LCE', 'LCD', 'EDGE', 'CO-EDGE', 'CO-LCE'], bbox_to_anchor=(1, 0.4))
+# plt.ylim([0, 4])
+plt.legend([line_lce, line_lcd, line_edge, line_coor, line_clce], ['LCE', 'LCD', 'EDGE', 'CO-EDGE', 'CO-LCE'], bbox_to_anchor=(0.3, 0.4))
 plt.show()
 
 

@@ -268,7 +268,7 @@ ALPHA = [0.6]
 # Remove sizes not needed
 NETWORK_CACHE = [5]
 HEIGHT = 5
-BRANCH = [4, 5]
+BRANCH = [4]
 
 
 # List of topologies tested

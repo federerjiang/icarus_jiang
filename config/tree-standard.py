@@ -271,7 +271,7 @@ ALPHA = [0.6]
 NETWORK_CACHE = [5]
 
 HEIGHT = 5
-BRANCH = [4, 5]
+BRANCH = [4]
 
 # List of topologies tested
 # Topology implementations are located in ./icarus/scenarios/topology.py
