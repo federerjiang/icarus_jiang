@@ -291,7 +291,7 @@ class CoorTelstraEdge(Strategy):
         # Return content
         # path = list(reversed(self.view.shortest_path(receiver, serving_node)))
         # self.controller.forward_content_path(serving_node, receiver, path)
-        if serving_node != edge_cache and tag_neigh == False:
+        if serving_node != edge_cache and path_count > 2:
             self.controller.put_content(edge_cache)
         self.controller.end_session()
 

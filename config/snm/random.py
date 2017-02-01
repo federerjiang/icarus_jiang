@@ -40,23 +40,6 @@ DATA_COLLECTORS = [
            # 'PATH_STRETCH',      # Measure path stretch
                    ]
 
-
-
-########################## EXPERIMENTS CONFIGURATION ##########################
-
-# Default experiment values, i.e. values shared by all experiments
-
-# Number of content objects
-N_CONTENTS = 3*10**4
-
-# Number of content requests generated to pre-populate the caches
-# These requests are not logged
-N_WARMUP_REQUESTS = 2*10**6
-
-# Number of content requests that are measured after warmup
-N_MEASURED_REQUESTS = 5*10**6
-
-# Number of requests per second (over the whole network)
 REQ_RATE = 1.0
 
 # Cache eviction policy
@@ -70,7 +53,8 @@ ALPHA = [0.6]
 # Remove sizes not needed
 NETWORK_CACHE = [0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 2, 3]
 
-
+# HEIGHT = 4
+BRANCH = [2]
 
 STRATEGIES = [
      'LCE',             # Leave Copy Everywhere
@@ -97,14 +81,31 @@ EXPERIMENT_QUEUE = deque()
 # experiments of the campaign
 default = Tree()
 
-default['workload'] = {'name':       'STATIONARY',
+
+
+trace_folder = "/home/federerjiang/workplace/icarus_jiang/trace/Trace4/"
+trace_file = trace_folder + "SNMtrace.txt"
+contents = trace_folder + "contents.txt"
+N_CONTENTS = 1761204
+N_WARMUP_REQUESTS =  1000000
+N_MEASURED_REQUESTS = 3773900
+
+default['workload'] = {'name':  'TRACE_DRIVEN',
+                       'reqs_file': trace_file,
+                       'contents_file': contents,
                        'n_contents': N_CONTENTS,
-                       'n_warmup':   N_WARMUP_REQUESTS,
-                       'n_measured': N_MEASURED_REQUESTS,
-                       'rate':       REQ_RATE}
+                       'n_warmup': N_WARMUP_REQUESTS,
+                       'n_measured': N_MEASURED_REQUESTS}
 
-
-
+'''
+* name: TRACE_DRIVEN
+ * args:
+    * reqs_file: the path to the requests file
+    * contents_file: the path to the contents file
+    * n_contents: number of content objects
+    * n_warmup: number of warmup requests
+    * n_measured: number of measured requests
+'''
 default['cache_placement']['name'] = 'UNIFORM'
 default['content_placement']['name'] = 'UNIFORM'
 default['cache_policy']['name'] = CACHE_POLICY
@@ -113,12 +114,14 @@ default['topology']['name'] = 'RANDOM'
 
 
 for alpha in ALPHA:
-    for network_cache in NETWORK_CACHE:
+    for degree in BRANCH:
         for strategy in STRATEGIES:
-            experiment = copy.deepcopy(default)
-            experiment['workload']['alpha'] = alpha
-            experiment['strategy']['name'] = strategy
-            experiment['cache_placement']['network_cache'] = network_cache
-            experiment['desc'] = "Alpha: %s, strategy: %s, topology: %s, network cache: %s" \
-                                 % (str(alpha), strategy, 'RANDOM', str(network_cache))
-            EXPERIMENT_QUEUE.append(experiment)
+            for network_cache in NETWORK_CACHE:
+                experiment = copy.deepcopy(default)
+                # experiment['workload']['alpha'] = alpha
+                # experiment['topology']['k'] = degree
+                experiment['strategy']['name'] = strategy
+                experiment['cache_placement']['network_cache'] = network_cache
+                experiment['desc'] = "Alpha: %s, branching factor: %s, strategy: %s, topology: %s, network cache: %s" \
+                                     % (str(alpha), str(degree), strategy, 'SINET', str(network_cache))
+                EXPERIMENT_QUEUE.append(experiment)
