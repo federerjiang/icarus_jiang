@@ -54,19 +54,19 @@ f.close()
 strategys = ['LCE', 'LCD', 'PROB_CACHE', 'MEDGE', 'CTEDGE']
 graph_latency = {}
 for strategy in strategys:
-	graph[strategy] = []
+	graph_latency[strategy] = []
 	for size in sizes:
 		for exp in results:
 			if exp["strategy"] == strategy and exp["size"] == size:
-				graph[strategy].append(exp["latency"])
+				graph_latency[strategy].append(exp["latency"])
 
 graph_hit = {}
 for strategy in strategys:
-	graph[strategy] = []
+	graph_hit[strategy] = []
 	for size in sizes:
 		for exp in results:
 			if exp["strategy"] == strategy and exp["size"] == size:
-				graph[strategy].append(exp["hit"])
+				graph_hit[strategy].append(exp["hit"])
 
 lce_latency = graph_latency["LCE"]
 lcd_latency = graph_latency['LCD']
@@ -78,12 +78,15 @@ lcd_hit = graph_hit['LCD']
 edge_hit = graph_hit['MEDGE']
 coor_hit = graph_hit['CTEDGE']
 
-line_up, = plt.plot(size, lru_global, "ro-")
-line_down, = plt.plot(size, lru_small, "y.-")
-line_upp, = plt.plot(size, lru_filter, "b*-")
-plt.xlabel("cache size ")
-plt.ylabel("Hit Probability")
-plt.legend([line_upp, line_up, line_down], ['Coordinated with filter', 'Coordinated', 'Independent'], bbox_to_anchor=(1, 0.8))
+line_lce, = plt.plot(sizes, lce_latency , "k+-")
+line_lcd, = plt.plot(sizes, lcd_latency , "y.-")
+line_edge, = plt.plot(sizes, edge_latency , "b*-")
+line_coor, = plt.plot(sizes, coor_latency , "ro-")
+
+plt.xlabel("Cache Size")
+plt.ylabel("Average Hop")
+plt.ylim([0, 6])
+plt.legend([line_lce, line_lcd, line_edge, line_coor], ['LCE', 'LCD', 'EDGE', 'COOR'], bbox_to_anchor=(1, 0.6))
 plt.show()
 
 
