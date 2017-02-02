@@ -908,7 +908,7 @@ def topology_geant(delay=1, **kwargs):
 
     receivers = []
     for v in leafs:
-        u = v + 1000  # node ID of source
+        u = int(v) + 1000  # node ID of source
         topology.add_edge(v, u)
         receivers.append(u)
     routers = topology.nodes()
