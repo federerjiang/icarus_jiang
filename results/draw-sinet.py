@@ -73,23 +73,38 @@ lcd_latency = graph_latency['LCD']
 edge_latency = graph_latency['MEDGE']
 coor_latency = graph_latency['CMEDGE']
 clce_latency = graph_latency['CLCE']
+prob_latency = graph_latency['PROB_CACHE']
 
 lce_hit = graph_hit['LCE']
 lcd_hit = graph_hit['LCD']
 edge_hit = graph_hit['MEDGE']
 coor_hit = graph_hit['CMEDGE']
 clce_hit = graph_hit['CLCE']
+prob_hit = graph_hit['PROB_CACHE']
+
 
 line_lce, = plt.plot(sizes, lce_latency , "k+-")
 line_lcd, = plt.plot(sizes, lcd_latency , "y.-")
 line_edge, = plt.plot(sizes, edge_latency , "b*-")
 line_coor, = plt.plot(sizes, coor_latency , "ro-")
 line_clce, = plt.plot(sizes, clce_latency, "g>-")
+line_prob, = plt.plot(sizes, prob_latency, 'c--')
 
+
+
+'''
+line_lce, = plt.plot(sizes, lce_hit , "k+-")
+line_lcd, = plt.plot(sizes, lcd_hit , "y.-")
+line_edge, = plt.plot(sizes, edge_hit , "b*-")
+line_coor, = plt.plot(sizes, coor_hit , "ro-")
+line_clce, = plt.plot(sizes, clce_hit, "g>-")
+line_prob, = plt.plot(sizes, prob_hit, 'c--')
+'''
+# plt.ylim([0, 4])
 plt.xlabel("Cache Size")
 plt.ylabel("Average Hop")
-# plt.ylim([0, 4])
-plt.legend([line_lce, line_lcd, line_edge, line_coor, line_clce], ['LCE', 'LCD', 'EDGE', 'CO-EDGE', 'CO-LCE'], bbox_to_anchor=(0.3, 0.4))
+# plt.ylabel("Hit Ratio")
+plt.legend([line_lce, line_lcd, line_edge, line_coor, line_clce, line_prob], ['LCE', 'LCD', 'EDGE', 'CO-EDGE', 'CO-LCE', 'PROB_CACHE'], bbox_to_anchor=(0.3, 0.35), fontsize=10)
 plt.show()
 
 

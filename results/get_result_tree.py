@@ -33,12 +33,13 @@ def process(filepath):
 
 argument = sys.argv
 result_file = argument[1]
+stat_file = argument[2]
 results = process(result_file)
 branch = ['2', '3', '4', '5']
 sizes = ['1', '5', '10']
 
 
-f = open("result_cluster.txt", "w")
+f = open(stat_file, "w")
 f.write("branching-factor\t\t\tsize\t\t\tstrategy\t\t\tlatency\t\t\thit\n")
 for br in branch:
 	for size in sizes:

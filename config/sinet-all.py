@@ -72,7 +72,7 @@ NETWORK_CACHE = [0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 2, 3]
 
 
 STRATEGIES = [
-     'LCE',             # Leave Copy Everywhere
+     # 'LCE',             # Leave Copy Everywhere
      # 'NO_CACHE',        # No caching, shortest-path routing
      # 'HR_SYMM',         # Symmetric hash-routing
      # 'HR_ASYMM',        # Asymmetric hash-routing
@@ -80,11 +80,12 @@ STRATEGIES = [
      # 'HR_HYBRID_AM',    # Hybrid Asymm-Multicast hash-routing
      # 'HR_HYBRID_SM',    # Hybrid Symm-Multicast hash-routing
      # 'CL4M',            # Cache less for more
-     'PROB_CACHE',      # ProbCache
-     'LCD',             # Leave Copy Down
-     'MEDGE',
+     # 'PROB_CACHE',      # ProbCache
+     # 'LCD',             # Leave Copy Down
+     # 'MEDGE',
      'CMEDGE',
      'CLCE',
+     'CCLCE'
      # 'RAND_CHOICE',     # Random choice: cache in one random cache on path
      # 'RAND_BERNOULLI',  # Random Bernoulli: cache randomly in caches on path
              ]

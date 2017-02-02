@@ -35,7 +35,7 @@ argument = sys.argv
 result_file = argument[1]
 results = process(result_file)
 print(len(results))
-sizes = ['0.1', '0.3', '0.5', '0.7', '0.9', '1.1', '1.3', '2', '3']
+sizes = ['0.1', '0.3', '0.5', '0.7', '0.9', '1.1', '1.3']
 '''
 f = open("telstra-snm-stat.txt", "w")
 f.write("size\t\t\tstrategy\t\t\tlatency\t\t\thit\n")
@@ -72,21 +72,40 @@ lce_latency = graph_latency["LCE"]
 lcd_latency = graph_latency['LCD']
 edge_latency = graph_latency['MEDGE']
 coor_latency = graph_latency['CTEDGE']
+prob_latency = graph_latency['PROB_CACHE']
 
 lce_hit = graph_hit['LCE']
 lcd_hit = graph_hit['LCD']
 edge_hit = graph_hit['MEDGE']
 coor_hit = graph_hit['CTEDGE']
-
+prob_hit = graph_hit['PROB_CACHE']
+'''
+# plt.subplot(121)
 line_lce, = plt.plot(sizes, lce_latency , "k+-")
 line_lcd, = plt.plot(sizes, lcd_latency , "y.-")
 line_edge, = plt.plot(sizes, edge_latency , "b*-")
 line_coor, = plt.plot(sizes, coor_latency , "ro-")
+line_prob, = plt.plot(sizes, prob_latency, 'c--')
 
 plt.xlabel("Cache Size")
 plt.ylabel("Average Hop")
 plt.ylim([0, 6])
-plt.legend([line_lce, line_lcd, line_edge, line_coor], ['LCE', 'LCD', 'EDGE', 'COOR'], bbox_to_anchor=(1, 0.6))
+plt.legend([line_lce, line_lcd, line_edge, line_coor, line_prob], ['LCE', 'LCD', 'EDGE', 'COOR', 'PROB_CACHE'], bbox_to_anchor=(1, 0.6), fontsize=10)
+'''
+
+
+# plt.subplot(122)
+line_lce, = plt.plot(sizes, lce_hit , "k+-")
+line_lcd, = plt.plot(sizes, lcd_hit , "y.-")
+line_edge, = plt.plot(sizes, edge_hit , "b*-")
+line_coor, = plt.plot(sizes, coor_hit , "ro-")
+line_prob, = plt.plot(sizes, prob_hit, 'c--')
+
+plt.xlabel("Cache Size")
+plt.ylabel("Cache Hit Ratio")
+# plt.ylim([0, 6])
+plt.legend([line_lce, line_lcd, line_edge, line_coor, line_prob], ['LCE', 'LCD', 'EDGE', 'COOR', 'PROB_CACHE'], bbox_to_anchor=(1, 0.7), fontsize=10)
+
 plt.show()
 
 
