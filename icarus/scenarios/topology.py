@@ -898,6 +898,28 @@ def topology_geant(delay=1, **kwargs):
                                                  'Geant2012.graphml')
                                        ).to_undirected()
     topology = list(nx.connected_component_subgraphs(topology))[0]
+
+    deg = nx.degree(topology)
+    receivers = [v for v in topology.nodes() if deg[v] == 1]  # 8 nodes
+    icr_candidates = [v for v in topology.nodes() if deg[v] > 2]  # 19 nodes
+    # attach sources to topology
+    source_attachments = [v for v in topology.nodes() if deg[v] == 2]  # 13 nodes
+    sources = []
+    for v in source_attachments:
+        u = v + 1000  # node ID of source
+        topology.add_edge(v, u)
+        sources.append(u)
+    routers = [v for v in topology.nodes() if v not in sources + receivers]
+    # add stacks to nodes
+    topology.graph['icr_candidates'] = set(icr_candidates)
+    for v in sources:
+        fnss.add_stack(topology, v, 'source')
+    for v in receivers:
+        fnss.add_stack(topology, v, 'receiver')
+    for v in routers:
+        fnss.add_stack(topology, v, 'router')
+
+    '''
     deg = nx.degree(topology)
     receivers = [v for v in topology.nodes() if deg[v] == 1]  # 8 nodes
     sorted_degrees = sorted(deg.items(), key=operator.itemgetter(1))
@@ -917,13 +939,7 @@ def topology_geant(delay=1, **kwargs):
     # routers = [v for v in topology.nodes() if v not in sources + receivers]
     # add stacks to nodes
     # topology.graph['icr_candidates'] = set(icr_candidates)
-    topology.graph['icr_candidates'] = set(routers)
-    for v in sources:
-        fnss.add_stack(topology, v, 'source')
-    for v in receivers:
-        fnss.add_stack(topology, v, 'receiver')
-    for v in routers:
-        fnss.add_stack(topology, v, 'router')
+    '''
     # set weights and delays on all links
     fnss.set_weights_constant(topology, 1.0)
     fnss.set_delays_constant(topology, delay, 'ms')
