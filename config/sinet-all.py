@@ -127,7 +127,7 @@ for alpha in ALPHA:
               experiment = copy.deepcopy(default)
               experiment['workload']['alpha'] = alpha
               experiment['strategy']['name'] = strategy
-              default['topology']['name'] = topology
+              experiment['topology']['name'] = topology
               experiment['cache_placement']['network_cache'] = network_cache
               experiment['desc'] = "Alpha: %s, strategy: %s, topology: %s, network cache: %s" \
                                  % (str(alpha), strategy, topology, str(network_cache))
