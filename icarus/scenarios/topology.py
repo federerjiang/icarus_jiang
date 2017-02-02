@@ -912,10 +912,9 @@ def topology_geant(delay=1, **kwargs):
         topology.add_edge(v, u)
         receivers.append(u)
     routers = topology.nodes()
-    sources = []
-    u = highest + 1000
-    topology.add_edge(highest, u)
-    sources.append(u)
+    sources = [2000]
+    topology.add_node(2000)
+    topology.add_edge(highest, 2000)
     # routers = [v for v in topology.nodes() if v not in sources + receivers]
     # add stacks to nodes
     # topology.graph['icr_candidates'] = set(icr_candidates)
