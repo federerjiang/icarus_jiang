@@ -900,7 +900,7 @@ def topology_geant(delay=1, **kwargs):
     topology = list(nx.connected_component_subgraphs(topology))[0]
 
     deg = nx.degree(topology)
-    receivers = [v for v in topology.nodes() if deg[v] == 1]  # 8 nodes
+    leafs = [v for v in topology.nodes() if deg[v] == 1]  # 8 nodes
     icr_candidates = [v for v in topology.nodes() if deg[v] > 2]  # 19 nodes
     # attach sources to topology
     source_attachments = [v for v in topology.nodes() if deg[v] == 2]  # 13 nodes
@@ -909,6 +909,11 @@ def topology_geant(delay=1, **kwargs):
         u = v + 1000  # node ID of source
         topology.add_edge(v, u)
         sources.append(u)
+    receivers = []
+    for v in leafs:
+        u = v + 1000
+        topology.add_edge(v, u)
+        receivers.append(u)
     routers = [v for v in topology.nodes() if v not in sources + receivers]
     # add stacks to nodes
     topology.graph['icr_candidates'] = set(icr_candidates)
