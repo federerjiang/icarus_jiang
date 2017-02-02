@@ -905,7 +905,7 @@ def topology_geant(delay=1, **kwargs):
     # attach sources to topology
     deg = nx.degree(topology)
     sorted_degrees = sorted(deg.items(), key=operator.itemgetter(1))
-    source_attachments = sorted_degrees[0][0]
+    source_attachments = list(sorted_degrees[0][0])
     sources = []
     for v in source_attachments:
         u = v + 1000  # node ID of source
