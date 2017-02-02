@@ -906,12 +906,10 @@ def topology_geant(delay=1, **kwargs):
     # attach sources to topology
     # source_attachments = [v for v in topology.nodes() if deg[v] == 2]  # 13 nodes
 
-    receivers = []
-    for v in leafs:
-        u = int(v) + 1000  # node ID of source
-        topology.add_node(u)
-        topology.add_edge(v, u)
-        receivers.append(u)
+    receivers = range(1000, 1000 + len(leafs))
+    for item in range(0, len(leafs)):
+        topology.add_node(receivers[item])
+        topology.add_edge(receivers[item], leafs[item])
     routers = topology.nodes()
     sources = [2000]
     topology.add_node(2000)
