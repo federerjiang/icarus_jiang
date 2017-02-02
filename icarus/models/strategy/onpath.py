@@ -421,7 +421,7 @@ class CCLeaveCopyEverywhere(Strategy):
 
     @inheritdoc(Strategy)
     def __init__(self, view, controller):
-        super(CoorMeshEdge, self).__init__(view, controller)
+        super(CCLeaveCopyEverywhere, self).__init__(view, controller)
 
     @inheritdoc(Strategy)
     def process_event(self, time, receiver, content, log):
