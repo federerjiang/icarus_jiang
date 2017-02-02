@@ -904,9 +904,10 @@ def topology_geant(delay=1, **kwargs):
     icr_candidates = [v for v in topology.nodes() if deg[v] > 2]  # 19 nodes
     # attach sources to topology
     deg = nx.degree(topology)
+    leafs = [v for v in topology.nodes() if deg[v] == 1]  # 8 nodes
     sorted_degrees = sorted(deg.items(), key=operator.itemgetter(1))
-    source_attachments = []
-    source_attachments.append(sorted_degrees[0][0])
+    highest = sorted_degrees[0][0]
+    source_attachments = [v for v in topology.nodes() if deg[v] == 2]  # 13 nodes
     sources = []
     for v in source_attachments:
         u = v + 1000  # node ID of source
