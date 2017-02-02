@@ -914,7 +914,7 @@ def topology_geant(delay=1, **kwargs):
     routers = topology.nodes()
     sources = []
     u = highest + 1000
-    topology.add_edge(v, u)
+    topology.add_edge(highest, u)
     sources.append(u)
     # routers = [v for v in topology.nodes() if v not in sources + receivers]
     # add stacks to nodes
