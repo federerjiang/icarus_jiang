@@ -69,7 +69,7 @@ ALPHA = [0.6]
 # Total size of network cache as a fraction of content population
 # Remove sizes not needed
 # NETWORK_CACHE = [0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 2, 3]
-NETWORK_CACHE = [0.1, 0.5, 1.0]
+NETWORK_CACHE = [0.3]
 
 
 STRATEGIES = [
@@ -85,7 +85,7 @@ STRATEGIES = [
      # 'LCD',             # Leave Copy Down
      # 'MEDGE',
      'CMEDGE',
-     'CLCE',
+     # 'CLCE',
      'CCLCE'
      # 'RAND_CHOICE',     # Random choice: cache in one random cache on path
      # 'RAND_BERNOULLI',  # Random Bernoulli: cache randomly in caches on path
@@ -109,16 +109,26 @@ default['workload'] = {'name':       'STATIONARY',
 default['cache_placement']['name'] = 'UNIFORM'
 default['content_placement']['name'] = 'UNIFORM'
 default['cache_policy']['name'] = CACHE_POLICY
-default['topology']['name'] = 'SINET'
+# default['topology']['name'] = 'SINET'
 # default['topology']['h'] = HEIGHT
+
+TOPOLOGIES =  [
+        'GEANT',
+        'WIDE',
+        'GARR',
+        'TISCALI',
+              ]
+
 
 for alpha in ALPHA:
     for network_cache in NETWORK_CACHE:
         for strategy in STRATEGIES:
-            experiment = copy.deepcopy(default)
-            experiment['workload']['alpha'] = alpha
-            experiment['strategy']['name'] = strategy
-            experiment['cache_placement']['network_cache'] = network_cache
-            experiment['desc'] = "Alpha: %s, strategy: %s, topology: %s, network cache: %s" \
-                                 % (str(alpha), strategy, 'SINET', str(network_cache))
-            EXPERIMENT_QUEUE.append(experiment)
+            for topology in TOPOLOGIES:
+              experiment = copy.deepcopy(default)
+              experiment['workload']['alpha'] = alpha
+              experiment['strategy']['name'] = strategy
+              default['topology']['name'] = topology
+              experiment['cache_placement']['network_cache'] = network_cache
+              experiment['desc'] = "Alpha: %s, strategy: %s, topology: %s, network cache: %s" \
+                                 % (str(alpha), strategy, topology, str(network_cache))
+              EXPERIMENT_QUEUE.append(experiment)
