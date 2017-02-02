@@ -113,7 +113,7 @@ default['cache_policy']['name'] = CACHE_POLICY
 # default['topology']['h'] = HEIGHT
 
 TOPOLOGIES =  [
-        'GEANT_2',
+        'GEANT',
         # 'WIDE',
         # 'GARR',
         # 'TISCALI',
