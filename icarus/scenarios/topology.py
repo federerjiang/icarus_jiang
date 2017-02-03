@@ -909,6 +909,7 @@ def topology_geant(delay=1, **kwargs):
     topology = list(nx.connected_component_subgraphs(topology))[0]
 
     leafs = topology.nodes()  
+    print ("FEANT : %d", len(leafs))
     deg = nx.degree(topology)
     source_attachments = highest(topology, deg) 
 
@@ -941,7 +942,7 @@ def topology_geant(delay=1, **kwargs):
 
 
 @register_topology_factory('TISCALI')
-def topology_tiscali(**kwargs):
+def topology_tiscali(delay=1, **kwargs):
     """Return a scenario based on Tiscali topology, parsed from RocketFuel dataset
 
     Parameters
@@ -960,7 +961,8 @@ def topology_tiscali(**kwargs):
                                              ).to_undirected()
     topology = list(nx.connected_component_subgraphs(topology))[0]
     # degree of nodes
-    leafs = topology.nodes()  
+    leafs = topology.nodes()
+    print ("TISCALI : %d", len(leafs))  
     deg = nx.degree(topology)
     source_attachments = highest(topology, deg) 
 
@@ -992,7 +994,7 @@ def topology_tiscali(**kwargs):
     return IcnTopology(topology)
 
 
-@register_topology_factory('WIDE')
+@register_topology_factory(delay=1, 'WIDE')
 def topology_wide(**kwargs):
     """Return a scenario based on GARR topology
 
@@ -1008,7 +1010,8 @@ def topology_wide(**kwargs):
     """
     topology = fnss.parse_topology_zoo(path.join(TOPOLOGY_RESOURCES_DIR, 'WideJpn.graphml')).to_undirected()
     # sources are nodes representing neighbouring AS's
-    leafs = topology.nodes()  
+    leafs = topology.nodes()
+    print ("WIDE : %d", len(leafs))  
     deg = nx.degree(topology)
     source_attachments = highest(topology, deg) 
 
@@ -1040,7 +1043,7 @@ def topology_wide(**kwargs):
     return IcnTopology(topology)
 
 
-@register_topology_factory('GARR')
+@register_topology_factory(delay=1, 'GARR')
 def topology_garr(**kwargs):
     """Return a scenario based on GARR topology
 
@@ -1057,7 +1060,7 @@ def topology_garr(**kwargs):
     topology = fnss.parse_topology_zoo(path.join(TOPOLOGY_RESOURCES_DIR, 'Garr201201.graphml')).to_undirected()
     # sources are nodes representing neighbouring AS's
     leafs = topology.nodes()  
-    print("GARR : " + len(leafs))
+    print ("GARR : %d", len(leafs))
     deg = nx.degree(topology)
     source_attachments = highest(topology, deg) 
 
