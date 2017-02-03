@@ -909,7 +909,7 @@ def topology_geant(delay=1, **kwargs):
     topology = list(nx.connected_component_subgraphs(topology))[0]
 
     leafs = topology.nodes()  
-    print ("FEANT : %d", len(leafs))
+    print ("FEANT : %d, %d", len(leafs), len(topology.edges()))
     deg = nx.degree(topology)
     source_attachments = highest(topology, deg) 
 
@@ -962,7 +962,7 @@ def topology_tiscali(delay=1, **kwargs):
     topology = list(nx.connected_component_subgraphs(topology))[0]
     # degree of nodes
     leafs = topology.nodes()
-    print ("TISCALI : %d", len(leafs))  
+    print ("TISCALI : %d, %d", len(leafs), len(topology.edges()))  
     deg = nx.degree(topology)
     source_attachments = highest(topology, deg) 
 
@@ -1011,7 +1011,7 @@ def topology_wide(delay=1, **kwargs):
     topology = fnss.parse_topology_zoo(path.join(TOPOLOGY_RESOURCES_DIR, 'WideJpn.graphml')).to_undirected()
     # sources are nodes representing neighbouring AS's
     leafs = topology.nodes()
-    print ("WIDE : %d", len(leafs))  
+    print ("WIDE : %d, %d", len(leafs), len(topology.edges()))  
     deg = nx.degree(topology)
     source_attachments = highest(topology, deg) 
 
@@ -1060,7 +1060,7 @@ def topology_garr(delay=1, **kwargs):
     topology = fnss.parse_topology_zoo(path.join(TOPOLOGY_RESOURCES_DIR, 'Garr201201.graphml')).to_undirected()
     # sources are nodes representing neighbouring AS's
     leafs = topology.nodes()  
-    print ("GARR : %d", len(leafs))
+    print ("GARR : %d, %d", len(leafs), len(topology.edges()))
     deg = nx.degree(topology)
     source_attachments = highest(topology, deg) 
 
