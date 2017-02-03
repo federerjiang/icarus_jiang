@@ -87,6 +87,7 @@ STRATEGIES = [
      'CMEDGE',
      # 'CLCE',
      'CCLCE'
+     'CB',
      # 'RAND_CHOICE',     # Random choice: cache in one random cache on path
      # 'RAND_BERNOULLI',  # Random Bernoulli: cache randomly in caches on path
              ]
@@ -113,11 +114,11 @@ default['cache_policy']['name'] = CACHE_POLICY
 # default['topology']['h'] = HEIGHT
 
 TOPOLOGIES =  [
-        'GEANT',
-        # 'SINET',
-        'WIDE',
-        'GARR',
-        'TISCALI',
+        # 'GEANT',
+        'SINET',
+        # 'WIDE',
+        # 'GARR',
+        # 'TISCALI',
         # 'RANDOM',
               ]
 

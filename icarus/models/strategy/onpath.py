@@ -18,6 +18,7 @@ __all__ = [
        'NewCoorTelstraEdge',
        'CoorLeaveCopyEverywhere',
        'CCLeaveCopyEverywhere',
+       'CoorCacheBit'
        'LeaveCopyEverywhere',
        'LeaveCopyDown',
        'ProbCache',
@@ -408,6 +409,58 @@ class CoorLeaveCopyEverywhere(Strategy):
                 # insert content
                 self.controller.put_content(v)
         self.controller.end_session()
+
+
+@register_strategy('CB')
+class CoorCacheBit(Strategy):
+    """Leave Copy Everywhere (LCE) strategy.
+
+    In this strategy a copy of a content is replicated at any cache on the
+    path between serving node and receiver.
+    """
+
+    @inheritdoc(Strategy)
+    def __init__(self, view, controller, **kwargs):
+        super(CoorCacheBit, self).__init__(view, controller)
+
+    @inheritdoc(Strategy)
+    def process_event(self, time, receiver, content, log):
+        # get all required data
+        source = self.view.content_source(content)
+        path = self.view.shortest_path(receiver, source)
+        # Route requests to original source and queries caches on the path
+        self.controller.start_session(time, receiver, content, log)
+        serving_node = None
+        edge_cache = None
+        serving_node = None
+        # First find the edge cache
+        for u, v in path_links(path):
+            if self.view.has_cache(v):
+                edge_cache = v
+                break
+        tag = False
+        for u, v in path_links(path):
+            self.controller.forward_request_hop(u, v)
+            if self.view.has_cache(v):
+                neighbors = self.controller.get_neighbors(v)
+                if self.controller.get_content(v):
+                    serving_node = v
+                    tag = True
+                    break
+                for neigh in neighbors:
+                    if self.controller.get_content(neigh):
+                        serving_node = neigh
+                        tag = True
+                        break
+                if tag:
+                    break
+        if tag == False:
+            # No cache hits, get content from source
+            self.controller.get_content(source)
+            self.controller.put_content(edge_cache)
+            # serving_node = source
+        self.controller.end_session()
+
 
 
 # new strategy added by Jiang Xiaolan
