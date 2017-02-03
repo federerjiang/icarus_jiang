@@ -934,27 +934,6 @@ def topology_geant(delay=1, **kwargs):
     for v in routers:
         fnss.add_stack(topology, v, 'router')
 
-    '''
-    deg = nx.degree(topology)
-    receivers = [v for v in topology.nodes() if deg[v] == 1]  # 8 nodes
-    sorted_degrees = sorted(deg.items(), key=operator.itemgetter(1))
-    highest = sorted_degrees[0][0]
-    # icr_candidates = [v for v in topology.nodes() if deg[v] > 2]  # 19 nodes
-    # attach sources to topology
-    # source_attachments = [v for v in topology.nodes() if deg[v] == 2]  # 13 nodes
-
-    # receivers = range(1000, 1000 + len(leafs))
-    # for item in range(0, len(leafs)):
-        # topology.add_node(receivers[item])
-        # topology.add_edge(receivers[item], leafs[item])
-    routers = topology.nodes()
-    sources = [2000]
-    topology.add_node(2000)
-    topology.add_edge(highest, 2000)
-    # routers = [v for v in topology.nodes() if v not in sources + receivers]
-    # add stacks to nodes
-    # topology.graph['icr_candidates'] = set(icr_candidates)
-    '''
     # set weights and delays on all links
     fnss.set_weights_constant(topology, 1.0)
     fnss.set_delays_constant(topology, delay, 'ms')
@@ -981,47 +960,25 @@ def topology_tiscali(**kwargs):
                                              ).to_undirected()
     topology = list(nx.connected_component_subgraphs(topology))[0]
     # degree of nodes
+    leafs = topology.nodes()  
     deg = nx.degree(topology)
-    # nodes with degree = 1
-    onedeg = [v for v in topology.nodes() if deg[v] == 1]  # they are 80
-    # we select as caches nodes with highest degrees
-    # we use as min degree 6 --> 36 nodes
-    # If we changed min degrees, that would be the number of caches we would have:
-    # Min degree    N caches
-    #  2               160
-    #  3               102
-    #  4                75
-    #  5                50
-    #  6                36
-    #  7                30
-    #  8                26
-    #  9                19
-    # 10                16
-    # 11                12
-    # 12                11
-    # 13                 7
-    # 14                 3
-    # 15                 3
-    # 16                 2
-    icr_candidates = [v for v in topology.nodes() if deg[v] >= 6]  # 36 nodes
-    # sources are node with degree 1 whose neighbor has degree at least equal to 5
-    # we assume that sources are nodes connected to a hub
-    # they are 44
-    sources = [v for v in onedeg if deg[list(topology.edge[v].keys())[0]] > 4.5]  # they are
-    # receivers are node with degree 1 whose neighbor has degree at most equal to 4
-    # we assume that receivers are nodes not well connected to the network
-    # they are 36
-    receivers = [v for v in onedeg if deg[list(topology.edge[v].keys())[0]] < 4.5]
-    # we set router stacks because some strategies will fail if no stacks
-    # are deployed
+    source_attachments = highest(topology, deg) 
+
+    sources = []
+    for v in source_attachments:
+        u = v + 1000  # node ID of source
+        topology.add_edge(v, u)
+        sources.append(u)
+    receivers = []
+    for v in leafs:
+        u = v + 2000
+        topology.add_edge(v, u)
+        receivers.append(u)
+
     routers = [v for v in topology.nodes() if v not in sources + receivers]
 
-    # set weights and delays on all links
-    fnss.set_weights_constant(topology, 1.0)
-    fnss.set_delays_constant(topology, INTERNAL_LINK_DELAY, 'ms')
-
-    # Deploy stacks
-    topology.graph['icr_candidates'] = set(icr_candidates)
+    # add stacks to nodes
+    topology.graph['icr_candidates'] = set(routers)
     for v in sources:
         fnss.add_stack(topology, v, 'source')
     for v in receivers:
@@ -1029,15 +986,9 @@ def topology_tiscali(**kwargs):
     for v in routers:
         fnss.add_stack(topology, v, 'router')
 
-    # label links as internal or external
-    for u, v in topology.edges():
-        if u in sources or v in sources:
-            topology.edge[u][v]['type'] = 'external'
-            # this prevents sources to be used to route traffic
-            fnss.set_weights_constant(topology, 1000.0, [(u, v)])
-            fnss.set_delays_constant(topology, EXTERNAL_LINK_DELAY, 'ms', [(u, v)])
-        else:
-            topology.edge[u][v]['type'] = 'internal'
+    # set weights and delays on all links
+    fnss.set_weights_constant(topology, 1.0)
+    fnss.set_delays_constant(topology, delay, 'ms')
     return IcnTopology(topology)
 
 
@@ -1057,33 +1008,35 @@ def topology_wide(**kwargs):
     """
     topology = fnss.parse_topology_zoo(path.join(TOPOLOGY_RESOURCES_DIR, 'WideJpn.graphml')).to_undirected()
     # sources are nodes representing neighbouring AS's
-    sources = [9, 8, 11, 13, 12, 15, 14, 17, 16, 19, 18]
-    # receivers are internal nodes with degree = 1
-    receivers = [27, 28, 3, 5, 4, 7]
-    # caches are all remaining nodes --> 27 caches
-    routers = [n for n in topology.nodes() if n not in receivers + sources]
-    # All routers can be upgraded to ICN functionalitirs
-    icr_candidates = routers
-    # set weights and delays on all links
-    fnss.set_weights_constant(topology, 1.0)
-    fnss.set_delays_constant(topology, INTERNAL_LINK_DELAY, 'ms')
-    # Deploy stacks
-    topology.graph['icr_candidates'] = set(icr_candidates)
+    leafs = topology.nodes()  
+    deg = nx.degree(topology)
+    source_attachments = highest(topology, deg) 
+
+    sources = []
+    for v in source_attachments:
+        u = v + 1000  # node ID of source
+        topology.add_edge(v, u)
+        sources.append(u)
+    receivers = []
+    for v in leafs:
+        u = v + 2000
+        topology.add_edge(v, u)
+        receivers.append(u)
+
+    routers = [v for v in topology.nodes() if v not in sources + receivers]
+
+    # add stacks to nodes
+    topology.graph['icr_candidates'] = set(routers)
     for v in sources:
         fnss.add_stack(topology, v, 'source')
     for v in receivers:
         fnss.add_stack(topology, v, 'receiver')
     for v in routers:
         fnss.add_stack(topology, v, 'router')
-    # label links as internal or external
-    for u, v in topology.edges():
-        if u in sources or v in sources:
-            topology.edge[u][v]['type'] = 'external'
-            # this prevents sources to be used to route traffic
-            fnss.set_weights_constant(topology, 1000.0, [(u, v)])
-            fnss.set_delays_constant(topology, EXTERNAL_LINK_DELAY, 'ms', [(u, v)])
-        else:
-            topology.edge[u][v]['type'] = 'internal'
+
+    # set weights and delays on all links
+    fnss.set_weights_constant(topology, 1.0)
+    fnss.set_delays_constant(topology, delay, 'ms')
     return IcnTopology(topology)
 
 
@@ -1103,18 +1056,26 @@ def topology_garr(**kwargs):
     """
     topology = fnss.parse_topology_zoo(path.join(TOPOLOGY_RESOURCES_DIR, 'Garr201201.graphml')).to_undirected()
     # sources are nodes representing neighbouring AS's
-    sources = [0, 2, 3, 5, 13, 16, 23, 24, 25, 27, 51, 52, 54]
-    # receivers are internal nodes with degree = 1
-    receivers = [1, 7, 8, 9, 11, 12, 19, 26, 28, 30, 32, 33, 41, 42, 43, 47, 48, 50, 53, 57, 60]
-    # caches are all remaining nodes --> 27 caches
-    routers = [n for n in topology.nodes() if n not in receivers + sources]
-    icr_candidates = routers
-    # set weights and delays on all links
-    fnss.set_weights_constant(topology, 1.0)
-    fnss.set_delays_constant(topology, INTERNAL_LINK_DELAY, 'ms')
+    leafs = topology.nodes()  
+    print("GARR : " + len(leafs))
+    deg = nx.degree(topology)
+    source_attachments = highest(topology, deg) 
 
-    # Deploy stacks
-    topology.graph['icr_candidates'] = set(icr_candidates)
+    sources = []
+    for v in source_attachments:
+        u = v + 1000  # node ID of source
+        topology.add_edge(v, u)
+        sources.append(u)
+    receivers = []
+    for v in leafs:
+        u = v + 2000
+        topology.add_edge(v, u)
+        receivers.append(u)
+
+    routers = [v for v in topology.nodes() if v not in sources + receivers]
+
+    # add stacks to nodes
+    topology.graph['icr_candidates'] = set(routers)
     for v in sources:
         fnss.add_stack(topology, v, 'source')
     for v in receivers:
@@ -1122,15 +1083,9 @@ def topology_garr(**kwargs):
     for v in routers:
         fnss.add_stack(topology, v, 'router')
 
-    # label links as internal or external
-    for u, v in topology.edges():
-        if u in sources or v in sources:
-            topology.edge[u][v]['type'] = 'external'
-            # this prevents sources to be used to route traffic
-            fnss.set_weights_constant(topology, 1000.0, [(u, v)])
-            fnss.set_delays_constant(topology, EXTERNAL_LINK_DELAY, 'ms', [(u, v)])
-        else:
-            topology.edge[u][v]['type'] = 'internal'
+    # set weights and delays on all links
+    fnss.set_weights_constant(topology, 1.0)
+    fnss.set_delays_constant(topology, delay, 'ms')
     return IcnTopology(topology)
 
 
