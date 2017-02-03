@@ -82,7 +82,7 @@ STRATEGIES = [
      # 'HR_HYBRID_SM',    # Hybrid Symm-Multicast hash-routing
      # 'CL4M',            # Cache less for more
      # 'PROB_CACHE',      # ProbCache
-     'LCD',             # Leave Copy Down
+     # 'LCD',             # Leave Copy Down
      # 'MEDGE',
      'CMEDGE',
      # 'CLCE',
@@ -115,9 +115,9 @@ default['cache_policy']['name'] = CACHE_POLICY
 TOPOLOGIES =  [
         'GEANT',
         # 'SINET',
-        # 'WIDE',
-        # 'GARR',
-        # 'TISCALI',
+        'WIDE',
+        'GARR',
+        'TISCALI',
         # 'RANDOM',
               ]
 
