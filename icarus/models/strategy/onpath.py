@@ -18,7 +18,7 @@ __all__ = [
        'NewCoorTelstraEdge',
        'CoorLeaveCopyEverywhere',
        'CCLeaveCopyEverywhere',
-       'CoorCacheBit'
+       'CoorCacheBit',
        'LeaveCopyEverywhere',
        'LeaveCopyDown',
        'ProbCache',
