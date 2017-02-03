@@ -1,0 +1,51 @@
+EXPERIMENT 1/3:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: LCD
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.3
+   * topology -> name: GEANT
+   * desc -> Alpha: 0.6, strategy: LCD, topology: GEANT, network cache: 0.3
+  RESULTS:
+    LATENCY
+     * MEAN: 4.813575
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({1004: 0.8555738})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.0009518, 3: 0.0030458, 4: 0.0110076, 5: 0.0009228, 8: 0.0009598, 9: 0.0013644, 10: 0.0134836, 11: 0.0137094, 12: 0.0032708, 13: 0.0018764, 15: 0.001913, 18: 0.0135436, 19: 0.01345, 20: 0.0136548, 21: 0.0138298, 22: 0.0014218, 23: 0.0008548, 26: 0.0134978, 27: 0.0017558, 28: 0.0012428, 29: 0.0038258, 36: 0.0013546, 37: 0.0134892})
+     * MEAN: 0.1444262
+
+EXPERIMENT 2/3:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: CMEDGE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.3
+   * topology -> name: GEANT
+   * desc -> Alpha: 0.6, strategy: CMEDGE, topology: GEANT, network cache: 0.3
+  RESULTS:
+    LATENCY
+     * MEAN: 5.0407142
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({1004: 0.8668752})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({3: 0.087893, 37: 0.0049252, 10: 0.0062242, 11: 0.0048926, 18: 0.0048808, 19: 0.006187, 20: 0.008408, 21: 0.0048524, 26: 0.0048616})
+     * MEAN: 0.1331248
+
+EXPERIMENT 3/3:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: CCLCE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.3
+   * topology -> name: GEANT
+   * desc -> Alpha: 0.6, strategy: CCLCE, topology: GEANT, network cache: 0.3
+  RESULTS:
+    LATENCY
+     * MEAN: 4.9793134
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({1004: 0.8610674})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({2: 0.0149438, 3: 0.0123128, 4: 0.009582, 5: 0.0095206, 8: 0.0074304, 9: 0.0076708, 10: 0.0061414, 11: 0.0036062, 12: 0.0054524, 13: 0.0030324, 15: 0.0014088, 18: 0.0045274, 19: 0.0062554, 20: 0.00497, 21: 0.0037472, 22: 0.013837, 23: 0.0004692, 26: 0.0038768, 27: 0.0037288, 28: 0.0025568, 29: 0.0092798, 36: 4.66e-05, 37: 0.004536})
+     * MEAN: 0.1389326
+
