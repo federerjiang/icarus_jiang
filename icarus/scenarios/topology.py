@@ -919,7 +919,7 @@ def topology_geant(delay=1, **kwargs):
         sources.append(u)
     receivers = []
     for v in leafs:
-        u = v + 1000
+        u = v + 2000
         topology.add_edge(v, u)
         receivers.append(u)
 
