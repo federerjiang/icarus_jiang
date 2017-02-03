@@ -994,8 +994,8 @@ def topology_tiscali(delay=1, **kwargs):
     return IcnTopology(topology)
 
 
-@register_topology_factory(delay=1, 'WIDE')
-def topology_wide(**kwargs):
+@register_topology_factory('WIDE')
+def topology_wide(delay=1, **kwargs):
     """Return a scenario based on GARR topology
 
     Parameters
@@ -1043,8 +1043,8 @@ def topology_wide(**kwargs):
     return IcnTopology(topology)
 
 
-@register_topology_factory(delay=1, 'GARR')
-def topology_garr(**kwargs):
+@register_topology_factory('GARR')
+def topology_garr(delay=1, **kwargs):
     """Return a scenario based on GARR topology
 
     Parameters
