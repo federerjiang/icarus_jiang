@@ -1,0 +1,833 @@
+EXPERIMENT 1/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: MEDGE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: MEDGE, topology: RANDOM, network cache: 0.5
+  RESULTS:
+    LATENCY
+     * MEAN: 4.9493022
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.8268942})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0031776, u'node10': 0.0014708, u'node39': 0.0133846, u'node12': 0.0113384, u'node15': 0.0014386, u'node14': 0.003497, u'node17': 0.0130408, u'node16': 0.0014816, u'node33': 0.001467, u'node18': 0.0110132, u'node31': 0.0014742, u'node30': 0.001456, u'node37': 0.0024492, u'node36': 0.0067074, u'node35': 0.0014602, u'node34': 0.0038472, u'node38': 0.0014594, u'node13': 0.0024166, u'node19': 0.0014714, u'node32': 0.002429, u'node28': 0.0022124, u'node29': 0.0032032, u'node24': 0.0024004, u'node25': 0.0296998, u'node26': 0.001453, u'node27': 0.0014672, u'node20': 0.0138214, u'node21': 0.0014464, u'node22': 0.0014486, u'node23': 0.0014388, u'node40': 0.0024132, u'node9': 0.001468, u'node8': 0.0014382, u'node1': 0.002416, u'node3': 0.001427, u'node2': 0.001449, u'node5': 0.001424, u'node4': 0.0014764, u'node7': 0.0130858, u'node6': 0.0014368})
+     * MEAN: 0.1731058
+
+EXPERIMENT 2/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: MEDGE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.3
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: MEDGE, topology: RANDOM, network cache: 0.3
+  RESULTS:
+    LATENCY
+     * MEAN: 5.1109196
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.8728988})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0022776, u'node10': 0.0009576, u'node39': 0.0102014, u'node12': 0.0084602, u'node15': 0.0009736, u'node14': 0.0024444, u'node17': 0.009746, u'node16': 0.0009908, u'node33': 0.0009406, u'node32': 0.0017018, u'node31': 0.0009358, u'node30': 0.0009794, u'node37': 0.001714, u'node36': 0.0048762, u'node35': 0.0009554, u'node34': 0.002695, u'node38': 0.0009484, u'node13': 0.0017006, u'node19': 0.0009604, u'node18': 0.0081926, u'node28': 0.0014958, u'node29': 0.0022556, u'node24': 0.0016954, u'node25': 0.0235084, u'node26': 0.0009596, u'node27': 0.0009464, u'node20': 0.0105484, u'node21': 0.0009962, u'node22': 0.0009716, u'node23': 0.0009768, u'node40': 0.001719, u'node9': 0.00098, u'node8': 0.0009964, u'node1': 0.0016804, u'node3': 0.000973, u'node2': 0.000988, u'node5': 0.0009528, u'node4': 0.0009928, u'node7': 0.0098518, u'node6': 0.000961})
+     * MEAN: 0.1271012
+
+EXPERIMENT 3/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: MEDGE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.1
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: MEDGE, topology: RANDOM, network cache: 0.1
+  RESULTS:
+    LATENCY
+     * MEAN: 5.3377572
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.939238})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.001002, u'node10': 0.0003556, u'node39': 0.0051002, u'node12': 0.0040778, u'node15': 0.000353, u'node14': 0.0010274, u'node17': 0.0050422, u'node16': 0.000367, u'node33': 0.000346, u'node32': 0.0007244, u'node31': 0.0003666, u'node30': 0.0003674, u'node37': 0.0007056, u'node36': 0.0021874, u'node35': 0.000363, u'node34': 0.0012502, u'node38': 0.0003562, u'node13': 0.0006964, u'node19': 0.0003562, u'node18': 0.0040284, u'node28': 0.000653, u'node29': 0.0009736, u'node24': 0.0006954, u'node25': 0.0130744, u'node26': 0.000366, u'node27': 0.0003426, u'node20': 0.0054624, u'node21': 0.0003614, u'node22': 0.0003784, u'node23': 0.0003622, u'node40': 0.0006964, u'node9': 0.000356, u'node8': 0.0003666, u'node1': 0.0006788, u'node3': 0.0003592, u'node2': 0.0003516, u'node5': 0.000364, u'node4': 0.000355, u'node7': 0.0051242, u'node6': 0.0003678})
+     * MEAN: 0.060762
+
+EXPERIMENT 4/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: LCD
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: LCD, topology: RANDOM, network cache: 0.5
+  RESULTS:
+    LATENCY
+     * MEAN: 4.7645992
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.8171836})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0037638, u'node10': 0.0037508, u'node39': 0.0066636, u'node12': 0.0081814, u'node15': 0.0032038, u'node14': 0.0043934, u'node17': 0.0072884, u'node16': 0.003573, u'node19': 0.0035102, u'node18': 0.0074068, u'node31': 0.0035778, u'node30': 0.0036832, u'node37': 0.0038404, u'node13': 0.0038472, u'node35': 0.0037192, u'node34': 0.0042036, u'node38': 0.0036712, u'node33': 0.0035228, u'node32': 0.0038368, u'node28': 0.0027814, u'node29': 0.0041526, u'node24': 0.0040246, u'node25': 0.0158584, u'node26': 0.0034444, u'node27': 0.0035034, u'node20': 0.0068342, u'node21': 0.0036688, u'node22': 0.0036516, u'node36': 0.0060454, u'node23': 0.0037468, u'node40': 0.0037018, u'node9': 0.0036762, u'node8': 0.0036014, u'node1': 0.0039394, u'node3': 0.0035394, u'node2': 0.0035104, u'node5': 0.0035602, u'node4': 0.0034816, u'node7': 0.007051, u'node6': 0.003406})
+     * MEAN: 0.1828164
+
+EXPERIMENT 5/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: LCD
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.3
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: LCD, topology: RANDOM, network cache: 0.3
+  RESULTS:
+    LATENCY
+     * MEAN: 4.924698
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.8572316})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0029388, u'node10': 0.0030042, u'node13': 0.0030966, u'node12': 0.0064702, u'node15': 0.0025422, u'node14': 0.0034776, u'node17': 0.0056284, u'node16': 0.0028574, u'node33': 0.0028272, u'node32': 0.0031052, u'node31': 0.0028634, u'node30': 0.002922, u'node37': 0.0030624, u'node39': 0.004935, u'node35': 0.0029932, u'node34': 0.0032426, u'node38': 0.0029844, u'node19': 0.0028372, u'node18': 0.0056804, u'node28': 0.0021732, u'node29': 0.0033242, u'node24': 0.0032316, u'node25': 0.0110792, u'node26': 0.0027244, u'node27': 0.0027644, u'node20': 0.0050466, u'node21': 0.0029414, u'node22': 0.0029094, u'node36': 0.0047932, u'node23': 0.0030118, u'node40': 0.0029344, u'node9': 0.0029912, u'node8': 0.0028842, u'node1': 0.0031376, u'node3': 0.0027994, u'node2': 0.0028022, u'node5': 0.0028372, u'node4': 0.002829, u'node7': 0.0053406, u'node6': 0.0027448})
+     * MEAN: 0.1427684
+
+EXPERIMENT 6/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: LCD
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.1
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: LCD, topology: RANDOM, network cache: 0.1
+  RESULTS:
+    LATENCY
+     * MEAN: 5.167099
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.9169298})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0017638, u'node10': 0.001811, u'node13': 0.0018276, u'node12': 0.003767, u'node15': 0.001562, u'node14': 0.002111, u'node17': 0.00324, u'node16': 0.0017376, u'node33': 0.0017016, u'node18': 0.003362, u'node31': 0.0017206, u'node30': 0.0017412, u'node37': 0.001884, u'node39': 0.002616, u'node35': 0.001794, u'node34': 0.0019546, u'node38': 0.0017994, u'node19': 0.0016508, u'node32': 0.0018618, u'node28': 0.0013238, u'node29': 0.0020414, u'node24': 0.0020046, u'node25': 0.0050234, u'node26': 0.0016902, u'node27': 0.0016576, u'node20': 0.0026094, u'node21': 0.0017532, u'node22': 0.0017926, u'node36': 0.0028518, u'node23': 0.0018076, u'node40': 0.001769, u'node9': 0.0017662, u'node8': 0.0017276, u'node1': 0.0018756, u'node3': 0.001685, u'node2': 0.0016906, u'node5': 0.0016954, u'node4': 0.0017044, u'node7': 0.0030108, u'node6': 0.001684})
+     * MEAN: 0.0830702
+
+EXPERIMENT 7/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: PROB_CACHE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: PROB_CACHE, topology: RANDOM, network cache: 0.5
+  RESULTS:
+    LATENCY
+     * MEAN: 4.9487574
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.8077076})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0032598, u'node10': 0.0015502, u'node39': 0.0171798, u'node12': 0.0080864, u'node15': 0.001653, u'node14': 0.0028604, u'node17': 0.0123896, u'node16': 0.001514, u'node33': 0.0015266, u'node18': 0.00911, u'node31': 0.0014384, u'node30': 0.0014722, u'node37': 0.0021868, u'node36': 0.005025, u'node35': 0.0014752, u'node34': 0.0036346, u'node38': 0.001502, u'node13': 0.0021668, u'node19': 0.0014722, u'node32': 0.002202, u'node28': 0.0024762, u'node29': 0.0029082, u'node24': 0.0021464, u'node25': 0.0484934, u'node26': 0.001498, u'node27': 0.001472, u'node20': 0.0179564, u'node21': 0.0015002, u'node22': 0.0015366, u'node23': 0.0014854, u'node40': 0.0022056, u'node9': 0.0015006, u'node8': 0.0014894, u'node1': 0.0021524, u'node3': 0.0015158, u'node2': 0.0014706, u'node5': 0.0014502, u'node4': 0.0015454, u'node7': 0.014339, u'node6': 0.0014456})
+     * MEAN: 0.1922924
+
+EXPERIMENT 8/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: PROB_CACHE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.1
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: PROB_CACHE, topology: RANDOM, network cache: 0.1
+  RESULTS:
+    LATENCY
+     * MEAN: 5.3412102
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.9279946})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0008986, u'node10': 0.0003096, u'node13': 0.000576, u'node38': 0.0003288, u'node15': 0.0003456, u'node14': 0.0009056, u'node17': 0.0042336, u'node16': 0.0003194, u'node33': 0.0003092, u'node18': 0.0031422, u'node31': 0.0003152, u'node30': 0.0003028, u'node37': 0.0005502, u'node36': 0.0016268, u'node35': 0.0003006, u'node34': 0.001071, u'node12': 0.0029268, u'node19': 0.0002936, u'node32': 0.000631, u'node39': 0.0067946, u'node28': 0.0006522, u'node29': 0.0008344, u'node24': 0.0005736, u'node25': 0.0262054, u'node26': 0.0003262, u'node27': 0.0003324, u'node20': 0.0068468, u'node21': 0.0003138, u'node22': 0.0003184, u'node23': 0.000314, u'node40': 0.0005632, u'node9': 0.0002996, u'node8': 0.000309, u'node1': 0.0005922, u'node3': 0.0003324, u'node2': 0.0002974, u'node5': 0.0003196, u'node4': 0.0003122, u'node7': 0.005753, u'node6': 0.0003284})
+     * MEAN: 0.0720054
+
+EXPERIMENT 9/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: PROB_CACHE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.3
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: PROB_CACHE, topology: RANDOM, network cache: 0.3
+  RESULTS:
+    LATENCY
+     * MEAN: 5.1131752
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.8569164})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0021846, u'node10': 0.0009426, u'node39': 0.012798, u'node12': 0.0058612, u'node15': 0.0010816, u'node14': 0.0020108, u'node17': 0.0094456, u'node16': 0.0009844, u'node19': 0.000933, u'node18': 0.0066786, u'node31': 0.0009642, u'node30': 0.001021, u'node37': 0.0014634, u'node36': 0.0034616, u'node35': 0.0009832, u'node34': 0.0026518, u'node38': 0.0009694, u'node13': 0.0014404, u'node33': 0.0010012, u'node32': 0.0015508, u'node28': 0.00174, u'node29': 0.002096, u'node24': 0.001408, u'node25': 0.0401646, u'node26': 0.0010116, u'node27': 0.0009844, u'node20': 0.0137454, u'node21': 0.0009876, u'node22': 0.0009898, u'node23': 0.0010174, u'node40': 0.0015448, u'node9': 0.0009954, u'node8': 0.0009566, u'node1': 0.0014882, u'node3': 0.0009806, u'node2': 0.000946, u'node5': 0.0009712, u'node4': 0.0009646, u'node7': 0.0107104, u'node6': 0.0009536})
+     * MEAN: 0.1430836
+
+EXPERIMENT 10/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: LCE, topology: RANDOM, network cache: 0.5
+  RESULTS:
+    LATENCY
+     * MEAN: 5.1291294
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.8927452})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0019472, u'node10': 0.00148, u'node39': 0.0044754, u'node12': 0.0070766, u'node15': 0.0014604, u'node14': 0.0024884, u'node17': 0.0056798, u'node16': 0.0014834, u'node19': 0.0014662, u'node18': 0.006087, u'node31': 0.001463, u'node30': 0.001403, u'node37': 0.0018134, u'node36': 0.004423, u'node35': 0.0014574, u'node34': 0.0020104, u'node38': 0.0014444, u'node13': 0.0018532, u'node33': 0.0014644, u'node32': 0.0018698, u'node28': 0.0018856, u'node29': 0.0019644, u'node24': 0.0018536, u'node25': 0.0171026, u'node26': 0.0014434, u'node27': 0.001465, u'node20': 0.0044292, u'node21': 0.00145, u'node22': 0.0014296, u'node23': 0.0014404, u'node40': 0.0018364, u'node9': 0.0014638, u'node8': 0.0014732, u'node1': 0.0018178, u'node3': 0.0014722, u'node2': 0.0014526, u'node5': 0.0014516, u'node4': 0.0014718, u'node7': 0.0060618, u'node6': 0.0014434})
+     * MEAN: 0.1072548
+
+EXPERIMENT 11/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.1
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: LCE, topology: RANDOM, network cache: 0.1
+  RESULTS:
+    LATENCY
+     * MEAN: 5.409601
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.9673442})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0005514, u'node10': 0.000378, u'node39': 0.0014346, u'node38': 0.0003662, u'node15': 0.0003768, u'node14': 0.0007684, u'node17': 0.0019214, u'node16': 0.0003918, u'node33': 0.0003872, u'node18': 0.002072, u'node31': 0.0003604, u'node30': 0.0003844, u'node37': 0.000508, u'node36': 0.0014354, u'node35': 0.0003764, u'node34': 0.0005834, u'node12': 0.0024614, u'node13': 0.000497, u'node19': 0.0003804, u'node32': 0.0005422, u'node28': 0.0005216, u'node29': 0.000562, u'node24': 0.0005014, u'node25': 0.0060044, u'node26': 0.0003676, u'node27': 0.0003746, u'node20': 0.0014684, u'node21': 0.000345, u'node22': 0.0003492, u'node23': 0.0003624, u'node40': 0.0004812, u'node9': 0.0003686, u'node8': 0.0003628, u'node1': 0.0005282, u'node3': 0.0003638, u'node2': 0.0003614, u'node5': 0.0003634, u'node4': 0.0003734, u'node7': 0.0020578, u'node6': 0.0003618})
+     * MEAN: 0.0326558
+
+EXPERIMENT 12/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.3
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: LCE, topology: RANDOM, network cache: 0.3
+  RESULTS:
+    LATENCY
+     * MEAN: 5.2507342
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.9249538})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0013376, u'node10': 0.000969, u'node13': 0.0012746, u'node12': 0.0051004, u'node15': 0.0009344, u'node14': 0.0017764, u'node17': 0.0041114, u'node16': 0.00099, u'node33': 0.0010088, u'node18': 0.0043442, u'node31': 0.000994, u'node30': 0.0009832, u'node37': 0.0012048, u'node36': 0.0032042, u'node35': 0.0009684, u'node34': 0.0013936, u'node38': 0.0009606, u'node19': 0.0009904, u'node32': 0.0012668, u'node39': 0.003195, u'node28': 0.0012892, u'node29': 0.0013198, u'node24': 0.0012262, u'node25': 0.0124716, u'node26': 0.0009724, u'node27': 0.0009914, u'node20': 0.0031488, u'node21': 0.0009688, u'node22': 0.0009546, u'node23': 0.0009716, u'node40': 0.0012014, u'node9': 0.0009962, u'node8': 0.0009626, u'node1': 0.001243, u'node3': 0.0009846, u'node2': 0.0009976, u'node5': 0.0009698, u'node4': 0.0009624, u'node7': 0.0044182, u'node6': 0.0009882})
+     * MEAN: 0.0750462
+
+EXPERIMENT 13/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: CMEDGE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: CMEDGE, topology: RANDOM, network cache: 0.5
+  RESULTS:
+    LATENCY
+     * MEAN: 4.2322024
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.6824158})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0108232, u'node10': 0.0041082, u'node39': 0.0183062, u'node12': 0.0130146, u'node15': 0.0152002, u'node14': 0.0088778, u'node17': 0.00983, u'node16': 0.006065, u'node33': 0.0077546, u'node18': 0.009387, u'node31': 0.0054074, u'node30': 0.004719, u'node37': 0.006104, u'node36': 0.010457, u'node35': 0.0035524, u'node34': 0.0077258, u'node38': 0.0048004, u'node13': 0.0113492, u'node19': 0.0073612, u'node32': 0.0050794, u'node28': 0.014978, u'node29': 0.0063288, u'node24': 0.0053362, u'node25': 0.0134526, u'node26': 0.0082614, u'node27': 0.007091, u'node20': 0.016344, u'node21': 0.005273, u'node22': 0.0066982, u'node23': 0.0045488, u'node40': 0.0070004, u'node9': 0.004977, u'node8': 0.005403, u'node1': 0.0043552, u'node3': 0.0063162, u'node2': 0.005609, u'node5': 0.005429, u'node4': 0.0065398, u'node7': 0.008302, u'node6': 0.005418})
+     * MEAN: 0.3175842
+
+EXPERIMENT 14/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: CMEDGE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.3
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: CMEDGE, topology: RANDOM, network cache: 0.3
+  RESULTS:
+    LATENCY
+     * MEAN: 4.5526148
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.7592468})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0082024, u'node10': 0.0028874, u'node39': 0.0145478, u'node12': 0.010102, u'node15': 0.0120718, u'node14': 0.0066116, u'node17': 0.0075732, u'node16': 0.0042586, u'node33': 0.0058458, u'node32': 0.0037054, u'node31': 0.0039184, u'node30': 0.0034614, u'node37': 0.004475, u'node36': 0.008201, u'node35': 0.0025426, u'node34': 0.0058852, u'node38': 0.0034002, u'node13': 0.008469, u'node19': 0.0055222, u'node18': 0.0072238, u'node28': 0.0115888, u'node29': 0.0047016, u'node24': 0.0039786, u'node25': 0.0106202, u'node26': 0.0061736, u'node27': 0.0052346, u'node20': 0.0129276, u'node21': 0.003948, u'node22': 0.004978, u'node23': 0.0033216, u'node40': 0.0053296, u'node9': 0.0036292, u'node8': 0.0039784, u'node1': 0.0031794, u'node3': 0.0047284, u'node2': 0.0041842, u'node5': 0.0040524, u'node4': 0.0048848, u'node7': 0.0063468, u'node6': 0.0040626})
+     * MEAN: 0.2407532
+
+EXPERIMENT 15/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: MEDGE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.7
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: MEDGE, topology: RANDOM, network cache: 0.7
+  RESULTS:
+    LATENCY
+     * MEAN: 4.8120644
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.7892606})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0040086, u'node10': 0.0018566, u'node39': 0.0160402, u'node12': 0.01374, u'node15': 0.0019164, u'node14': 0.0044094, u'node17': 0.015409, u'node16': 0.001884, u'node33': 0.0018848, u'node18': 0.0132402, u'node31': 0.0018814, u'node30': 0.001894, u'node37': 0.0030764, u'node36': 0.0081654, u'node35': 0.0018616, u'node34': 0.0047732, u'node38': 0.0018662, u'node13': 0.003025, u'node19': 0.0018652, u'node32': 0.0030474, u'node28': 0.0027964, u'node29': 0.0039738, u'node24': 0.0030208, u'node25': 0.034348, u'node26': 0.0018928, u'node27': 0.0018784, u'node20': 0.0164708, u'node21': 0.001868, u'node22': 0.001881, u'node23': 0.001842, u'node40': 0.003084, u'node9': 0.0018568, u'node8': 0.0019198, u'node1': 0.003112, u'node3': 0.001846, u'node2': 0.001889, u'node5': 0.0018578, u'node4': 0.0018824, u'node7': 0.0156004, u'node6': 0.0018742})
+     * MEAN: 0.2107394
+
+EXPERIMENT 16/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: CMEDGE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.1
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: CMEDGE, topology: RANDOM, network cache: 0.1
+  RESULTS:
+    LATENCY
+     * MEAN: 5.0283246
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.8746912})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.004151, u'node10': 0.001203, u'node13': 0.0041204, u'node12': 0.0051862, u'node15': 0.0066862, u'node14': 0.0032712, u'node17': 0.0040108, u'node16': 0.001815, u'node19': 0.0028612, u'node18': 0.003928, u'node31': 0.001854, u'node30': 0.0016634, u'node37': 0.002322, u'node39': 0.0083542, u'node35': 0.001198, u'node34': 0.0031264, u'node38': 0.0016004, u'node33': 0.0029006, u'node32': 0.0018406, u'node28': 0.0064536, u'node29': 0.0023034, u'node24': 0.0019256, u'node25': 0.006002, u'node26': 0.0030638, u'node27': 0.0026474, u'node20': 0.0074018, u'node21': 0.001984, u'node22': 0.0025738, u'node36': 0.0044768, u'node23': 0.001626, u'node40': 0.0028132, u'node9': 0.0018184, u'node8': 0.001895, u'node1': 0.0015354, u'node3': 0.0024278, u'node2': 0.002114, u'node5': 0.0020776, u'node4': 0.0026072, u'node7': 0.0033854, u'node6': 0.002084})
+     * MEAN: 0.1253088
+
+EXPERIMENT 17/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: LCD
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.7
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: LCD, topology: RANDOM, network cache: 0.7
+  RESULTS:
+    LATENCY
+     * MEAN: 4.6389034
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.784774})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0043408, u'node10': 0.0043778, u'node13': 0.0044922, u'node12': 0.0096666, u'node15': 0.0036144, u'node14': 0.0050272, u'node17': 0.0087124, u'node16': 0.0041784, u'node33': 0.00406, u'node18': 0.0086434, u'node31': 0.004162, u'node30': 0.004219, u'node37': 0.0044748, u'node39': 0.0080858, u'node35': 0.0043344, u'node34': 0.0048674, u'node38': 0.0042678, u'node19': 0.004085, u'node32': 0.0044564, u'node28': 0.0032504, u'node29': 0.0048712, u'node24': 0.0046758, u'node25': 0.0201556, u'node26': 0.0039846, u'node27': 0.0039588, u'node20': 0.0082672, u'node21': 0.0042446, u'node22': 0.0042494, u'node36': 0.0071648, u'node23': 0.0042906, u'node40': 0.004277, u'node9': 0.0042462, u'node8': 0.004179, u'node1': 0.0046134, u'node3': 0.0040798, u'node2': 0.004079, u'node5': 0.004071, u'node4': 0.0041026, u'node7': 0.008445, u'node6': 0.0039542})
+     * MEAN: 0.215226
+
+EXPERIMENT 18/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: CLCE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: CLCE, topology: RANDOM, network cache: 0.5
+  RESULTS:
+    LATENCY
+     * MEAN: 4.4168008
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.7337106})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0085324, u'node10': 0.0044336, u'node39': 0.01057, u'node38': 0.0049824, u'node15': 0.0239576, u'node14': 0.0066628, u'node17': 0.0030924, u'node16': 0.0070446, u'node33': 0.0103752, u'node18': 0.004471, u'node31': 0.0061, u'node30': 0.0051166, u'node37': 0.0049212, u'node13': 0.0096866, u'node35': 0.0032008, u'node34': 0.0053296, u'node12': 0.0055542, u'node19': 0.0097978, u'node32': 0.0035166, u'node28': 0.015931, u'node29': 0.0043182, u'node24': 0.003761, u'node25': 0.0043716, u'node26': 0.0112758, u'node27': 0.0092214, u'node20': 0.0064664, u'node21': 0.0052642, u'node22': 0.007383, u'node36': 0.0051556, u'node23': 0.005079, u'node40': 0.0049056, u'node9': 0.0049414, u'node8': 0.0056358, u'node1': 0.0029842, u'node3': 0.0064616, u'node2': 0.0058638, u'node5': 0.005416, u'node4': 0.0075134, u'node7': 0.0013892, u'node6': 0.0056058})
+     * MEAN: 0.2662894
+
+EXPERIMENT 19/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: PROB_CACHE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.7
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: PROB_CACHE, topology: RANDOM, network cache: 0.7
+  RESULTS:
+    LATENCY
+     * MEAN: 4.8060538
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.7673476})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0039828, u'node10': 0.0020546, u'node39': 0.0204562, u'node12': 0.0100336, u'node15': 0.0021488, u'node14': 0.003684, u'node17': 0.0149932, u'node16': 0.001944, u'node33': 0.0019232, u'node18': 0.011149, u'node31': 0.0019282, u'node30': 0.0018958, u'node37': 0.0028392, u'node36': 0.006318, u'node35': 0.0019848, u'node34': 0.0047478, u'node38': 0.0019288, u'node13': 0.002853, u'node19': 0.0019582, u'node32': 0.002899, u'node28': 0.0031022, u'node29': 0.0037106, u'node24': 0.0026808, u'node25': 0.053739, u'node26': 0.0020148, u'node27': 0.0019538, u'node20': 0.0209734, u'node21': 0.0019134, u'node22': 0.0019718, u'node23': 0.0019414, u'node40': 0.0028436, u'node9': 0.0019738, u'node8': 0.001967, u'node1': 0.0026582, u'node3': 0.0019352, u'node2': 0.0019602, u'node5': 0.001968, u'node4': 0.0019818, u'node7': 0.0176392, u'node6': 0.002002})
+     * MEAN: 0.2326524
+
+EXPERIMENT 20/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: CLCE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.3
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: CLCE, topology: RANDOM, network cache: 0.3
+  RESULTS:
+    LATENCY
+     * MEAN: 4.704042
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.8017496})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0061748, u'node10': 0.003186, u'node13': 0.0070102, u'node38': 0.0035246, u'node15': 0.0192746, u'node14': 0.0047122, u'node17': 0.0021994, u'node16': 0.005018, u'node33': 0.0079064, u'node32': 0.0025608, u'node31': 0.0045356, u'node30': 0.0037596, u'node37': 0.0036056, u'node39': 0.0077618, u'node35': 0.0023198, u'node34': 0.0039482, u'node12': 0.0039384, u'node19': 0.0074524, u'node18': 0.0032446, u'node28': 0.0119994, u'node29': 0.0030828, u'node24': 0.0027112, u'node25': 0.003166, u'node26': 0.0085448, u'node27': 0.006947, u'node20': 0.0046998, u'node21': 0.0039238, u'node22': 0.0056272, u'node36': 0.0037724, u'node23': 0.0037806, u'node40': 0.003649, u'node9': 0.003639, u'node8': 0.0041746, u'node1': 0.0020882, u'node3': 0.0049068, u'node2': 0.0043676, u'node5': 0.0040642, u'node4': 0.0057948, u'node7': 0.0009548, u'node6': 0.0042234})
+     * MEAN: 0.1982504
+
+EXPERIMENT 21/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: CLCE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.1
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: CLCE, topology: RANDOM, network cache: 0.1
+  RESULTS:
+    LATENCY
+     * MEAN: 5.1187858
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.9009162})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.00304, u'node10': 0.0012658, u'node13': 0.0030946, u'node38': 0.0016386, u'node15': 0.0108894, u'node14': 0.0020446, u'node17': 0.0010354, u'node16': 0.0021728, u'node19': 0.0037942, u'node32': 0.001219, u'node31': 0.002299, u'node30': 0.0018524, u'node37': 0.0017678, u'node36': 0.0018648, u'node35': 0.0010728, u'node34': 0.0019116, u'node12': 0.001801, u'node33': 0.0041718, u'node18': 0.0015882, u'node39': 0.0038926, u'node28': 0.0060418, u'node29': 0.0014552, u'node24': 0.001269, u'node25': 0.0016414, u'node26': 0.0043204, u'node27': 0.00353, u'node20': 0.0023522, u'node21': 0.001916, u'node22': 0.0028974, u'node23': 0.0018302, u'node40': 0.0018174, u'node9': 0.0018934, u'node8': 0.0020804, u'node1': 0.0009458, u'node3': 0.0025972, u'node2': 0.002222, u'node5': 0.0020698, u'node4': 0.0030908, u'node7': 0.0004744, u'node6': 0.0022226})
+     * MEAN: 0.0990838
+
+EXPERIMENT 22/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: LCD
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.9
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: LCD, topology: RANDOM, network cache: 0.9
+  RESULTS:
+    LATENCY
+     * MEAN: 4.5319248
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.7573146})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0048336, u'node10': 0.00488, u'node39': 0.0094324, u'node38': 0.0047706, u'node15': 0.0040404, u'node14': 0.0057518, u'node17': 0.009882, u'node16': 0.004609, u'node19': 0.0045036, u'node32': 0.004971, u'node31': 0.0046458, u'node30': 0.0047062, u'node37': 0.004962, u'node36': 0.0078886, u'node35': 0.0048236, u'node34': 0.0054502, u'node12': 0.0106406, u'node13': 0.0050054, u'node33': 0.0045764, u'node18': 0.0097204, u'node28': 0.0036518, u'node29': 0.0053586, u'node24': 0.0052096, u'node25': 0.0239488, u'node26': 0.0044188, u'node27': 0.004472, u'node20': 0.0096398, u'node21': 0.0047662, u'node22': 0.0046868, u'node23': 0.0048374, u'node40': 0.004746, u'node9': 0.0047944, u'node8': 0.0045818, u'node1': 0.005183, u'node3': 0.0045534, u'node2': 0.0045752, u'node5': 0.004553, u'node4': 0.0045612, u'node7': 0.0096744, u'node6': 0.0043796})
+     * MEAN: 0.2426854
+
+EXPERIMENT 23/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: MEDGE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.9
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: MEDGE, topology: RANDOM, network cache: 0.9
+  RESULTS:
+    LATENCY
+     * MEAN: 4.6935356
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.7562456})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0045752, u'node10': 0.0022338, u'node39': 0.0183516, u'node12': 0.0155382, u'node15': 0.0022684, u'node14': 0.005093, u'node17': 0.0178426, u'node16': 0.0022734, u'node19': 0.0022826, u'node32': 0.0036124, u'node31': 0.0022284, u'node30': 0.0022684, u'node37': 0.003657, u'node36': 0.009436, u'node35': 0.0022742, u'node34': 0.0055398, u'node38': 0.0022676, u'node13': 0.0035822, u'node33': 0.0022476, u'node18': 0.0151458, u'node28': 0.0032576, u'node29': 0.0046538, u'node24': 0.0036582, u'node25': 0.0386392, u'node26': 0.0023108, u'node27': 0.0022502, u'node20': 0.0187976, u'node21': 0.0022556, u'node22': 0.002201, u'node23': 0.0022396, u'node40': 0.0036586, u'node9': 0.0022436, u'node8': 0.0022618, u'node1': 0.0036456, u'node3': 0.0022534, u'node2': 0.002195, u'node5': 0.002261, u'node4': 0.0022306, u'node7': 0.0177656, u'node6': 0.0022574})
+     * MEAN: 0.2437544
+
+EXPERIMENT 24/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.7
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: LCE, topology: RANDOM, network cache: 0.7
+  RESULTS:
+    LATENCY
+     * MEAN: 5.0236118
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.8652962})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0024948, u'node10': 0.0018838, u'node39': 0.005563, u'node12': 0.0087894, u'node15': 0.001913, u'node14': 0.0031118, u'node17': 0.0069626, u'node16': 0.001882, u'node33': 0.0019126, u'node18': 0.0074988, u'node31': 0.001858, u'node30': 0.001862, u'node37': 0.002314, u'node36': 0.0055508, u'node35': 0.0018924, u'node34': 0.0025636, u'node38': 0.001914, u'node13': 0.0023532, u'node19': 0.0018576, u'node32': 0.0023316, u'node28': 0.0023672, u'node29': 0.0025156, u'node24': 0.0022782, u'node25': 0.020853, u'node26': 0.0018548, u'node27': 0.0019268, u'node20': 0.0054622, u'node21': 0.0018766, u'node22': 0.0019056, u'node23': 0.0019066, u'node40': 0.0022968, u'node9': 0.0018464, u'node8': 0.0019134, u'node1': 0.0022916, u'node3': 0.0018576, u'node2': 0.0019142, u'node5': 0.0018722, u'node4': 0.0018816, u'node7': 0.0074728, u'node6': 0.0019016})
+     * MEAN: 0.1347038
+
+EXPERIMENT 25/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: CCLCE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.3
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: CCLCE, topology: RANDOM, network cache: 0.3
+  RESULTS:
+    LATENCY
+     * MEAN: 4.7062474
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.800829})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0062718, u'node10': 0.002853, u'node39': 0.007725, u'node38': 0.003314, u'node15': 0.0202934, u'node14': 0.0044958, u'node17': 0.0021412, u'node16': 0.0047322, u'node33': 0.0082442, u'node32': 0.0024526, u'node31': 0.0042626, u'node30': 0.0034076, u'node37': 0.0035676, u'node36': 0.0037246, u'node35': 0.0023238, u'node34': 0.003906, u'node12': 0.003756, u'node13': 0.0068834, u'node19': 0.0076808, u'node18': 0.0032304, u'node28': 0.0121992, u'node29': 0.0031002, u'node24': 0.002512, u'node25': 0.0031784, u'node26': 0.0088344, u'node27': 0.0072896, u'node20': 0.0047012, u'node21': 0.0041724, u'node22': 0.0055036, u'node23': 0.0041354, u'node40': 0.003668, u'node9': 0.0037038, u'node8': 0.0040372, u'node1': 0.0020358, u'node3': 0.0050454, u'node2': 0.0045348, u'node5': 0.0040536, u'node4': 0.0060414, u'node7': 0.000926, u'node6': 0.0042326})
+     * MEAN: 0.199171
+
+EXPERIMENT 26/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: CCLCE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.1
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: CCLCE, topology: RANDOM, network cache: 0.1
+  RESULTS:
+    LATENCY
+     * MEAN: 5.1218184
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.9007664})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.002996, u'node10': 0.0011276, u'node39': 0.0039016, u'node12': 0.0017316, u'node15': 0.0112632, u'node14': 0.0019434, u'node17': 0.001006, u'node16': 0.0019254, u'node33': 0.0041662, u'node18': 0.0015518, u'node31': 0.0020624, u'node30': 0.001674, u'node37': 0.001764, u'node36': 0.0018368, u'node35': 0.0010716, u'node34': 0.0019336, u'node38': 0.0014668, u'node13': 0.0030772, u'node19': 0.0039612, u'node32': 0.0011458, u'node28': 0.0061822, u'node29': 0.001445, u'node24': 0.0011766, u'node25': 0.0016226, u'node26': 0.0044564, u'node27': 0.0037352, u'node20': 0.002377, u'node21': 0.0021646, u'node22': 0.0027594, u'node23': 0.0020872, u'node40': 0.00182, u'node9': 0.0018592, u'node8': 0.0019404, u'node1': 0.0009426, u'node3': 0.0026968, u'node2': 0.0023802, u'node5': 0.0021266, u'node4': 0.0031882, u'node7': 0.0004542, u'node6': 0.002213})
+     * MEAN: 0.0992336
+
+EXPERIMENT 27/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: PROB_CACHE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.9
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: PROB_CACHE, topology: RANDOM, network cache: 0.9
+  RESULTS:
+    LATENCY
+     * MEAN: 4.6853318
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.733833})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.004712, u'node10': 0.0024138, u'node39': 0.0227542, u'node12': 0.0116904, u'node15': 0.002534, u'node14': 0.0043678, u'node17': 0.0174088, u'node16': 0.0023556, u'node19': 0.0023856, u'node18': 0.0132182, u'node31': 0.0023796, u'node30': 0.0023776, u'node37': 0.0033208, u'node36': 0.0073478, u'node35': 0.0023688, u'node34': 0.0054806, u'node38': 0.002365, u'node13': 0.0032778, u'node33': 0.0023926, u'node32': 0.0034506, u'node28': 0.0036756, u'node29': 0.0045408, u'node24': 0.0032152, u'node25': 0.058164, u'node26': 0.0023692, u'node27': 0.0023944, u'node20': 0.0234214, u'node21': 0.0024114, u'node22': 0.002358, u'node23': 0.0023508, u'node40': 0.0033986, u'node9': 0.0022904, u'node8': 0.0023498, u'node1': 0.0032676, u'node3': 0.0023468, u'node2': 0.0023382, u'node5': 0.0023394, u'node4': 0.0023232, u'node7': 0.019627, u'node6': 0.0023836})
+     * MEAN: 0.266167
+
+EXPERIMENT 28/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.9
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: LCE, topology: RANDOM, network cache: 0.9
+  RESULTS:
+    LATENCY
+     * MEAN: 4.9288676
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.8409186})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0030216, u'node10': 0.0022664, u'node39': 0.0064988, u'node12': 0.01022, u'node15': 0.0022386, u'node14': 0.0037162, u'node17': 0.008189, u'node16': 0.0022816, u'node19': 0.0022598, u'node18': 0.0087754, u'node31': 0.0022406, u'node30': 0.0022888, u'node37': 0.0028088, u'node36': 0.0064246, u'node35': 0.0022312, u'node34': 0.003032, u'node38': 0.0022814, u'node13': 0.0027948, u'node33': 0.0022644, u'node32': 0.0028438, u'node28': 0.0028024, u'node29': 0.002918, u'node24': 0.0028234, u'node25': 0.0241038, u'node26': 0.002281, u'node27': 0.0022602, u'node20': 0.006474, u'node21': 0.0022488, u'node22': 0.0022898, u'node23': 0.0022474, u'node40': 0.002711, u'node9': 0.0022222, u'node8': 0.0022544, u'node1': 0.0027442, u'node3': 0.0022662, u'node2': 0.0022408, u'node5': 0.002261, u'node4': 0.0022498, u'node7': 0.0087286, u'node6': 0.0022766})
+     * MEAN: 0.1590814
+
+EXPERIMENT 29/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: CMEDGE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.7
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: CMEDGE, topology: RANDOM, network cache: 0.7
+  RESULTS:
+    LATENCY
+     * MEAN: 3.980356
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.6229344})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0127344, u'node10': 0.0051136, u'node13': 0.0133818, u'node12': 0.0152064, u'node15': 0.0178072, u'node14': 0.010789, u'node17': 0.0114996, u'node16': 0.0072788, u'node33': 0.0094364, u'node18': 0.0110986, u'node31': 0.0066436, u'node30': 0.0058572, u'node37': 0.0072734, u'node36': 0.0122286, u'node35': 0.0043676, u'node34': 0.009155, u'node38': 0.0058326, u'node19': 0.0087854, u'node32': 0.00621, u'node39': 0.0213462, u'node28': 0.0171426, u'node29': 0.007687, u'node24': 0.0065484, u'node25': 0.0155404, u'node26': 0.0099788, u'node27': 0.0086962, u'node20': 0.0187306, u'node21': 0.0063678, u'node22': 0.0079798, u'node23': 0.0055108, u'node40': 0.0081684, u'node9': 0.0061006, u'node8': 0.0065666, u'node1': 0.005341, u'node3': 0.0076592, u'node2': 0.0067122, u'node5': 0.0064486, u'node4': 0.0076354, u'node7': 0.0097468, u'node6': 0.006459})
+     * MEAN: 0.3770656
+
+EXPERIMENT 30/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: LCD
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 1.1
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: LCD, topology: RANDOM, network cache: 1.1
+  RESULTS:
+    LATENCY
+     * MEAN: 4.4378914
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.7328006})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0053268, u'node10': 0.0053548, u'node39': 0.0106222, u'node12': 0.011765, u'node15': 0.0045028, u'node14': 0.0062338, u'node17': 0.010946, u'node16': 0.0051028, u'node33': 0.0049286, u'node18': 0.010691, u'node31': 0.0050614, u'node30': 0.0051378, u'node37': 0.005424, u'node13': 0.0054318, u'node35': 0.0051818, u'node34': 0.0059208, u'node38': 0.00515, u'node19': 0.0049472, u'node32': 0.0054572, u'node28': 0.0041024, u'node29': 0.0059114, u'node24': 0.0056446, u'node25': 0.0274266, u'node26': 0.0048092, u'node27': 0.0047738, u'node20': 0.010865, u'node21': 0.005144, u'node22': 0.0051652, u'node36': 0.008657, u'node23': 0.0052438, u'node40': 0.0052272, u'node9': 0.0052016, u'node8': 0.005037, u'node1': 0.0056096, u'node3': 0.0049478, u'node2': 0.0048912, u'node5': 0.0049354, u'node4': 0.0049666, u'node7': 0.0106516, u'node6': 0.0048026})
+     * MEAN: 0.2671994
+
+EXPERIMENT 31/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: PROB_CACHE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 1.1
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: PROB_CACHE, topology: RANDOM, network cache: 1.1
+  RESULTS:
+    LATENCY
+     * MEAN: 4.5761982
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.7032348})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0053744, u'node10': 0.0026408, u'node39': 0.0254486, u'node12': 0.013228, u'node15': 0.0028832, u'node14': 0.0047916, u'node17': 0.019281, u'node16': 0.002762, u'node33': 0.0027874, u'node18': 0.0146808, u'node31': 0.0027574, u'node30': 0.0026974, u'node37': 0.0038888, u'node36': 0.0082654, u'node35': 0.002739, u'node34': 0.0060758, u'node38': 0.0027082, u'node13': 0.0038234, u'node19': 0.0027734, u'node32': 0.003916, u'node28': 0.0041798, u'node29': 0.0051532, u'node24': 0.0038464, u'node25': 0.0616228, u'node26': 0.0026626, u'node27': 0.0027204, u'node20': 0.0259472, u'node21': 0.0027472, u'node22': 0.0027704, u'node23': 0.0028004, u'node40': 0.0039394, u'node9': 0.002673, u'node8': 0.0027398, u'node1': 0.003718, u'node3': 0.002765, u'node2': 0.0027876, u'node5': 0.002814, u'node4': 0.0027426, u'node7': 0.0218168, u'node6': 0.002796})
+     * MEAN: 0.2967652
+
+EXPERIMENT 32/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: MEDGE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 1.1
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: MEDGE, topology: RANDOM, network cache: 1.1
+  RESULTS:
+    LATENCY
+     * MEAN: 4.5857992
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.7274276})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0052556, u'node10': 0.0025988, u'node13': 0.0041962, u'node12': 0.0173782, u'node15': 0.002614, u'node14': 0.0057058, u'node17': 0.0196286, u'node16': 0.0025994, u'node33': 0.0025866, u'node32': 0.004101, u'node31': 0.00263, u'node30': 0.002602, u'node37': 0.004157, u'node39': 0.0202754, u'node35': 0.0026044, u'node34': 0.0062022, u'node38': 0.0026008, u'node19': 0.002591, u'node18': 0.0168424, u'node28': 0.0037434, u'node29': 0.0052598, u'node24': 0.0040838, u'node25': 0.0419276, u'node26': 0.0026046, u'node27': 0.0026274, u'node20': 0.0206428, u'node21': 0.0026114, u'node22': 0.0026368, u'node36': 0.0105328, u'node23': 0.0026104, u'node40': 0.004173, u'node9': 0.0026186, u'node8': 0.0025914, u'node1': 0.0041598, u'node3': 0.0025864, u'node2': 0.002636, u'node5': 0.0025656, u'node4': 0.0025956, u'node7': 0.019581, u'node6': 0.0026148})
+     * MEAN: 0.2725724
+
+EXPERIMENT 33/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: CCLCE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.5
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: CCLCE, topology: RANDOM, network cache: 0.5
+  RESULTS:
+    LATENCY
+     * MEAN: 4.4132944
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.731493})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0085286, u'node10': 0.004021, u'node39': 0.0105644, u'node38': 0.004617, u'node15': 0.0252154, u'node14': 0.0064744, u'node17': 0.0030042, u'node16': 0.0066804, u'node19': 0.0101426, u'node32': 0.003366, u'node31': 0.0056602, u'node30': 0.0048408, u'node37': 0.004939, u'node36': 0.0052148, u'node35': 0.0031958, u'node34': 0.005457, u'node12': 0.0053416, u'node13': 0.0097208, u'node33': 0.0107552, u'node18': 0.0044386, u'node28': 0.0162054, u'node29': 0.0043586, u'node24': 0.0035796, u'node25': 0.0043948, u'node26': 0.0116428, u'node27': 0.0096734, u'node20': 0.0064598, u'node21': 0.0056332, u'node22': 0.007356, u'node23': 0.0056422, u'node40': 0.0050756, u'node9': 0.004938, u'node8': 0.0055026, u'node1': 0.0029188, u'node3': 0.0066402, u'node2': 0.0059994, u'node5': 0.0054356, u'node4': 0.0078628, u'node7': 0.0013494, u'node6': 0.005661})
+     * MEAN: 0.268507
+
+EXPERIMENT 34/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: CLCE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.7
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: CLCE, topology: RANDOM, network cache: 0.7
+  RESULTS:
+    LATENCY
+     * MEAN: 4.1859466
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.6791976})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0103498, u'node10': 0.0055764, u'node39': 0.0128898, u'node12': 0.0070136, u'node15': 0.027697, u'node14': 0.0084082, u'node17': 0.0039172, u'node16': 0.008541, u'node19': 0.0114886, u'node18': 0.005601, u'node31': 0.0073514, u'node30': 0.0062498, u'node37': 0.006036, u'node36': 0.0063554, u'node35': 0.0039648, u'node34': 0.0066378, u'node38': 0.0060762, u'node13': 0.0120604, u'node33': 0.0123358, u'node32': 0.0044288, u'node28': 0.0187746, u'node29': 0.0053376, u'node24': 0.0046096, u'node25': 0.0053826, u'node26': 0.0133426, u'node27': 0.0109998, u'node20': 0.0078532, u'node21': 0.0062878, u'node22': 0.0086908, u'node23': 0.0061684, u'node40': 0.0060072, u'node9': 0.0058834, u'node8': 0.006754, u'node1': 0.0036944, u'node3': 0.0076414, u'node2': 0.0069164, u'node5': 0.0063012, u'node4': 0.0088738, u'node7': 0.0017428, u'node6': 0.0065618})
+     * MEAN: 0.3208024
+
+EXPERIMENT 35/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: LCD
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 1.3
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: LCD, topology: RANDOM, network cache: 1.3
+  RESULTS:
+    LATENCY
+     * MEAN: 4.3553378
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.7108622})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.005752, u'node10': 0.0056812, u'node39': 0.0116794, u'node38': 0.005476, u'node15': 0.0047618, u'node14': 0.0066436, u'node17': 0.0119644, u'node16': 0.0054216, u'node19': 0.0052894, u'node18': 0.0115522, u'node31': 0.005443, u'node30': 0.0054832, u'node37': 0.0059066, u'node36': 0.0093216, u'node35': 0.005646, u'node34': 0.0063472, u'node12': 0.0127078, u'node13': 0.005827, u'node33': 0.005295, u'node32': 0.005822, u'node28': 0.004405, u'node29': 0.0062612, u'node24': 0.0060924, u'node25': 0.0307596, u'node26': 0.0052278, u'node27': 0.0051294, u'node20': 0.0120194, u'node21': 0.0054942, u'node22': 0.00543, u'node23': 0.0056146, u'node40': 0.0055548, u'node9': 0.0055728, u'node8': 0.0053956, u'node1': 0.0060238, u'node3': 0.005349, u'node2': 0.0053116, u'node5': 0.005246, u'node4': 0.0053194, u'node7': 0.011674, u'node6': 0.0052362})
+     * MEAN: 0.2891378
+
+EXPERIMENT 36/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: MEDGE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 1.3
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: MEDGE, topology: RANDOM, network cache: 1.3
+  RESULTS:
+    LATENCY
+     * MEAN: 4.490799
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.701506})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0058494, u'node10': 0.0029506, u'node39': 0.021832, u'node12': 0.0188052, u'node15': 0.0028918, u'node14': 0.0063538, u'node17': 0.0214396, u'node16': 0.0029306, u'node33': 0.0029344, u'node18': 0.018191, u'node31': 0.0029186, u'node30': 0.0029016, u'node37': 0.004525, u'node36': 0.0116266, u'node35': 0.0029726, u'node34': 0.006813, u'node38': 0.0028608, u'node13': 0.0045952, u'node19': 0.0029618, u'node32': 0.0045722, u'node28': 0.0041062, u'node29': 0.0058226, u'node24': 0.00462, u'node25': 0.0450122, u'node26': 0.002942, u'node27': 0.0029188, u'node20': 0.0222786, u'node21': 0.0028924, u'node22': 0.0029218, u'node23': 0.00295, u'node40': 0.004657, u'node9': 0.0029396, u'node8': 0.0029246, u'node1': 0.0046088, u'node3': 0.0029566, u'node2': 0.0029274, u'node5': 0.0029122, u'node4': 0.0029286, u'node7': 0.0213104, u'node6': 0.0029384})
+     * MEAN: 0.298494
+
+EXPERIMENT 37/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 1.1
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: LCE, topology: RANDOM, network cache: 1.1
+  RESULTS:
+    LATENCY
+     * MEAN: 4.8428332
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.8185168})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0034132, u'node10': 0.0026318, u'node13': 0.003218, u'node12': 0.0115264, u'node15': 0.0025886, u'node14': 0.0042438, u'node17': 0.0092324, u'node16': 0.0026448, u'node33': 0.0026188, u'node18': 0.009898, u'node31': 0.0025958, u'node30': 0.0025898, u'node37': 0.003221, u'node39': 0.0073856, u'node35': 0.0026306, u'node34': 0.0034744, u'node38': 0.0025918, u'node19': 0.0026254, u'node32': 0.0032522, u'node28': 0.0032246, u'node29': 0.0034096, u'node24': 0.0031704, u'node25': 0.027193, u'node26': 0.002559, u'node27': 0.0026156, u'node20': 0.0073436, u'node21': 0.0026608, u'node22': 0.0026106, u'node36': 0.0071916, u'node23': 0.0026258, u'node40': 0.0031646, u'node9': 0.0026092, u'node8': 0.0026642, u'node1': 0.0031438, u'node3': 0.0026286, u'node2': 0.0025972, u'node5': 0.0026524, u'node4': 0.0025802, u'node7': 0.009813, u'node6': 0.002643})
+     * MEAN: 0.1814832
+
+EXPERIMENT 38/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: CMEDGE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.9
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: CMEDGE, topology: RANDOM, network cache: 0.9
+  RESULTS:
+    LATENCY
+     * MEAN: 3.7701748
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.5736044})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0144158, u'node10': 0.0059998, u'node39': 0.0235398, u'node12': 0.0170504, u'node15': 0.0196624, u'node14': 0.0122624, u'node17': 0.0131248, u'node16': 0.0086804, u'node19': 0.0100228, u'node18': 0.0123754, u'node31': 0.007725, u'node30': 0.0067048, u'node37': 0.0082312, u'node36': 0.0137268, u'node35': 0.005086, u'node34': 0.0103898, u'node38': 0.0068462, u'node13': 0.015144, u'node33': 0.0107228, u'node32': 0.0070694, u'node28': 0.0189714, u'node29': 0.008834, u'node24': 0.0074976, u'node25': 0.017263, u'node26': 0.011274, u'node27': 0.0098632, u'node20': 0.0207104, u'node21': 0.0073104, u'node22': 0.0089542, u'node23': 0.0062768, u'node40': 0.009294, u'node9': 0.007041, u'node8': 0.0075394, u'node1': 0.0061678, u'node3': 0.0086916, u'node2': 0.0076662, u'node5': 0.0073272, u'node4': 0.0087446, u'node7': 0.0109292, u'node6': 0.0072596})
+     * MEAN: 0.4263956
+
+EXPERIMENT 39/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: PROB_CACHE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 1.3
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: PROB_CACHE, topology: RANDOM, network cache: 1.3
+  RESULTS:
+    LATENCY
+     * MEAN: 4.4781458
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.6765352})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.005921, u'node10': 0.0031424, u'node39': 0.0269998, u'node12': 0.014316, u'node15': 0.0033202, u'node14': 0.0054548, u'node17': 0.021302, u'node16': 0.0030548, u'node33': 0.0030052, u'node18': 0.0158944, u'node31': 0.0030492, u'node30': 0.003099, u'node37': 0.0042698, u'node36': 0.0092186, u'node35': 0.0031016, u'node34': 0.0069172, u'node38': 0.003099, u'node13': 0.0043038, u'node19': 0.0030666, u'node32': 0.004469, u'node28': 0.0046406, u'node29': 0.0054664, u'node24': 0.004225, u'node25': 0.0646654, u'node26': 0.0030602, u'node27': 0.0030816, u'node20': 0.0282184, u'node21': 0.0030488, u'node22': 0.0030128, u'node23': 0.003128, u'node40': 0.0043904, u'node9': 0.003006, u'node8': 0.003098, u'node1': 0.0040834, u'node3': 0.0031214, u'node2': 0.0030782, u'node5': 0.0030948, u'node4': 0.0031052, u'node7': 0.0238088, u'node6': 0.003127})
+     * MEAN: 0.3234648
+
+EXPERIMENT 40/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: CCLCE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.7
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: CCLCE, topology: RANDOM, network cache: 0.7
+  RESULTS:
+    LATENCY
+     * MEAN: 4.179693
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.6761422})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0103084, u'node10': 0.0050538, u'node13': 0.0119826, u'node38': 0.0056642, u'node15': 0.0291292, u'node14': 0.0081522, u'node17': 0.0038208, u'node16': 0.0082182, u'node33': 0.0127144, u'node32': 0.0041874, u'node31': 0.0070174, u'node30': 0.0058544, u'node37': 0.0060224, u'node39': 0.0129002, u'node35': 0.003941, u'node34': 0.0067236, u'node12': 0.0067848, u'node19': 0.0118238, u'node18': 0.0056044, u'node28': 0.0192194, u'node29': 0.0053824, u'node24': 0.0044084, u'node25': 0.0052954, u'node26': 0.0137036, u'node27': 0.0116556, u'node20': 0.0079374, u'node21': 0.0068326, u'node22': 0.0087208, u'node36': 0.0064272, u'node23': 0.006767, u'node40': 0.0061268, u'node9': 0.0059564, u'node8': 0.0066936, u'node1': 0.003617, u'node3': 0.007889, u'node2': 0.0070804, u'node5': 0.0064542, u'node4': 0.0092596, u'node7': 0.0017078, u'node6': 0.00682})
+     * MEAN: 0.3238578
+
+EXPERIMENT 41/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: LCE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 1.3
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: LCE, topology: RANDOM, network cache: 1.3
+  RESULTS:
+    LATENCY
+     * MEAN: 4.7635348
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.7981472})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0037996, u'node10': 0.0029408, u'node39': 0.0080924, u'node38': 0.0028856, u'node15': 0.002969, u'node14': 0.004712, u'node17': 0.010301, u'node16': 0.0029326, u'node19': 0.0029554, u'node18': 0.0109944, u'node31': 0.0029394, u'node30': 0.0029594, u'node37': 0.0035618, u'node36': 0.008002, u'node35': 0.0029356, u'node34': 0.0039822, u'node12': 0.0126668, u'node13': 0.0035238, u'node33': 0.0029268, u'node32': 0.0036464, u'node28': 0.0035978, u'node29': 0.003777, u'node24': 0.0035918, u'node25': 0.0298188, u'node26': 0.0029646, u'node27': 0.002954, u'node20': 0.008058, u'node21': 0.0029318, u'node22': 0.0029176, u'node23': 0.0029482, u'node40': 0.0035094, u'node9': 0.0029706, u'node8': 0.0029368, u'node1': 0.0035394, u'node3': 0.0029282, u'node2': 0.002959, u'node5': 0.002967, u'node4': 0.0029474, u'node7': 0.0109022, u'node6': 0.0029062})
+     * MEAN: 0.2018528
+
+EXPERIMENT 42/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: CMEDGE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 1.1
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: CMEDGE, topology: RANDOM, network cache: 1.1
+  RESULTS:
+    LATENCY
+     * MEAN: 3.5889078
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.5312494})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0157486, u'node10': 0.006787, u'node39': 0.0252694, u'node38': 0.007691, u'node15': 0.02126, u'node14': 0.0137876, u'node17': 0.0142786, u'node16': 0.0097526, u'node33': 0.011955, u'node32': 0.007914, u'node31': 0.008519, u'node30': 0.0074886, u'node37': 0.0090072, u'node36': 0.014916, u'node35': 0.0057528, u'node34': 0.0114286, u'node12': 0.0187302, u'node13': 0.0168518, u'node19': 0.0110826, u'node18': 0.0135638, u'node28': 0.0206704, u'node29': 0.0098808, u'node24': 0.0084366, u'node25': 0.018532, u'node26': 0.012562, u'node27': 0.0108884, u'node20': 0.0222104, u'node21': 0.008166, u'node22': 0.0099178, u'node23': 0.006979, u'node40': 0.010089, u'node9': 0.0077422, u'node8': 0.0084492, u'node1': 0.0068796, u'node3': 0.009579, u'node2': 0.0084214, u'node5': 0.0081088, u'node4': 0.0095302, u'node7': 0.0119578, u'node6': 0.0079656})
+     * MEAN: 0.4687506
+
+EXPERIMENT 43/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: CLCE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.9
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: CLCE, topology: RANDOM, network cache: 0.9
+  RESULTS:
+    LATENCY
+     * MEAN: 3.99065
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.6331224})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0117922, u'node10': 0.0064544, u'node39': 0.0150138, u'node12': 0.0083336, u'node15': 0.0306994, u'node14': 0.009797, u'node17': 0.0046846, u'node16': 0.0099814, u'node33': 0.013702, u'node18': 0.0064588, u'node31': 0.0084226, u'node30': 0.0071748, u'node37': 0.0070372, u'node13': 0.0137358, u'node35': 0.0046306, u'node34': 0.0076924, u'node38': 0.0070512, u'node19': 0.0128958, u'node32': 0.0050778, u'node28': 0.0212848, u'node29': 0.0062276, u'node24': 0.0054364, u'node25': 0.0061806, u'node26': 0.0150374, u'node27': 0.0125314, u'node20': 0.0090122, u'node21': 0.0072716, u'node22': 0.009807, u'node36': 0.0074188, u'node23': 0.007101, u'node40': 0.0069628, u'node9': 0.0067044, u'node8': 0.0078166, u'node1': 0.0043758, u'node3': 0.0085934, u'node2': 0.0078416, u'node5': 0.0071746, u'node4': 0.009925, u'node7': 0.0021146, u'node6': 0.0074246})
+     * MEAN: 0.3668776
+
+EXPERIMENT 44/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: CCLCE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.9
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: CCLCE, topology: RANDOM, network cache: 0.9
+  RESULTS:
+    LATENCY
+     * MEAN: 3.9809394
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.6296082})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.011953, u'node10': 0.0058832, u'node13': 0.0138374, u'node12': 0.008027, u'node15': 0.031703, u'node14': 0.0097008, u'node17': 0.0045012, u'node16': 0.0096064, u'node19': 0.013452, u'node32': 0.004895, u'node31': 0.007971, u'node30': 0.0067526, u'node37': 0.007115, u'node36': 0.0075358, u'node35': 0.0045926, u'node34': 0.0079332, u'node38': 0.006602, u'node33': 0.0143534, u'node18': 0.0065414, u'node39': 0.0149726, u'node28': 0.0216118, u'node29': 0.006458, u'node24': 0.0052126, u'node25': 0.0061928, u'node26': 0.0153246, u'node27': 0.0131324, u'node20': 0.009104, u'node21': 0.007829, u'node22': 0.009788, u'node23': 0.0076728, u'node40': 0.007164, u'node9': 0.0067828, u'node8': 0.0076372, u'node1': 0.0042276, u'node3': 0.0089282, u'node2': 0.0081456, u'node5': 0.0072564, u'node4': 0.010283, u'node7': 0.002074, u'node6': 0.0076384})
+     * MEAN: 0.3703918
+
+EXPERIMENT 45/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: CLCE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 1.1
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: CLCE, topology: RANDOM, network cache: 1.1
+  RESULTS:
+    LATENCY
+     * MEAN: 3.8178518
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.5929838})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0132194, u'node10': 0.0072598, u'node39': 0.0168218, u'node38': 0.0078908, u'node15': 0.032627, u'node14': 0.0111958, u'node17': 0.00541, u'node16': 0.0112944, u'node33': 0.0149012, u'node18': 0.0074596, u'node31': 0.0094152, u'node30': 0.0078638, u'node37': 0.007905, u'node36': 0.0083262, u'node35': 0.0051906, u'node34': 0.0086796, u'node12': 0.0095068, u'node13': 0.01533, u'node19': 0.0141392, u'node32': 0.0056438, u'node28': 0.0234014, u'node29': 0.00722, u'node24': 0.0061534, u'node25': 0.0070456, u'node26': 0.0164736, u'node27': 0.0136828, u'node20': 0.0102698, u'node21': 0.008002, u'node22': 0.0107734, u'node23': 0.0079116, u'node40': 0.0077988, u'node9': 0.0073788, u'node8': 0.0086182, u'node1': 0.004942, u'node3': 0.0094954, u'node2': 0.0085098, u'node5': 0.0078664, u'node4': 0.0109594, u'node7': 0.0023944, u'node6': 0.0080394})
+     * MEAN: 0.4070162
+
+EXPERIMENT 46/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: CMEDGE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 1.3
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: CMEDGE, topology: RANDOM, network cache: 1.3
+  RESULTS:
+    LATENCY
+     * MEAN: 3.4281396
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.4941802})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0169712, u'node10': 0.0074756, u'node39': 0.0271326, u'node12': 0.0202838, u'node15': 0.0225516, u'node14': 0.0147984, u'node17': 0.015375, u'node16': 0.0106336, u'node33': 0.0129062, u'node18': 0.0145934, u'node31': 0.0094334, u'node30': 0.00832, u'node37': 0.0097838, u'node36': 0.0160012, u'node35': 0.0063324, u'node34': 0.012292, u'node38': 0.0084966, u'node13': 0.0181258, u'node19': 0.0120204, u'node32': 0.0086214, u'node28': 0.0219218, u'node29': 0.0107994, u'node24': 0.0092364, u'node25': 0.0195724, u'node26': 0.0136212, u'node27': 0.011753, u'node20': 0.0234728, u'node21': 0.008876, u'node22': 0.0107244, u'node23': 0.0076636, u'node40': 0.0108896, u'node9': 0.008448, u'node8': 0.009243, u'node1': 0.00748, u'node3': 0.0103368, u'node2': 0.0091374, u'node5': 0.0087576, u'node4': 0.010316, u'node7': 0.012816, u'node6': 0.008606})
+     * MEAN: 0.5058198
+
+EXPERIMENT 47/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: CCLCE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 1.1
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: CCLCE, topology: RANDOM, network cache: 1.1
+  RESULTS:
+    LATENCY
+     * MEAN: 3.8054772
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.588606})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0133436, u'node10': 0.0066894, u'node39': 0.016898, u'node12': 0.0094096, u'node15': 0.0339748, u'node14': 0.0110112, u'node17': 0.0052252, u'node16': 0.0109096, u'node33': 0.0156286, u'node32': 0.0054142, u'node31': 0.008839, u'node30': 0.0076756, u'node37': 0.0078864, u'node36': 0.0086104, u'node35': 0.0051504, u'node34': 0.0089458, u'node38': 0.0074966, u'node13': 0.0154268, u'node19': 0.01452, u'node18': 0.007393, u'node28': 0.0237668, u'node29': 0.0072378, u'node24': 0.0059164, u'node25': 0.0069426, u'node26': 0.0167916, u'node27': 0.0146096, u'node20': 0.0102552, u'node21': 0.0086766, u'node22': 0.0107978, u'node23': 0.008604, u'node40': 0.0079468, u'node9': 0.0074454, u'node8': 0.0084362, u'node1': 0.0048376, u'node3': 0.00984, u'node2': 0.00887, u'node5': 0.00799, u'node4': 0.011183, u'node7': 0.002361, u'node6': 0.0084374})
+     * MEAN: 0.411394
+
+EXPERIMENT 48/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: CLCE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 1.3
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: CLCE, topology: RANDOM, network cache: 1.3
+  RESULTS:
+    LATENCY
+     * MEAN: 3.6622216
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.5566358})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0143822, u'node10': 0.0079672, u'node39': 0.0185798, u'node38': 0.0086736, u'node15': 0.0346198, u'node14': 0.0124514, u'node17': 0.0059926, u'node16': 0.0123932, u'node33': 0.0161534, u'node18': 0.0082422, u'node31': 0.0102488, u'node30': 0.0086522, u'node37': 0.0086132, u'node36': 0.009151, u'node35': 0.005711, u'node34': 0.0096754, u'node12': 0.010663, u'node13': 0.0171116, u'node19': 0.0151078, u'node32': 0.006261, u'node28': 0.0252888, u'node29': 0.0079792, u'node24': 0.0067726, u'node25': 0.0077238, u'node26': 0.017723, u'node27': 0.0148038, u'node20': 0.0112918, u'node21': 0.0086628, u'node22': 0.0116204, u'node23': 0.0085846, u'node40': 0.0084412, u'node9': 0.0080896, u'node8': 0.0094182, u'node1': 0.0054806, u'node3': 0.0101522, u'node2': 0.0092022, u'node5': 0.0084248, u'node4': 0.0116894, u'node7': 0.0027328, u'node6': 0.008632})
+     * MEAN: 0.4433642
+
+EXPERIMENT 49/49:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 30000, n_warmup: 2000000, rate: 1.0, n_measured: 5000000, alpha: 0.6
+   * cache_policy -> name: LRU
+   * strategy -> name: CCLCE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 1.3
+   * topology -> name: RANDOM
+   * desc -> Alpha: 0.6, strategy: CCLCE, topology: RANDOM, network cache: 1.3
+  RESULTS:
+    LATENCY
+     * MEAN: 3.6494436
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.5519166})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({u'node11': 0.0146052, u'node10': 0.0074272, u'node39': 0.0186142, u'node38': 0.0083472, u'node15': 0.0359114, u'node14': 0.01218, u'node17': 0.0058508, u'node16': 0.0118902, u'node33': 0.0166022, u'node18': 0.0083046, u'node31': 0.0097362, u'node30': 0.0082448, u'node37': 0.00872, u'node13': 0.0171514, u'node35': 0.0056278, u'node34': 0.009938, u'node12': 0.0104482, u'node19': 0.0157352, u'node32': 0.0059922, u'node28': 0.0256836, u'node29': 0.0081206, u'node24': 0.0065892, u'node25': 0.0076068, u'node26': 0.0180622, u'node27': 0.0157082, u'node20': 0.0113328, u'node21': 0.0093988, u'node22': 0.0115386, u'node36': 0.0095044, u'node23': 0.009335, u'node40': 0.0086804, u'node9': 0.0080658, u'node8': 0.0092276, u'node1': 0.0053728, u'node3': 0.0105954, u'node2': 0.0096116, u'node5': 0.0086324, u'node4': 0.0119702, u'node7': 0.002647, u'node6': 0.0090732})
+     * MEAN: 0.4480834
+
