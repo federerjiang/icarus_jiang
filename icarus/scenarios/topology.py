@@ -908,8 +908,8 @@ def topology_geant(delay=1, **kwargs):
                                        ).to_undirected()
     topology = list(nx.connected_component_subgraphs(topology))[0]
 
+    leafs = topology.nodes()  
     deg = nx.degree(topology)
-    leafs = [v for v in topology.nodes() if deg[v] == 1]  # 8 nodes   
     source_attachments = highest(topology, deg) 
 
     sources = []
