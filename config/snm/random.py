@@ -72,6 +72,7 @@ STRATEGIES = [
      'CMEDGE',
      'CLCE',
      'CCLCE',
+     'CB',
      # 'RAND_CHOICE',     # Random choice: cache in one random cache on path
      # 'RAND_BERNOULLI',  # Random Bernoulli: cache randomly in caches on path
              ]
