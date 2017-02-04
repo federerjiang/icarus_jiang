@@ -47,14 +47,14 @@ DATA_COLLECTORS = [
 # Default experiment values, i.e. values shared by all experiments
 
 # Number of content objects
-N_CONTENTS = 3*10**4
+# N_CONTENTS = 3*10**4
 
 # Number of content requests generated to pre-populate the caches
 # These requests are not logged
-N_WARMUP_REQUESTS = 1*10**6
+# N_WARMUP_REQUESTS = 1*10**6
 
 # Number of content requests that are measured after warmup
-N_MEASURED_REQUESTS = 3*10**6
+# N_MEASURED_REQUESTS = 3*10**6
 
 # Number of requests per second (over the whole network)
 REQ_RATE = 1.0
@@ -68,8 +68,8 @@ ALPHA = [0.6]
 
 # Total size of network cache as a fraction of content population
 # Remove sizes not needed
-NETWORK_CACHE = [0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3]
-# NETWORK_CACHE = [0.3]
+# NETWORK_CACHE = [0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3]
+NETWORK_CACHE = [0.3]
 
 
 STRATEGIES = [
@@ -100,12 +100,27 @@ EXPERIMENT_QUEUE = deque()
 # experiments of the campaign
 default = Tree()
 
+'''
 default['workload'] = {'name':       'STATIONARY',
                        'n_contents': N_CONTENTS,
                        'n_warmup':   N_WARMUP_REQUESTS,
                        'n_measured': N_MEASURED_REQUESTS,
                        'rate':       REQ_RATE}
+'''
+# trace_folder = "/home/federerjiang/workplace/icarus_jiang/trace/Trace4/"
+trace_folder = "/Users/federerjiang/icarus_jiang/trace/Trace4/"
+trace_file = trace_folder + "SNMtrace.txt"
+contents = trace_folder + "contents.txt"
+N_CONTENTS = 1761204
+N_WARMUP_REQUESTS =  1000000
+N_MEASURED_REQUESTS = 3773900
 
+default['workload'] = {'name':  'TRACE_DRIVEN',
+                       'reqs_file': trace_file,
+                       'contents_file': contents,
+                       'n_contents': N_CONTENTS,
+                       'n_warmup': N_WARMUP_REQUESTS,
+                       'n_measured': N_MEASURED_REQUESTS}
 
 
 default['cache_placement']['name'] = 'UNIFORM'
@@ -132,7 +147,7 @@ for alpha in ALPHA:
         for strategy in STRATEGIES:
             for topology in TOPOLOGIES:
               experiment = copy.deepcopy(default)
-              experiment['workload']['alpha'] = alpha
+              # experiment['workload']['alpha'] = alpha
               experiment['strategy']['name'] = strategy
               experiment['topology']['name'] = topology
               experiment['cache_placement']['network_cache'] = network_cache
