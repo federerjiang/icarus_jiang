@@ -80,7 +80,6 @@ edge_hit = graph_hit['MEDGE']
 coor_hit = graph_hit['CTEDGE']
 prob_hit = graph_hit['PROB_CACHE']
 '''
-# plt.subplot(121)
 line_lce, = plt.plot(sizes, lce_latency , "k+-")
 line_lcd, = plt.plot(sizes, lcd_latency , "y.-")
 line_edge, = plt.plot(sizes, edge_latency , "b*-")
@@ -94,7 +93,6 @@ plt.legend([line_lce, line_lcd, line_edge, line_coor, line_prob], ['LCE', 'LCD',
 '''
 
 
-# plt.subplot(122)
 line_lce, = plt.plot(sizes, lce_hit , "k+-")
 line_lcd, = plt.plot(sizes, lcd_hit , "y.-")
 line_edge, = plt.plot(sizes, edge_hit , "b*-")

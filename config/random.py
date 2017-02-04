@@ -109,7 +109,7 @@ default['workload'] = {'name':       'STATIONARY',
 default['cache_placement']['name'] = 'UNIFORM'
 default['content_placement']['name'] = 'UNIFORM'
 default['cache_policy']['name'] = CACHE_POLICY
-default['topology']['name'] = 'RANDOM'
+default['topology']['name'] = 'GEANT'
 # default['topology']['h'] = HEIGHT
 
 
@@ -121,5 +121,5 @@ for alpha in ALPHA:
             experiment['strategy']['name'] = strategy
             experiment['cache_placement']['network_cache'] = network_cache
             experiment['desc'] = "Alpha: %s, strategy: %s, topology: %s, network cache: %s" \
-                                 % (str(alpha), strategy, 'RANDOM', str(network_cache))
+                                 % (str(alpha), strategy, 'GEANT', str(network_cache))
             EXPERIMENT_QUEUE.append(experiment)
