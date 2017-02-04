@@ -51,10 +51,10 @@ N_CONTENTS = 3*10**4
 
 # Number of content requests generated to pre-populate the caches
 # These requests are not logged
-N_WARMUP_REQUESTS = 2*10**6
+N_WARMUP_REQUESTS = 1*10**6
 
 # Number of content requests that are measured after warmup
-N_MEASURED_REQUESTS = 5*10**6
+N_MEASURED_REQUESTS = 3*10**6
 
 # Number of requests per second (over the whole network)
 REQ_RATE = 1.0
@@ -82,12 +82,13 @@ STRATEGIES = [
      # 'HR_HYBRID_SM',    # Hybrid Symm-Multicast hash-routing
      # 'CL4M',            # Cache less for more
      # 'PROB_CACHE',      # ProbCache
-     # 'LCD',             # Leave Copy Down
+     'LCD',             # Leave Copy Down
      # 'MEDGE',
-     'CMEDGE',
-     # 'CLCE',
+     # 'CMEDGE',
+     # 'CTEDGE',
+     'CLCE',
      'CCLCE',
-     'CB',
+     # 'CB',
      # 'RAND_CHOICE',     # Random choice: cache in one random cache on path
      # 'RAND_BERNOULLI',  # Random Bernoulli: cache randomly in caches on path
              ]
@@ -115,7 +116,10 @@ default['cache_policy']['name'] = CACHE_POLICY
 
 TOPOLOGIES =  [
         # 'GEANT',
-        'SINET',
+        # 'SINET',
+        'ATREE',
+        # 'EATREE',
+        # 'CEATREE',
         # 'WIDE',
         # 'GARR',
         # 'TISCALI',

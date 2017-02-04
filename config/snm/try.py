@@ -40,6 +40,23 @@ DATA_COLLECTORS = [
            # 'PATH_STRETCH',      # Measure path stretch
                    ]
 
+
+
+########################## EXPERIMENTS CONFIGURATION ##########################
+
+# Default experiment values, i.e. values shared by all experiments
+
+# Number of content objects
+# N_CONTENTS = 3*10**4
+
+# Number of content requests generated to pre-populate the caches
+# These requests are not logged
+# N_WARMUP_REQUESTS = 1*10**6
+
+# Number of content requests that are measured after warmup
+# N_MEASURED_REQUESTS = 3*10**6
+
+# Number of requests per second (over the whole network)
 REQ_RATE = 1.0
 
 # Cache eviction policy
@@ -51,14 +68,12 @@ ALPHA = [0.6]
 
 # Total size of network cache as a fraction of content population
 # Remove sizes not needed
-NETWORK_CACHE = [0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3]
-# NETWORK_CACHE = [0.3]
+# NETWORK_CACHE = [0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3]
+NETWORK_CACHE = [0.3]
 
-# HEIGHT = 4
-BRANCH = [2]
 
 STRATEGIES = [
-     'LCE',             # Leave Copy Everywhere
+     # 'LCE',             # Leave Copy Everywhere
      # 'NO_CACHE',        # No caching, shortest-path routing
      # 'HR_SYMM',         # Symmetric hash-routing
      # 'HR_ASYMM',        # Asymmetric hash-routing
@@ -66,12 +81,14 @@ STRATEGIES = [
      # 'HR_HYBRID_AM',    # Hybrid Asymm-Multicast hash-routing
      # 'HR_HYBRID_SM',    # Hybrid Symm-Multicast hash-routing
      # 'CL4M',            # Cache less for more
-     'PROB_CACHE',      # ProbCache
+     # 'PROB_CACHE',      # ProbCache
      'LCD',             # Leave Copy Down
-     'MEDGE',
-     'CMEDGE',
+     # 'MEDGE',
+     # 'CMEDGE',
+     # 'CTEDGE',
      'CLCE',
      'CCLCE',
+     # 'CB',
      # 'RAND_CHOICE',     # Random choice: cache in one random cache on path
      # 'RAND_BERNOULLI',  # Random Bernoulli: cache randomly in caches on path
              ]
@@ -83,9 +100,15 @@ EXPERIMENT_QUEUE = deque()
 # experiments of the campaign
 default = Tree()
 
-
-
-trace_folder = "/home/federerjiang/workplace/icarus_jiang/trace/Trace4/"
+'''
+default['workload'] = {'name':       'STATIONARY',
+                       'n_contents': N_CONTENTS,
+                       'n_warmup':   N_WARMUP_REQUESTS,
+                       'n_measured': N_MEASURED_REQUESTS,
+                       'rate':       REQ_RATE}
+'''
+# trace_folder = "/home/federerjiang/workplace/icarus_jiang/trace/Trace4/"
+trace_folder = "/Users/federerjiang/icarus_jiang/trace/Trace4/"
 trace_file = trace_folder + "SNMtrace.txt"
 contents = trace_folder + "contents.txt"
 N_CONTENTS = 1761204
@@ -99,31 +122,35 @@ default['workload'] = {'name':  'TRACE_DRIVEN',
                        'n_warmup': N_WARMUP_REQUESTS,
                        'n_measured': N_MEASURED_REQUESTS}
 
-'''
-* name: TRACE_DRIVEN
- * args:
-    * reqs_file: the path to the requests file
-    * contents_file: the path to the contents file
-    * n_contents: number of content objects
-    * n_warmup: number of warmup requests
-    * n_measured: number of measured requests
-'''
+
 default['cache_placement']['name'] = 'UNIFORM'
 default['content_placement']['name'] = 'UNIFORM'
 default['cache_policy']['name'] = CACHE_POLICY
-default['topology']['name'] = 'GEANT'
+# default['topology']['name'] = 'SINET'
 # default['topology']['h'] = HEIGHT
+
+TOPOLOGIES =  [
+        # 'GEANT',
+        # 'SINET',
+        'ATREE',
+        # 'EATREE',
+        # 'CEATREE',
+        # 'WIDE',
+        # 'GARR',
+        # 'TISCALI',
+        # 'RANDOM',
+              ]
 
 
 for alpha in ALPHA:
-    for degree in BRANCH:
+    for network_cache in NETWORK_CACHE:
         for strategy in STRATEGIES:
-            for network_cache in NETWORK_CACHE:
-                experiment = copy.deepcopy(default)
-                # experiment['workload']['alpha'] = alpha
-                # experiment['topology']['k'] = degree
-                experiment['strategy']['name'] = strategy
-                experiment['cache_placement']['network_cache'] = network_cache
-                experiment['desc'] = "Alpha: %s, branching factor: %s, strategy: %s, topology: %s, network cache: %s" \
-                                     % (str(alpha), str(degree), strategy, 'SINET', str(network_cache))
-                EXPERIMENT_QUEUE.append(experiment)
+            for topology in TOPOLOGIES:
+              experiment = copy.deepcopy(default)
+              # experiment['workload']['alpha'] = alpha
+              experiment['strategy']['name'] = strategy
+              experiment['topology']['name'] = topology
+              experiment['cache_placement']['network_cache'] = network_cache
+              experiment['desc'] = "Alpha: %s, strategy: %s, topology: %s, network cache: %s" \
+                                 % (str(alpha), strategy, topology, str(network_cache))
+              EXPERIMENT_QUEUE.append(experiment)
