@@ -107,8 +107,8 @@ default['workload'] = {'name':       'STATIONARY',
                        'n_measured': N_MEASURED_REQUESTS,
                        'rate':       REQ_RATE}
 '''
-# trace_folder = "/home/federerjiang/workplace/icarus_jiang/trace/Trace4/"
-trace_folder = "/Users/federerjiang/icarus_jiang/trace/Trace4/"
+trace_folder = "/home/federerjiang/workplace/icarus_jiang/trace/Trace4/"
+# trace_folder = "/Users/federerjiang/icarus_jiang/trace/Trace4/"
 trace_file = trace_folder + "SNMtrace.txt"
 contents = trace_folder + "contents.txt"
 N_CONTENTS = 1761204
