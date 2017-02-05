@@ -51,7 +51,7 @@ for size in sizes:
 	f.write("\n")
 f.close()
 '''
-strategys = ['LCE', 'LCD', 'PROB_CACHE', 'MEDGE', 'CMEDGE', 'CLCE']
+strategys = ['LCE', 'LCD', 'PROB_CACHE', 'MEDGE', 'CTEDGE', 'CB']
 graph_latency = {}
 for strategy in strategys:
 	graph_latency[strategy] = []
@@ -60,6 +60,7 @@ for strategy in strategys:
 			if exp["strategy"] == strategy and exp["size"] == size:
 				graph_latency[strategy].append(exp["latency"])
 
+'''
 graph_hit = {}
 for strategy in strategys:
 	graph_hit[strategy] = []
@@ -67,29 +68,34 @@ for strategy in strategys:
 		for exp in results:
 			if exp["strategy"] == strategy and exp["size"] == size:
 				graph_hit[strategy].append(exp["hit"])
+'''
 
 lce_latency = graph_latency["LCE"]
 lcd_latency = graph_latency['LCD']
 edge_latency = graph_latency['MEDGE']
-coor_latency = graph_latency['CMEDGE']
-clce_latency = graph_latency['CLCE']
+coor_latency = graph_latency['CTEDGE']
 prob_latency = graph_latency['PROB_CACHE']
+clce_latency = graph_latency['CB']
 
+'''
 lce_hit = graph_hit['LCE']
 lcd_hit = graph_hit['LCD']
 edge_hit = graph_hit['MEDGE']
-coor_hit = graph_hit['CMEDGE']
-clce_hit = graph_hit['CLCE']
+coor_hit = graph_hit['CTEDGE']
 prob_hit = graph_hit['PROB_CACHE']
-
+'''
 
 line_lce, = plt.plot(sizes, lce_latency , "k+-")
 line_lcd, = plt.plot(sizes, lcd_latency , "y.-")
 line_edge, = plt.plot(sizes, edge_latency , "b*-")
 line_coor, = plt.plot(sizes, coor_latency , "ro-")
-line_clce, = plt.plot(sizes, clce_latency, "g>-")
 line_prob, = plt.plot(sizes, prob_latency, 'c--')
+line_clce, = plt.plot(sizes, clce_latency, "g>-")
 
+plt.xlabel("Cache Size")
+plt.ylabel("Average Hop")
+plt.ylim([0, 6])
+plt.legend([line_lce, line_lcd, line_edge, line_coor, line_clce, line_prob], ['LCE', 'LCD', 'EDGE', 'CO-EDGE', 'CB', 'PROB_CACHE'], bbox_to_anchor=(1, 0.6), fontsize=10)
 
 
 '''
@@ -97,14 +103,13 @@ line_lce, = plt.plot(sizes, lce_hit , "k+-")
 line_lcd, = plt.plot(sizes, lcd_hit , "y.-")
 line_edge, = plt.plot(sizes, edge_hit , "b*-")
 line_coor, = plt.plot(sizes, coor_hit , "ro-")
-line_clce, = plt.plot(sizes, clce_hit, "g>-")
 line_prob, = plt.plot(sizes, prob_hit, 'c--')
-'''
-# plt.ylim([0, 4])
+
 plt.xlabel("Cache Size")
-plt.ylabel("Average Hop")
-# plt.ylabel("Hit Ratio")
-plt.legend([line_lce, line_lcd, line_edge, line_coor, line_clce, line_prob], ['LCE', 'LCD', 'EDGE', 'CO-EDGE', 'CO-LCE', 'PROB_CACHE'], bbox_to_anchor=(0.3, 0.35), fontsize=10)
+plt.ylabel("Cache Hit Ratio")
+# plt.ylim([0, 6])
+plt.legend([line_lce, line_lcd, line_edge, line_coor, line_prob], ['LCE', 'LCD', 'EDGE', 'CO-EDGE', 'PROB_CACHE'], bbox_to_anchor=(1, 0.7), fontsize=10)
+'''
 plt.show()
 
 

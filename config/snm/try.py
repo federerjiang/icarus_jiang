@@ -82,12 +82,13 @@ STRATEGIES = [
      # 'HR_HYBRID_SM',    # Hybrid Symm-Multicast hash-routing
      # 'CL4M',            # Cache less for more
      # 'PROB_CACHE',      # ProbCache
-     'LCD',             # Leave Copy Down
+     # 'LCD',             # Leave Copy Down
      # 'MEDGE',
      # 'CMEDGE',
      # 'CTEDGE',
-     'CLCE',
-     'CCLCE',
+     # 'CLCE',
+     'NCMEDGE',
+     # 'CCLCE',
      # 'CB',
      # 'RAND_CHOICE',     # Random choice: cache in one random cache on path
      # 'RAND_BERNOULLI',  # Random Bernoulli: cache randomly in caches on path
@@ -130,9 +131,9 @@ default['cache_policy']['name'] = CACHE_POLICY
 # default['topology']['h'] = HEIGHT
 
 TOPOLOGIES =  [
-        # 'GEANT',
-        # 'SINET',
-        'ATREE',
+        'GEANT',
+        'SINET',
+        # 'ATREE',
         # 'EATREE',
         # 'CEATREE',
         # 'WIDE',

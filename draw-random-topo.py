@@ -1,6 +1,6 @@
 import networkx as nx
 import matplotlib.pyplot as plt
-import os, sys, operator, random, os.path
+from os import path
 import fnss
 
 def draw_graph():

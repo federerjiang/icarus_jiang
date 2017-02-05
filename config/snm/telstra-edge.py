@@ -68,7 +68,7 @@ STRATEGIES = [
      # 'PROB_CACHE',      # ProbCache
      # 'LCD',             # Leave Copy Down
      'MEDGE',
-     'NCTEDGE',
+     # 'NCTEDGE',
      # 'RAND_CHOICE',     # Random choice: cache in one random cache on path
      # 'RAND_BERNOULLI',  # Random Bernoulli: cache randomly in caches on path
              ]
