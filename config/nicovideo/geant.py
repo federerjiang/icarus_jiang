@@ -127,5 +127,5 @@ for alpha in ALPHA:
                 experiment['strategy']['name'] = strategy
                 experiment['cache_placement']['network_cache'] = network_cache
                 experiment['desc'] = "Alpha: %s, branching factor: %s, strategy: %s, topology: %s, network cache: %s" \
-                                     % (str(alpha), str(degree), strategy, 'SINET', str(network_cache))
+                                     % (str(alpha), str(degree), strategy, 'GEANT', str(network_cache))
                 EXPERIMENT_QUEUE.append(experiment)
