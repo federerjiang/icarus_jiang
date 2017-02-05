@@ -51,7 +51,7 @@ ALPHA = [0.6]
 
 # Total size of network cache as a fraction of content population
 # Remove sizes not needed
-NETWORK_CACHE = [0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 2, 3]
+NETWORK_CACHE = [0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3]
 
 # HEIGHT = 4
 BRANCH = [2]
@@ -68,6 +68,8 @@ STRATEGIES = [
      'PROB_CACHE',      # ProbCache
      'LCD',             # Leave Copy Down
      'CLCE',
+     'CCLCE',
+     'CB',
      # 'CTEDGE',
      # 'NCTEDGE',
      # 'RAND_CHOICE',     # Random choice: cache in one random cache on path
