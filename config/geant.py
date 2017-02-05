@@ -47,7 +47,7 @@ DATA_COLLECTORS = [
 # Default experiment values, i.e. values shared by all experiments
 
 # Number of content objects
-N_CONTENTS = 3*10**4
+N_CONTENTS = 3*10**5
 
 # Number of content requests generated to pre-populate the caches
 # These requests are not logged
