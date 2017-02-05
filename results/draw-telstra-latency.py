@@ -35,7 +35,7 @@ argument = sys.argv
 result_file = argument[1]
 results = process(result_file)
 print(len(results))
-sizes = ['0.1', '0.3', '0.5', '0.7', '0.9', '1.1', '1.3']
+sizes = ['0.02', '0.05', '0.1', '0.2', '0.3', '0.5']
 '''
 f = open("telstra-snm-stat.txt", "w")
 f.write("size\t\t\tstrategy\t\t\tlatency\t\t\thit\n")
@@ -69,10 +69,13 @@ for strategy in strategys:
 			if exp["strategy"] == strategy and exp["size"] == size:
 				graph_hit[strategy].append(exp["hit"])
 '''
+edge_latency = []
+for item in graph_latency['MEDGE']:
+	edge_latency.append(float(item)/2)
 
 lce_latency = graph_latency["LCE"]
 lcd_latency = graph_latency['LCD']
-edge_latency = graph_latency['MEDGE']
+# edge_latency = graph_latency['MEDGE']
 coor_latency = graph_latency['CTEDGE']
 prob_latency = graph_latency['PROB_CACHE']
 clce_latency = graph_latency['CB']
@@ -92,10 +95,10 @@ line_coor, = plt.plot(sizes, coor_latency , "ro-")
 line_prob, = plt.plot(sizes, prob_latency, 'c--')
 line_clce, = plt.plot(sizes, clce_latency, "g>-")
 
-plt.xlabel("Cache Size")
-plt.ylabel("Average Hop")
-plt.ylim([0, 6])
-plt.legend([line_lce, line_lcd, line_edge, line_coor, line_clce, line_prob], ['LCE', 'LCD', 'EDGE', 'CO-EDGE', 'CB', 'PROB_CACHE'], bbox_to_anchor=(1, 0.6), fontsize=10)
+plt.xlabel("Cache to population ratio")
+plt.ylabel("Average Hops")
+plt.ylim([5, 6])
+plt.legend([line_lce, line_lcd, line_coor, line_edge, line_clce, line_prob], ['LCE', 'LCD', 'Co-Edge', 'Edge', 'NbSC', 'PROB_CACHE'], bbox_to_anchor=(0.3, 0.3), fontsize=10)
 
 
 '''

@@ -35,7 +35,7 @@ argument = sys.argv
 result_file = argument[1]
 results = process(result_file)
 print(len(results))
-sizes = ['0.1', '0.3', '0.5', '0.7', '0.9', '1.1', '1.3']
+sizes = ['0.02', '0.05', '0.1', '0.2', '0.3', '0.5']
 '''
 f = open("telstra-snm-stat.txt", "w")
 f.write("size\t\t\tstrategy\t\t\tlatency\t\t\thit\n")
@@ -101,10 +101,10 @@ line_clce, = plt.plot(sizes, clce_hit, "g>-")
 line_prob, = plt.plot(sizes, prob_hit, 'c--')
 
 # plt.ylim([0, 4])
-plt.xlabel("Cache Size")
+plt.xlabel("Cache to population ratio")
 # plt.ylabel("Average Hop")
-plt.ylabel("Hit Ratio")
-plt.legend([line_lce, line_lcd, line_edge, line_coor, line_clce, line_prob], ['LCE', 'LCD', 'EDGE', 'CO-EDGE', 'NbSC', 'PROB_CACHE'], bbox_to_anchor=(0.3, 0.35), fontsize=10)
+plt.ylabel("Hit Rate")
+plt.legend([line_lce, line_lcd, line_coor, line_edge, line_clce, line_prob], ['LCE', 'LCD', 'Co-Edge', 'Edge', 'NbSC', 'PROB_CACHE'], bbox_to_anchor=(0.3, 0.95), fontsize=10)
 plt.show()
 
 

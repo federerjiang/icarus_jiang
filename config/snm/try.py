@@ -69,7 +69,7 @@ ALPHA = [0.6]
 # Total size of network cache as a fraction of content population
 # Remove sizes not needed
 # NETWORK_CACHE = [0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3]
-NETWORK_CACHE = [0.3]
+NETWORK_CACHE = [0.1]
 
 
 STRATEGIES = [
@@ -82,7 +82,7 @@ STRATEGIES = [
      # 'HR_HYBRID_SM',    # Hybrid Symm-Multicast hash-routing
      # 'CL4M',            # Cache less for more
      # 'PROB_CACHE',      # ProbCache
-     # 'LCD',             # Leave Copy Down
+     'LCD',             # Leave Copy Down
      # 'MEDGE',
      # 'CMEDGE',
      # 'CTEDGE',
@@ -131,13 +131,13 @@ default['cache_policy']['name'] = CACHE_POLICY
 # default['topology']['h'] = HEIGHT
 
 TOPOLOGIES =  [
-        'GEANT',
-        'SINET',
+        # 'GEANT',
+        # 'SINET',
         # 'ATREE',
         # 'EATREE',
         # 'CEATREE',
         # 'WIDE',
-        # 'GARR',
+        'GARR',
         # 'TISCALI',
         # 'RANDOM',
               ]

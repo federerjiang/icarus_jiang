@@ -69,7 +69,7 @@ ALPHA = [0.6]
 # Total size of network cache as a fraction of content population
 # Remove sizes not needed
 # NETWORK_CACHE = [0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3]
-NETWORK_CACHE = [0.02, 0.06, 0.1, 0.14]
+NETWORK_CACHE = [0.1]
 
 
 STRATEGIES = [
@@ -84,11 +84,11 @@ STRATEGIES = [
      # 'PROB_CACHE',      # ProbCache
      'LCD',             # Leave Copy Down
      # 'MEDGE',
-     'CMEDGE',
+     # 'CMEDGE',
      # 'CTEDGE',
      # 'CLCE',
      # 'CCLCE',
-     'CB',
+     # 'CB',
      'NCMEDGE',
      # 'RAND_CHOICE',     # Random choice: cache in one random cache on path
      # 'RAND_BERNOULLI',  # Random Bernoulli: cache randomly in caches on path
@@ -116,13 +116,13 @@ default['cache_policy']['name'] = CACHE_POLICY
 # default['topology']['h'] = HEIGHT
 
 TOPOLOGIES =  [
-        'GEANT',
-        'SINET',
+        # 'GEANT',
+        # 'SINET',
         # 'ATREE',
         # 'EATREE',
         # 'CEATREE',
         # 'WIDE',
-        # 'GARR',
+        'GARR',
         # 'TISCALI',
         # 'RANDOM',
               ]

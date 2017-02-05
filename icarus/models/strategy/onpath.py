@@ -152,7 +152,7 @@ class MeshEdge(Strategy):
         # Then get the content from the source, and cache it on the edge cache
         tag = False
         for u, v in path_links(path):
-            self.controller.forward_request_hop(u, v)
+            # self.controller.forward_request_hop(u, v)
             if self.view.has_cache(v):
                 if self.controller.get_content(v):
                     serving_node = v

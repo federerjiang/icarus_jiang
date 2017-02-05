@@ -36,7 +36,7 @@ result_file = argument[1]
 stat_file = argument[2]
 results = process(result_file)
 print(len(results))
-sizes = ['0.1', '0.3', '0.5', '0.7', '0.9', '1.1', '1.3']
+sizes = ['0.02', '0.05', '0.1', '0.2', '0.3', '0.5']
 
 f = open(stat_file, "w")
 f.write("size\t\t\tstrategy\t\t\tlatency\t\t\thit\n")
