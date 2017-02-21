@@ -68,12 +68,12 @@ ALPHA = [0.6]
 
 # Total size of network cache as a fraction of content population
 # Remove sizes not needed
-# NETWORK_CACHE = [0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3]
-NETWORK_CACHE = [0.1]
+NETWORK_CACHE = [0.02, 0.05, 0.1, 0.2, 0.3, 0.5]
+# NETWORK_CACHE = [0.3]
 
 
 STRATEGIES = [
-     # 'LCE',             # Leave Copy Everywhere
+     'LCE',             # Leave Copy Everywhere
      # 'NO_CACHE',        # No caching, shortest-path routing
      # 'HR_SYMM',         # Symmetric hash-routing
      # 'HR_ASYMM',        # Asymmetric hash-routing
@@ -81,14 +81,14 @@ STRATEGIES = [
      # 'HR_HYBRID_AM',    # Hybrid Asymm-Multicast hash-routing
      # 'HR_HYBRID_SM',    # Hybrid Symm-Multicast hash-routing
      # 'CL4M',            # Cache less for more
-     # 'PROB_CACHE',      # ProbCache
+     'PROB_CACHE',      # ProbCache
      'LCD',             # Leave Copy Down
      # 'MEDGE',
      # 'CMEDGE',
      'CTEDGE',
      # 'CLCE',
      # 'CCLCE',
-     # 'CB',
+     'CB',
      # 'NCMEDGE',
      # 'RAND_CHOICE',     # Random choice: cache in one random cache on path
      # 'RAND_BERNOULLI',  # Random Bernoulli: cache randomly in caches on path
@@ -118,14 +118,11 @@ default['cache_policy']['name'] = CACHE_POLICY
 TOPOLOGIES =  [
         # 'GEANT',
         # 'SINET',
-        # 'ATREE',
-        # 'EATREE',
-        # 'CEATREE',
-        # 'NCEATREE',
+        'SINET-EDGE',
         # 'WIDE',
         # 'GARR',
         # 'TISCALI',
-        'RANDOM',
+        # 'RANDOM',
               ]
 
 

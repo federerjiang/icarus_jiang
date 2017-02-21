@@ -1,5 +1,9 @@
 import sys
+import matplotlib
+matplotlib.use('Agg')
+# import matplotlib.pyplot as plt
 from matplotlib import pyplot as plt
+from matplotlib import rcParams
 
 def process(filepath):
 	# result_file = "result-sinet.txt"
@@ -33,6 +37,7 @@ def process(filepath):
 
 argument = sys.argv
 result_file = argument[1]
+out_file = argument[2]
 results = process(result_file)
 print(len(results))
 sizes = ['0.02', '0.05', '0.1', '0.2', '0.3', '0.5']
@@ -91,20 +96,31 @@ line_clce, = plt.plot(sizes, clce_latency, "g>-")
 line_prob, = plt.plot(sizes, prob_latency, 'c--')
 '''
 
+rcParams.update({'figure.autolayout': True})
+rcParams['lines.linewidth'] = 2
+params = {'legend.fontsize': 20,
+		  'legend.handlelength': 1.5}
+plt.rcParams.update(params)
+# rcParams.update({'legend.width':'bold'})
+# legend_properties = {'weight':'bold'}
+fig = plt.figure()
 
-
-line_lce, = plt.plot(sizes, lce_hit , "k+-")
-line_lcd, = plt.plot(sizes, lcd_hit , "y.-")
-line_edge, = plt.plot(sizes, edge_hit , "b*-")
+line_lce, = plt.plot(sizes, lce_hit , "k>-")
+line_lcd, = plt.plot(sizes, lcd_hit , "b+-")
+line_edge, = plt.plot(sizes, edge_hit , "y*-")
 line_coor, = plt.plot(sizes, coor_hit , "ro-")
-line_clce, = plt.plot(sizes, clce_hit, "g>-")
+line_clce, = plt.plot(sizes, clce_hit, "g1-")
 line_prob, = plt.plot(sizes, prob_hit, 'c--')
 
 # plt.ylim([0, 4])
-plt.xlabel("Cache to population ratio")
+plt.xlabel("Cache to population ratio", fontsize=30)
 # plt.ylabel("Average Hop")
-plt.ylabel("Hit Rate")
-plt.legend([line_lce, line_lcd, line_coor, line_edge, line_clce, line_prob], ['LCE', 'LCD', 'Co-Edge', 'Edge', 'NbSC', 'PROB_CACHE'], bbox_to_anchor=(0.3, 0.95), fontsize=10)
-plt.show()
+plt.ylabel("Hit Rate", fontsize=30)
+plt.legend([line_lce, line_lcd, line_coor, line_edge, line_clce, line_prob], ['LCE', 'LCD', 'Co-Edge', 'Edge', 'NbSC', 'ProbCache'], bbox_to_anchor=(0.41, 1.04), frameon=False)
+plt.tick_params(axis='x', labelsize=30)
+plt.tick_params(axis='y', labelsize=30)
+
+# plt.show()
+fig.savefig(out_file)
 
 

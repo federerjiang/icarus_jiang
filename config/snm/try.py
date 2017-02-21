@@ -89,7 +89,7 @@ STRATEGIES = [
      # 'CLCE',
      'NCMEDGE',
      # 'CCLCE',
-     # 'CB',
+     'CB',
      # 'RAND_CHOICE',     # Random choice: cache in one random cache on path
      # 'RAND_BERNOULLI',  # Random Bernoulli: cache randomly in caches on path
              ]
@@ -137,9 +137,9 @@ TOPOLOGIES =  [
         # 'EATREE',
         # 'CEATREE',
         # 'WIDE',
-        'GARR',
+        # 'GARR',
         # 'TISCALI',
-        # 'RANDOM',
+        'RANDOM',
               ]
 
 

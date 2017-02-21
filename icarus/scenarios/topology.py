@@ -33,9 +33,11 @@ __all__ = [
         'topology_telstra_edge',
         'topology_telstra_coor_edge',
         'topology_sinet',
+        'topology_sinet_edge',
         'topology_asymmetric_tree',
         'topology_asymmetric_tree_edge',
         'topology_asymmetric_tree_coor_edge',
+        'topology_asymmetric_tree_coor_edge_new',
         'topology_path',
         'topology_ring',
         'topology_mesh',
@@ -438,9 +440,10 @@ def topology_random(delay=1, **kwargs):
     for edge in graph:
         topology.add_edge(edge[0], edge[1])
 
-    sources = [0]
+    # sources = [0]
     routers = nodes
     receivers = range(1000, 1000+len(nodes))
+    sources = range(10000, 10000+len(nodes))
 
               
     for v in receivers:
@@ -448,7 +451,7 @@ def topology_random(delay=1, **kwargs):
         topology.add_edge(routers[v-1000], v)
     for v in sources:
         topology.add_node(v)
-        topology.add_edge(v, highest)
+        topology.add_edge(routers[v-10000], v)
 
 
     topology.graph['icr_candidates'] = set(routers)
@@ -747,6 +750,77 @@ def topology_sinet(delay=1, **kwargs):
     return IcnTopology(topology)
 
 
+@register_topology_factory('SINET-EDGE')
+def topology_sinet_edge(delay=1, **kwargs):
+    """Returns a sinet topology, with a source at the node "server", receivers connected to all
+    the nodes in the network.
+
+
+    Cooresponding strategy : CTEDGE/...
+
+
+    Returns
+    -------
+    topology : IcnTopology
+        The topology object
+    """
+    topology = IcnTopology()
+    sources = [0]
+    routers = range(1, 51)
+    receivers = range(109, 151)
+
+    topology.add_path([1,2,3,4,5,6,7,8])
+    topology.add_edge(8,1)
+    topology.add_edge(1,7)
+    topology.add_edge(1,4)
+    topology.add_edge(1,3)
+    topology.add_edge(4,7)
+    topology.add_edge(5,7)
+
+    topology.add_node(0)
+    topology.add_edge(0,1)
+
+    for v in range(9,51):
+        topology.add_node(v)
+    for u in range(9,20):
+        topology.add_edge(u, 1)
+    for u in range(20, 21):
+        topology.add_edge(u, 2)
+    for u in range(21, 26):
+        topology.add_edge(u, 3)
+    for u in range(26, 28):
+        topology.add_edge(u, 4)
+    for u in range(28, 32):
+        topology.add_edge(u, 5)
+    for u in range(32, 40):
+        topology.add_edge(u, 6)
+    for u in range(40,49):
+        topology.add_edge(u, 7)
+    for u in range(49, 51):
+        topology.add_edge(u, 8)
+              
+    for v in receivers:
+        topology.add_node(v)
+        topology.add_edge(int(v-100), v)
+
+
+    topology.graph['icr_candidates'] = set(routers)
+    for v in sources:
+        fnss.add_stack(topology, v, 'source')
+    for v in receivers:
+        fnss.add_stack(topology, v, 'receiver')
+    for v in routers:
+        fnss.add_stack(topology, v, 'router')
+    # set weights and delays on all links
+    fnss.set_weights_constant(topology, 1.0)
+    fnss.set_delays_constant(topology, delay, 'ms')
+    # label links as internal
+    for u, v in topology.edges_iter():
+        topology.edge[u][v]['type'] = 'internal'
+    return IcnTopology(topology)
+
+
+
 @register_topology_factory('ATREE')
 def topology_asymmetric_tree(delay=1, **kwargs):
     """Returns a sinet topology, with a source at the node "server", receivers connected to all
@@ -932,6 +1006,86 @@ def topology_asymmetric_tree_coor_edge(delay=1, **kwargs):
         topology.add_node(v)
 
     topology.add_edge(0,1)
+
+    topology.add_edge(1, 2)
+    topology.add_edge(1, 3)
+
+    topology.add_edge(2, 4)
+    topology.add_edge(2, 5)
+    topology.add_edge(3, 6)
+    topology.add_edge(3, 7)
+    
+    topology.add_edge(4, 8)
+    topology.add_edge(4, 9)
+    topology.add_edge(4,10)
+    topology.add_edge(5, 11)
+    topology.add_edge(5, 12)
+    topology.add_edge(5, 13)
+    topology.add_edge(5, 14)
+    topology.add_edge(5, 15)
+    topology.add_edge(6, 16)
+    topology.add_edge(6, 17)
+    topology.add_edge(7, 18)
+    topology.add_edge(7, 19)
+    topology.add_edge(7, 20)
+    topology.add_edge(7, 21)
+    topology.add_edge(7, 22)
+    topology.add_edge(7, 23)
+    topology.add_edge(7, 24)
+    topology.add_edge(7, 25)
+
+
+              
+    for v in receivers:
+        topology.add_edge(v-100, v)
+
+
+    topology.graph['icr_candidates'] = set(routers)
+    for v in sources:
+        fnss.add_stack(topology, v, 'source')
+    for v in receivers:
+        fnss.add_stack(topology, v, 'receiver')
+    for v in routers:
+        fnss.add_stack(topology, v, 'router')
+    for v in gateways:
+        fnss.add_stack(topology, v, 'gateway')
+    # set weights and delays on all links
+    fnss.set_weights_constant(topology, 1.0)
+    fnss.set_delays_constant(topology, delay, 'ms')
+    return IcnTopology(topology)
+
+
+@register_topology_factory('NCEATREE')
+def topology_asymmetric_tree_coor_edge_new(delay=1, **kwargs):
+    """Returns a sinet topology, with a source at the node "server", receivers connected to all
+    the nodes in the network.
+
+
+    Cooresponding strategy : CMEDGE
+
+
+    Returns
+    -------
+    topology : IcnTopology
+        The topology object
+    """
+    topology = IcnTopology()
+    sources = [1]
+    gateways = range(2, 4)
+    routers = range(4, 26)
+    receivers = range(108, 126)
+
+    # topology.add_path([1,2,3,4,5,6,7,8])
+    for v in routers:
+        topology.add_node(v)
+    for v in sources:
+        topology.add_node(v)
+    for v in receivers:
+        topology.add_node(v)
+    for v in gateways:
+        topology.add_node(v)
+
+    # topology.add_edge(0,1)
 
     topology.add_edge(1, 2)
     topology.add_edge(1, 3)

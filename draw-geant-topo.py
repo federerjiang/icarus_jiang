@@ -18,7 +18,7 @@ def draw_graph():
 
 	G = topology
 	pos = nx.pygraphviz_layout(G)
-	nx.draw_networkx(G, pos=pos, labels=labels, node_color='w')
+	nx.draw_networkx(G, pos=pos, labels=labels, node_color='w', node_size=300, font_size=12)
 	# nx.draw_networkx_nodes(G,pos,nodelist=gateway,node_color='y',node_size=100)              
 	# nx.draw_networkx_nodes(G,pos,nodelist=leafs,node_color='w',node_size=100)               
 	# nx.draw_networkx_edges(G,pos, arrows=False, width=1.0)
