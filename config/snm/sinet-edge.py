@@ -114,19 +114,30 @@ default['workload'] = {'name':  'TRACE_DRIVEN',
 default['cache_placement']['name'] = 'UNIFORM'
 default['content_placement']['name'] = 'UNIFORM'
 default['cache_policy']['name'] = CACHE_POLICY
-default['topology']['name'] = 'SINET-EDGE',
+# default['topology']['name'] = 'SINET-EDGE',
 # default['topology']['h'] = HEIGHT
 
 
+TOPOLOGIES =  [
+        # 'GEANT',
+        # 'SINET',
+        'SINET-EDGE',
+        # 'WIDE',
+        # 'GARR',
+        # 'TISCALI',
+        # 'RANDOM',
+              ]
+
+
 for alpha in ALPHA:
-    for degree in BRANCH:
+    for network_cache in NETWORK_CACHE:
         for strategy in STRATEGIES:
-            for network_cache in NETWORK_CACHE:
-                experiment = copy.deepcopy(default)
-                # experiment['workload']['alpha'] = alpha
-                # experiment['topology']['k'] = degree
-                experiment['strategy']['name'] = strategy
-                experiment['cache_placement']['network_cache'] = network_cache
-                experiment['desc'] = "Alpha: %s, branching factor: %s, strategy: %s, topology: %s, network cache: %s" \
-                                     % (str(alpha), str(degree), strategy, 'SINET', str(network_cache))
-                EXPERIMENT_QUEUE.append(experiment)
+            for topology in TOPOLOGIES:
+              experiment = copy.deepcopy(default)
+              experiment['workload']['alpha'] = alpha
+              experiment['strategy']['name'] = strategy
+              experiment['topology']['name'] = topology
+              experiment['cache_placement']['network_cache'] = network_cache
+              experiment['desc'] = "Alpha: %s, strategy: %s, topology: %s, network cache: %s" \
+                                 % (str(alpha), strategy, topology, str(network_cache))
+              EXPERIMENT_QUEUE.append(experiment)
