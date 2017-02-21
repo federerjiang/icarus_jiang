@@ -114,7 +114,7 @@ default['workload'] = {'name':  'TRACE_DRIVEN',
 default['cache_placement']['name'] = 'UNIFORM'
 default['content_placement']['name'] = 'UNIFORM'
 default['cache_policy']['name'] = CACHE_POLICY
-default['topology']['name'] = 'SINET'
+default['topology']['name'] = 'SINET-EDGE',
 # default['topology']['h'] = HEIGHT
 
 
