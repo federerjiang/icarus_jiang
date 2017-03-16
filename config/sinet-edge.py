@@ -64,7 +64,7 @@ CACHE_POLICY = 'LRU'
 
 # Zipf alpha parameter, remove parameters not needed
 # ALPHA = [0.6, 0.8, 1.0]
-ALPHA = [0.6]
+ALPHA = [0.8]
 
 # Total size of network cache as a fraction of content population
 # Remove sizes not needed
@@ -83,7 +83,7 @@ STRATEGIES = [
      # 'CL4M',            # Cache less for more
      'PROB_CACHE',      # ProbCache
      'LCD',             # Leave Copy Down
-     # 'MEDGE',
+     'MEDGE',
      # 'CMEDGE',
      'CTEDGE',
      # 'CLCE',

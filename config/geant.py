@@ -64,7 +64,7 @@ CACHE_POLICY = 'LRU'
 
 # Zipf alpha parameter, remove parameters not needed
 # ALPHA = [0.6, 0.8, 1.0]
-ALPHA = [0.6]
+ALPHA = [0.8]
 
 # Total size of network cache as a fraction of content population
 # Remove sizes not needed
@@ -85,10 +85,10 @@ STRATEGIES = [
      'LCD',             # Leave Copy Down
      'MEDGE',
      'CMEDGE',
-     'CLCE',
-     'CCLCE',
+     # 'CLCE',
+     # 'CCLCE',
      'CB',
-     'NCMEDGE',
+     # 'NCMEDGE',
      # 'CTEDGE',
      # 'RAND_CHOICE',     # Random choice: cache in one random cache on path
      # 'RAND_BERNOULLI',  # Random Bernoulli: cache randomly in caches on path

@@ -12,4 +12,5 @@ set -v
 # python get-telstra-snm.py tree-snm.txt tree-snm-stat.txt;
 # python get-telstra-snm.py telstra-irm.txt telstra-irm-stat.txt;
 # python get-telstra-snm.py telstra-snm.txt telstra-snm-stat.txt;
-python get-telstra-snm.py sinet-edge-irm.txt sinet-edge-irm-stat.txt
+# python get-telstra-snm.py sinet-edge-irm.txt sinet-edge-irm-stat.txt
+python get-telstra-snm.py sinet-edge-snm.txt sinet-edge-snm-stat.txt
