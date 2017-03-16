@@ -724,7 +724,7 @@ def topology_random3(delay=1, **kwargs):
         topology.edge[u][v]['type'] = 'internal'
     return IcnTopology(topology)
 
-    def read_random4():
+def read_random4():
     """ Read telstra topology from random_1.json
 
     return : all the links and nodes
