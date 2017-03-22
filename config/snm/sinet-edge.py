@@ -68,7 +68,7 @@ STRATEGIES = [
      # 'CL4M',            # Cache less for more
      'PROB_CACHE',      # ProbCache
      'LCD',             # Leave Copy Down
-     # 'MEDGE',
+     'MEDGE',
      # 'CMEDGE',
      # 'CLCE',
      # 'CCLCE',

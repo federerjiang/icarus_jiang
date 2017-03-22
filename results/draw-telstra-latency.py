@@ -86,7 +86,8 @@ for strategy in strategys:
 	graph_latency[strategy] = []
 	if strategy == 'MEDGE':
 		for item in latency:
-			item = float(item) / 2 - 1
+			# item = float(item) / 2 - 1
+			item = float(item) - 1
 			graph_latency[strategy].append(float(item))
 	else:
 		for item in latency:
@@ -126,7 +127,7 @@ line_prob, = plt.plot(sizes, prob_latency, 'c--')
 
 plt.xlabel("Cache to population ratio", fontsize=30)
 plt.ylabel("Average Hops", fontsize=30)
-plt.ylim([4, 5])
+# plt.ylim([4, 5])
 plt.legend([line_lce, line_lcd, line_coor, line_edge, line_prob], ['LCE', 'LCD', 'Co-Edge', 'Edge', 'ProbCache'], bbox_to_anchor=(0.40, 0.49), frameon=False)
 # plt.legend(frameon=False)
 plt.tick_params(axis='x', labelsize=30)
