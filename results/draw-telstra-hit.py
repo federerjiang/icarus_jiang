@@ -121,7 +121,7 @@ line_prob, = plt.plot(sizes, prob_hit, 'c--')
 
 plt.xlabel("Cache to population ratio", fontsize=30)
 plt.ylabel("Cache Hit Ratio", fontsize=30)
-plt.ylim([0, 0.20])
+# plt.ylim([0, 0.20])
 plt.legend([line_lce, line_lcd, line_coor, line_edge, line_prob], ['LCE', 'LCD', 'Co-Edge', 'Edge', 'ProbCache'], bbox_to_anchor=(0.41, 1.04), frameon=False)
 plt.tick_params(axis='x', labelsize=30)
 plt.tick_params(axis='y', labelsize=30)
