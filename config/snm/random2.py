@@ -113,7 +113,7 @@ default['workload'] = {'name':  'TRACE_DRIVEN',
 default['cache_placement']['name'] = 'UNIFORM'
 default['content_placement']['name'] = 'UNIFORM'
 default['cache_policy']['name'] = CACHE_POLICY
-default['topology']['name'] = 'RANDOM2'
+default['topology']['name'] = 'RANDOM3'
 # default['topology']['h'] = HEIGHT
 
 

@@ -388,89 +388,89 @@ def read_telstra():
 '''
 
 
-def read_random():
-    """ Read telstra topology from random_1.json
+# def read_random():
+#     """ Read telstra topology from random_1.json
 
-    return : all the links and nodes
-    """
-    # f_read_topology = open(path.join(TOPOLOGY_RESOURCES_DIR,
-                                    # 'random_1.json'))
-    with open(path.join(TOPOLOGY_RESOURCES_DIR, "random_1.json")) as data_file:
-        data = json.load(data_file)
+#     return : all the links and nodes
+#     """
+#     # f_read_topology = open(path.join(TOPOLOGY_RESOURCES_DIR,
+#                                     # 'random_1.json'))
+#     with open(path.join(TOPOLOGY_RESOURCES_DIR, "random_1.json")) as data_file:
+#         data = json.load(data_file)
 
-    graph = []
-    nodes = []
-    connections = data["connections"]
-    for item in connections:
-        des = item["destination_id"]
-        src = item["source_id"]
-        graph.append((des, src))
-        if des not in nodes:
-            nodes.append(des)
-        if src not in nodes:
-            nodes.append(src)
-    deg = {}
-    for node in nodes:
-        deg[node] = 0
-    for edge in graph:
-        deg[edge[0]] = deg[edge[0]] + 1
-        deg[edge[1]] = deg[edge[1]] + 1
-    for node in nodes:
-        if deg[node] == 7:
-            highest = node
-            break
+#     graph = []
+#     nodes = []
+#     connections = data["connections"]
+#     for item in connections:
+#         des = item["destination_id"]
+#         src = item["source_id"]
+#         graph.append((des, src))
+#         if des not in nodes:
+#             nodes.append(des)
+#         if src not in nodes:
+#             nodes.append(src)
+#     deg = {}
+#     for node in nodes:
+#         deg[node] = 0
+#     for edge in graph:
+#         deg[edge[0]] = deg[edge[0]] + 1
+#         deg[edge[1]] = deg[edge[1]] + 1
+#     for node in nodes:
+#         if deg[node] == 7:
+#             highest = node
+#             break
 
-    return graph, nodes, highest
-
-
-@register_topology_factory('RANDOM')
-def topology_random(delay=1, **kwargs):
-    """Returns a telstra topology, with source to the core nodes, receivers connected to all
-    the leaf nodes in the network.
+#     return graph, nodes, highest
 
 
-    Returns
-    -------
-    topology : IcnTopology
-        The topology object
-    """
-    graph, nodes, highest = read_random()
-    # nodes = set([n1 for n1, n2 in graph] + [n2 for n1, n2 in graph])
+# @register_topology_factory('RANDOM')
+# def topology_random(delay=1, **kwargs):
+#     """Returns a telstra topology, with source to the core nodes, receivers connected to all
+#     the leaf nodes in the network.
 
-    topology = IcnTopology()
-    for node in nodes:
-        topology.add_node(node)
-    for edge in graph:
-        topology.add_edge(edge[0], edge[1])
 
-    # sources = [0]
-    routers = nodes
-    receivers = range(1000, 1000+len(nodes))
-    sources = range(10000, 10000+len(nodes))
+#     Returns
+#     -------
+#     topology : IcnTopology
+#         The topology object
+#     """
+#     graph, nodes, highest = read_random()
+#     # nodes = set([n1 for n1, n2 in graph] + [n2 for n1, n2 in graph])
+
+#     topology = IcnTopology()
+#     for node in nodes:
+#         topology.add_node(node)
+#     for edge in graph:
+#         topology.add_edge(edge[0], edge[1])
+
+#     # sources = [0]
+#     routers = nodes
+#     receivers = range(1000, 1000+len(nodes))
+#     sources = range(10000, 10000+len(nodes))
 
               
-    for v in receivers:
-        topology.add_node(v)
-        topology.add_edge(routers[v-1000], v)
-    for v in sources:
-        topology.add_node(v)
-        topology.add_edge(routers[v-10000], v)
+#     for v in receivers:
+#         topology.add_node(v)
+#         topology.add_edge(routers[v-1000], v)
+#     for v in sources:
+#         topology.add_node(v)
+#         topology.add_edge(routers[v-10000], v)
 
 
-    topology.graph['icr_candidates'] = set(routers)
-    for v in sources:
-        fnss.add_stack(topology, v, 'source')
-    for v in receivers:
-        fnss.add_stack(topology, v, 'receiver')
-    for v in routers:
-        fnss.add_stack(topology, v, 'router')
-    # set weights and delays on all links
-    fnss.set_weights_constant(topology, 1.0)
-    fnss.set_delays_constant(topology, delay, 'ms')
-    # label links as internal
-    for u, v in topology.edges_iter():
-        topology.edge[u][v]['type'] = 'internal'
-    return IcnTopology(topology)
+#     topology.graph['icr_candidates'] = set(routers)
+#     for v in sources:
+#         fnss.add_stack(topology, v, 'source')
+#     for v in receivers:
+#         fnss.add_stack(topology, v, 'receiver')
+#     for v in routers:
+#         fnss.add_stack(topology, v, 'router')
+#     # set weights and delays on all links
+#     fnss.set_weights_constant(topology, 1.0)
+#     fnss.set_delays_constant(topology, delay, 'ms')
+#     # label links as internal
+#     for u, v in topology.edges_iter():
+#         topology.edge[u][v]['type'] = 'internal'
+#     return IcnTopology(topology)
 
 def read_random():
     """ Read telstra topology from random_1.json
