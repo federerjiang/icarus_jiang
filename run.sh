@@ -4,4 +4,4 @@
 set -v
 
 # Run all experiments
-sh run-telstra.sh; sh run-telstra-snm.sh ; sh run-sinet-edge.sh; sh run-sinet-edge-snm.sh; sh run-geant.sh; sh run-geant-snm.sh
+python icarus.py --results results.pickle config/random.py; python printresults.py results.pickle > results/random-test-irm.txt

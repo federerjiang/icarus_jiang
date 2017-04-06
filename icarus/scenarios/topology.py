@@ -500,7 +500,7 @@ def read_random():
         deg[edge[0]] = deg[edge[0]] + 1
         deg[edge[1]] = deg[edge[1]] + 1
     for node in nodes:
-        if deg[node] == 7:
+        if deg[node] == 10:
             highest = node
             break
 
@@ -530,15 +530,19 @@ def topology_random(delay=1, **kwargs):
     # sources = [0]
     routers = nodes
     receivers = range(1000, 1000+len(nodes))
-    sources = range(10000, 10000+len(nodes))
+    # sources = range(10000, 10000+len(nodes))
+    sources = [10000,]
+    server = 10000
 
               
     for v in receivers:
         topology.add_node(v)
         topology.add_edge(routers[v-1000], v)
-    for v in sources:
-        topology.add_node(v)
-        topology.add_edge(routers[v-10000], v)
+    # for v in sources:
+    #     topology.add_node(v)
+    #     topology.add_edge(routers[v-10000], v)
+    topology.add_node(server)
+    topology.add_edge(highest, server)
 
 
     topology.graph['icr_candidates'] = set(routers)
