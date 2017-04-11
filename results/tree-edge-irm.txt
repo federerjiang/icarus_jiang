@@ -4,31 +4,31 @@ EXPERIMENT 1/2:
    * cache_policy -> name: LRU
    * strategy -> name: MEDGE
    * content_placement -> name: UNIFORM
-   * cache_placement -> name: UNIFORM, network_cache: 0.01
+   * cache_placement -> name: UNIFORM, network_cache: 0.05
    * topology -> name: TREE-EDGE, h: 6, k: 5
-   * desc -> Alpha: 0.8, strategy: MEDGE, topology: TREE-EDGE, degree: 5, network cache: 0.01
+   * desc -> Alpha: 0.8, strategy: MEDGE, topology: TREE-EDGE, degree: 5, network cache: 0.05
   RESULTS:
     LATENCY
-     * MEAN: 5.41519
+     * MEAN: 4.90747
     CACHE_HIT_RATIO
-     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.883038})
-     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.023318, 2: 0.023447666666666665, 3: 0.023413666666666666, 4: 0.023394, 5: 0.023388666666666665})
-     * MEAN: 0.116962
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.781494})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.043886666666666664, 2: 0.043456, 3: 0.043706666666666665, 4: 0.043858, 5: 0.04359866666666667})
+     * MEAN: 0.218506
 
 EXPERIMENT 2/2:
   CONFIGURATION:
    * workload -> name: STATIONARY, n_contents: 300000, n_warmup: 1000000, rate: 1.0, n_measured: 3000000, alpha: 0.8
    * cache_policy -> name: LRU
-   * strategy -> name: NCTEDGE
+   * strategy -> name: MEDGE
    * content_placement -> name: UNIFORM
    * cache_placement -> name: UNIFORM, network_cache: 0.01
    * topology -> name: TREE-EDGE, h: 6, k: 5
-   * desc -> Alpha: 0.8, strategy: NCTEDGE, topology: TREE-EDGE, degree: 5, network cache: 0.01
+   * desc -> Alpha: 0.8, strategy: MEDGE, topology: TREE-EDGE, degree: 5, network cache: 0.01
   RESULTS:
     LATENCY
-     * MEAN: 5.254146
+     * MEAN: 5.41443166667
     CACHE_HIT_RATIO
-     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.780506})
-     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.04772733333333333, 2: 0.05577566666666667, 3: 0.03342966666666667, 4: 0.04518933333333333, 5: 0.037372})
-     * MEAN: 0.219494
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.8828863333333333})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.023466666666666667, 2: 0.02334666666666667, 3: 0.023315333333333334, 4: 0.023577666666666667, 5: 0.023407333333333332})
+     * MEAN: 0.117113666667
 
