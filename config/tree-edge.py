@@ -84,7 +84,7 @@ STRATEGIES = [
      # 'PROB_CACHE',      # ProbCache
      # 'LCD',             # Leave Copy Down
      'MEDGE',
-     # 'CMEDGE',
+     'CMEDGE',
      # 'CTEDGE',
      # 'CLCE',
      # 'CCLCE',
@@ -92,6 +92,9 @@ STRATEGIES = [
      # 'RAND_CHOICE',     # Random choice: cache in one random cache on path
      # 'RAND_BERNOULLI',  # Random Bernoulli: cache randomly in caches on path
              ]
+
+HEIGHT = 6
+BRANCH = [5]
 
 # Instantiate experiment queue
 EXPERIMENT_QUEUE = deque()
@@ -112,13 +115,15 @@ default['cache_placement']['name'] = 'UNIFORM'
 default['content_placement']['name'] = 'UNIFORM'
 default['cache_policy']['name'] = CACHE_POLICY
 # default['topology']['name'] = 'SINET'
-# default['topology']['h'] = HEIGHT
+default['topology']['h'] = HEIGHT
+# default['topology']['k'] = BRANCH
 
 TOPOLOGIES =  [
         # 'GEANT',
         # 'SINET',
         # 'ATREE',
-        'EATREE',
+        # 'EATREE',
+        'TREE-EDGE',
         # 'CEATREE',
         # 'WIDE',
         # 'GARR',
@@ -127,15 +132,17 @@ TOPOLOGIES =  [
               ]
 
 
-for alpha in ALPHA:
+for alpha in ALPHA: 
+  for degree in BRANCH:
     for network_cache in NETWORK_CACHE:
         for strategy in STRATEGIES:
             for topology in TOPOLOGIES:
               experiment = copy.deepcopy(default)
               experiment['workload']['alpha'] = alpha
+              experiment['topology']['k'] = degree
               experiment['strategy']['name'] = strategy
               experiment['topology']['name'] = topology
               experiment['cache_placement']['network_cache'] = network_cache
-              experiment['desc'] = "Alpha: %s, strategy: %s, topology: %s, network cache: %s" \
-                                 % (str(alpha), strategy, topology, str(network_cache))
+              experiment['desc'] = "Alpha: %s, strategy: %s, topology: %s, degree: %s, network cache: %s" \
+                                 % (str(alpha), strategy, topology, degree, str(network_cache))
               EXPERIMENT_QUEUE.append(experiment)

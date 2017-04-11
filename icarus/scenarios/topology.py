@@ -165,6 +165,7 @@ def topology_tree(k, h, delay=1, **kwargs):
     return IcnTopology(topology)
 
 
+
 @register_topology_factory('TREE-EDGE')
 def topology_tree_edge(k, h, delay=1, **kwargs):
     """Returns a tree topology, with a source at the root, caches at only leaf nodes,
@@ -188,27 +189,31 @@ def topology_tree_edge(k, h, delay=1, **kwargs):
     topology : IcnTopology
         The topology object
     """
-    topology = fnss.k_ary_tree_topology(k, h)
+    topology = IcnTopology()
+    sources = [0]
+    routers = range(1, k+1)
+    receivers = range(101, 101+k)
+    gateways = range(1000, 998+6)
 
-    leafs = [v for v in topology.nodes_iter()
-             if topology.node[v]['depth'] == h]
-    sources = [v for v in topology.nodes_iter()
-               if topology.node[v]['depth'] == 0]
-    routers = leafs
-    gateways = [v for v in topology.nodes_iter()
-                if topology.node[v]['depth'] > 0
-                and topology.node[v]['depth'] < h]
-    # routers = [v for v in topology.nodes_iter()
-              # if topology.node[v]['depth'] > 0
-              # and topology.node[v]['depth'] <= h]
-              
-    total_node = k ** (h+1) - 1
-    for v in range(0, len(leafs)):
-        topology.add_node(total_node + v, type="requester")
-        topology.add_edge(total_node + v, leafs[v])
+    # topology.add_path([1,2,3,4,5,6,7,8])
+    for v in routers:
+        topology.add_node(v)
+    for v in sources:
+        topology.add_node(v)
+    for v in receivers:
+        topology.add_node(v)
+    for v in gateways:
+        topology.add_node(v)
 
-    receivers = [v for v in topology.nodes_iter() 
-                if topology.node[v]['type'] == "requester"]
+    topology.add_edge(0,1000)
+    topology.add_edge(1000, 1001)
+    topology.add_edge(1001, 1002)
+    topology.add_edge(1002, 1003)
+    for v in routers:
+        topology.add_edge(1003, v)              
+    for v in receivers:
+        topology.add_edge(v-100, v)
+
 
     topology.graph['icr_candidates'] = set(routers)
     for v in sources:
@@ -222,10 +227,8 @@ def topology_tree_edge(k, h, delay=1, **kwargs):
     # set weights and delays on all links
     fnss.set_weights_constant(topology, 1.0)
     fnss.set_delays_constant(topology, delay, 'ms')
-    # label links as internal
-    for u, v in topology.edges_iter():
-        topology.edge[u][v]['type'] = 'internal'
     return IcnTopology(topology)
+
 
 
 @register_topology_factory('TREE-COOR-EDGE')
