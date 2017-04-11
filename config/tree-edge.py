@@ -68,7 +68,7 @@ ALPHA = [0.8]
 
 # Total size of network cache as a fraction of content population
 # Remove sizes not needed
-NETWORK_CACHE = [0.01]
+NETWORK_CACHE = [0.01, 0.05]
 # NETWORK_CACHE = [0.3]
 
 
@@ -84,7 +84,7 @@ STRATEGIES = [
      # 'PROB_CACHE',      # ProbCache
      # 'LCD',             # Leave Copy Down
      'MEDGE',
-     'NCTEDGE',
+     # 'NCTEDGE',
      # 'CTEDGE',
      # 'CLCE',
      # 'CCLCE',
