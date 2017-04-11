@@ -66,3 +66,37 @@ EXPERIMENT 2/2:
      * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.19970066666666667, 2: 0.19973566666666667, 3: 0.19983366666666666, 4: 0.199579, 5: 0.200138})
      * MEAN: 0.998987
 
+EXPERIMENT 1/2:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 300000, n_warmup: 1000000, rate: 1.0, n_measured: 3000000, alpha: 0.1
+   * cache_policy -> name: LRU
+   * strategy -> name: MEDGE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.01
+   * topology -> name: TREE-EDGE, h: 6, k: 5
+   * desc -> Alpha: 0.1, strategy: MEDGE, topology: TREE-EDGE, degree: 5, network cache: 0.01
+  RESULTS:
+    LATENCY
+     * MEAN: 5.98973
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.997946})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.000395, 2: 0.000418, 3: 0.000413, 4: 0.000416, 5: 0.000412})
+     * MEAN: 0.002054
+
+EXPERIMENT 2/2:
+  CONFIGURATION:
+   * workload -> name: STATIONARY, n_contents: 300000, n_warmup: 1000000, rate: 1.0, n_measured: 3000000, alpha: 0.1
+   * cache_policy -> name: LRU
+   * strategy -> name: MEDGE
+   * content_placement -> name: UNIFORM
+   * cache_placement -> name: UNIFORM, network_cache: 0.05
+   * topology -> name: TREE-EDGE, h: 6, k: 5
+   * desc -> Alpha: 0.1, strategy: MEDGE, topology: TREE-EDGE, degree: 5, network cache: 0.05
+  RESULTS:
+    LATENCY
+     * MEAN: 5.94917166667
+    CACHE_HIT_RATIO
+     * PER_NODE_SERVER_HIT_RATIO: Tree({0: 0.9898343333333334})
+     * PER_NODE_CACHE_HIT_RATIO: Tree({1: 0.0020336666666666667, 2: 0.0020326666666666666, 3: 0.0019963333333333335, 4: 0.0020686666666666666, 5: 0.0020343333333333333})
+     * MEAN: 0.0101656666667
+
