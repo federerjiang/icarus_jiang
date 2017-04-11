@@ -84,7 +84,7 @@ STRATEGIES = [
      # 'PROB_CACHE',      # ProbCache
      # 'LCD',             # Leave Copy Down
      'MEDGE',
-     'CMEDGE',
+     'NCTEDGE',
      # 'CTEDGE',
      # 'CLCE',
      # 'CCLCE',
