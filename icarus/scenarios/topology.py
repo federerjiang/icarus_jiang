@@ -570,7 +570,7 @@ def read_random2():
     """
     # f_read_topology = open(path.join(TOPOLOGY_RESOURCES_DIR,
                                     # 'random_1.json'))
-    with open(path.join(TOPOLOGY_RESOURCES_DIR, "random_500.json")) as data_file:
+    with open(path.join(TOPOLOGY_RESOURCES_DIR, "random_1.json")) as data_file:
         data = json.load(data_file)
 
     graph = []
@@ -591,7 +591,7 @@ def read_random2():
         deg[edge[0]] = deg[edge[0]] + 1
         deg[edge[1]] = deg[edge[1]] + 1
     for node in nodes:
-        if deg[node] == 7:
+        if deg[node] == 20:
             highest = node
             break
 

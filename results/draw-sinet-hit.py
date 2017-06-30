@@ -105,7 +105,7 @@ plt.rcParams.update(params)
 # legend_properties = {'weight':'bold'}
 fig = plt.figure()
 
-line_lce, = plt.plot(sizes, lce_hit , "k>-")
+# line_lce, = plt.plot(sizes, lce_hit , "k>-")
 line_lcd, = plt.plot(sizes, lcd_hit , "b+-")
 line_edge, = plt.plot(sizes, edge_hit , "y*-")
 line_coor, = plt.plot(sizes, coor_hit , "ro-")
@@ -116,7 +116,9 @@ line_prob, = plt.plot(sizes, prob_hit, 'c--')
 plt.xlabel("Cache to population ratio", fontsize=30)
 # plt.ylabel("Average Hop")
 plt.ylabel("Hit Rate", fontsize=30)
-plt.legend([line_lce, line_lcd, line_coor, line_edge, line_clce, line_prob], ['LCE', 'LCD', 'Co-Edge', 'Edge', 'NbSC', 'ProbCache'], bbox_to_anchor=(0.41, 1.04), frameon=False)
+# plt.legend([line_lce, line_lcd, line_coor, line_edge, line_clce, line_prob], ['LCE', 'LCD', 'Co-Edge', 'Edge', 'NbSC', 'ProbCache'], bbox_to_anchor=(0.41, 1.04), frameon=False)
+plt.legend([line_lcd, line_coor, line_edge, line_clce, line_prob], ['LCD', 'Co-Edge', 'Edge', 'NbSC', 'ProbCache'], bbox_to_anchor=(0.39, 1.04), frameon=False)
+
 plt.tick_params(axis='x', labelsize=30)
 plt.tick_params(axis='y', labelsize=30)
 
