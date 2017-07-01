@@ -73,7 +73,7 @@ NETWORK_CACHE = [0.02, 0.05, 0.1, 0.2, 0.3, 0.5]
 
 
 STRATEGIES = [
-     'LCE',             # Leave Copy Everywhere
+     # 'LCE',             # Leave Copy Everywhere
      # 'NO_CACHE',        # No caching, shortest-path routing
      # 'HR_SYMM',         # Symmetric hash-routing
      # 'HR_ASYMM',        # Asymmetric hash-routing

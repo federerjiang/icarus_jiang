@@ -482,7 +482,7 @@ def read_random():
     """
     # f_read_topology = open(path.join(TOPOLOGY_RESOURCES_DIR,
                                     # 'random_1.json'))
-    with open(path.join(TOPOLOGY_RESOURCES_DIR, "random_250.json")) as data_file:
+    with open(path.join(TOPOLOGY_RESOURCES_DIR, "random_1.json")) as data_file:
         data = json.load(data_file)
 
     graph = []
@@ -503,7 +503,7 @@ def read_random():
         deg[edge[0]] = deg[edge[0]] + 1
         deg[edge[1]] = deg[edge[1]] + 1
     for node in nodes:
-        if deg[node] == 10:
+        if deg[node] == 20:
             highest = node
             break
 
@@ -621,15 +621,18 @@ def topology_random2(delay=1, **kwargs):
     # sources = [0]
     routers = nodes
     receivers = range(1000, 1000+len(nodes))
-    sources = range(10000, 10000+len(nodes))
+    # sources = range(10000, 10000+len(nodes))
+    # sources = []
+    # sources.append(highest)
 
               
     for v in receivers:
         topology.add_node(v)
         topology.add_edge(routers[v-1000], v)
-    for v in sources:
-        topology.add_node(v)
-        topology.add_edge(routers[v-10000], v)
+
+    # for v in sources:
+        # topology.add_node(v)
+        # topology.add_edge(routers[v-10000], v)
 
 
     topology.graph['icr_candidates'] = set(routers)
