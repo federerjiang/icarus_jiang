@@ -837,7 +837,7 @@ class LruCache(Cache):
     def __init__(self, maxlen, **kwargs):
         self._cache = LinkedSet()
         self._maxlen = int(maxlen)
-        self._cuckoofilter = CuckooFilter(10*self._maxlen, 5)
+        # self._cuckoofilter = CuckooFilter(10*self._maxlen, 5)
         if self._maxlen <= 0:
             raise ValueError('maxlen must be positive')
 
