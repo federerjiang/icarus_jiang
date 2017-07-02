@@ -56,7 +56,9 @@ for size in sizes:
 	f.write("\n")
 f.close()
 '''
-strategys = ['LCE', 'LCD', 'PROB_CACHE', 'MEDGE', 'CTEDGE', 'CB']
+# strategys = ['LCE', 'LCD', 'PROB_CACHE', 'MEDGE', 'CTEDGE', 'CB']
+strategys = ['LCD', 'PROB_CACHE', 'MEDGE', 'CTEDGE']
+
 '''
 graph_latency = {}
 for strategy in strategys:
@@ -89,12 +91,12 @@ plt.rcParams.update(params)
 # legend_properties = {'weight':'bold'}
 fig = plt.figure()
 
-lce_hit = graph_hit['LCE']
+# lce_hit = graph_hit['LCE']
 lcd_hit = graph_hit['LCD']
 edge_hit = graph_hit['MEDGE']
 coor_hit = graph_hit['CTEDGE']
 prob_hit = graph_hit['PROB_CACHE']
-clce_hit = graph_hit['CB']
+# clce_hit = graph_hit['CB']
 
 '''
 line_lce, = plt.plot(sizes, lce_latency , "k+-")
