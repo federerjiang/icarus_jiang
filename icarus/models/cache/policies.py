@@ -11,7 +11,7 @@ import copy
 
 import numpy as np
 
-from cuckoofilter import CuckooFilter
+# from cuckoofilter import CuckooFilter
 
 from icarus.util import inheritdoc, apportionment
 from icarus.registry import register_cache_policy
