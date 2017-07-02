@@ -911,7 +911,7 @@ class LruCache(Cache):
             return None
         # if content not in cache append it on top
         self._cache.append_top(k)
-        self.put_cuckoo(k)
+        # self.put_cuckoo(k)
         return self._cache.pop_bottom() if len(self._cache) > self._maxlen else None
 
     @inheritdoc(Cache)
@@ -919,24 +919,24 @@ class LruCache(Cache):
         if k not in self._cache:
             return False
         self._cache.remove(k)
-        self.remove_cuckoo(k)
+        # self.remove_cuckoo(k)
         return True
 
     @inheritdoc(Cache)
     def clear(self):
         self._cache.clear()
 
-    # Newly added some functions for cuckoo filters by Xiaolan Jiang
-    def get_cuckoo(self, k):
-        return  self._cuckoofilter.contains(str(k))
+    # # Newly added some functions for cuckoo filters by Xiaolan Jiang
+    # def get_cuckoo(self, k):
+    #     return  self._cuckoofilter.contains(str(k))
 
-    def put_cuckoo(self, k):
-        self._cuckoofilter.insert(str(k))
-        return True
+    # def put_cuckoo(self, k):
+    #     self._cuckoofilter.insert(str(k))
+    #     return True
 
-    def remove_cuckoo(self, k):
-        self._cuckoofilter.remove(str(k))
-        return True
+    # def remove_cuckoo(self, k):
+    #     self._cuckoofilter.remove(str(k))
+    #     return True
 
 
 @register_cache_policy('SLRU')
