@@ -81,19 +81,31 @@ for strategy in strategys:
 # 	edge_latency.append(float(item)/2)
 
 # graph_latency = {}
+# for strategy in strategys:
+# 	latency = graph_latency[strategy]
+# 	graph_latency[strategy] = []
+# 	if strategy == 'MEDGE':
+# 		for item in latency:
+# 			# item = float(item) / 2 - 1
+# 			item = float(item) - 1
+# 			graph_latency[strategy].append(float(item))
+# 	else:
+# 		for item in latency:
+# 			item = float(item) - 1
+# 			graph_latency[strategy].append(item)
+
 for strategy in strategys:
 	latency = graph_latency[strategy]
 	graph_latency[strategy] = []
 	if strategy == 'MEDGE':
 		for item in latency:
-			# item = float(item) / 2 - 1
-			item = float(item) - 1
+			item = float(item) / 2 - 1
+			# item = float(item) - 1
 			graph_latency[strategy].append(float(item))
 	else:
 		for item in latency:
 			item = float(item) - 1
 			graph_latency[strategy].append(item)
-
 
 lce_latency = graph_latency["LCE"]
 lcd_latency = graph_latency['LCD']
@@ -127,7 +139,7 @@ line_prob, = plt.plot(sizes, prob_latency, 'c>-')
 
 plt.xlabel("Cache to population ratio", fontsize=30)
 plt.ylabel("Average Hops", fontsize=30)
-plt.ylim([3, 5])
+plt.ylim([3.0, 4.0])
 # plt.legend([line_lce, line_lcd, line_coor, line_edge, line_prob], ['LCE', 'LCD', 'Co-Edge', 'Edge', 'ProbCache'], bbox_to_anchor=(0.40, 0.49), frameon=False)
 plt.legend([line_lcd, line_coor, line_edge, line_prob], ['LCD', 'Co-Edge', 'Edge', 'ProbCache'], bbox_to_anchor=(0.40, 0.49), frameon=False)
 
@@ -145,7 +157,7 @@ line_prob, = plt.plot(sizes, prob_hit, 'c--')
 
 plt.xlabel("Cache Size")
 plt.ylabel("Cache Hit Ratio")
-# plt.ylim([0, 6])
+plt.ylim([0, 6])
 plt.legend([line_lce, line_lcd, line_edge, line_coor, line_prob], ['LCE', 'LCD', 'EDGE', 'CO-EDGE', 'PROB_CACHE'], bbox_to_anchor=(1, 0.7), fontsize=10)
 '''
 # plt.show()

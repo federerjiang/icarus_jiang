@@ -365,6 +365,7 @@ class CacheHitRatioCollector(DataCollector):
         self.cont_hits = content_hits
         self.sess_count = 0
         self.cache_hits = 0
+        self.cuckoo_hits = 0
         self.serv_hits = 0
         if off_path_hits:
             self.off_path_hit_count = 0

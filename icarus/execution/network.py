@@ -597,6 +597,37 @@ class NetworkController(object):
         else:
             return False
 
+    def get_content_from_neighbor(self, node):
+        """Get a content from a server or a cache.
+
+        Parameters
+        ----------
+        node : any hashable type
+            The node where the content is retrieved
+
+        Returns
+        -------
+        content : bool
+            True if the content is available, False otherwise
+        """
+        if node in self.model.cache:
+            cache_hit = self.model.cache[node].get(self.session['content'])
+            cuckoo_hit = self.model.cache[node].get_cuckoo(self.session['content'])
+            if cache_hit:
+                if self.session['log']:
+                    self.collector.cache_hit(node)
+            else:
+                if self.session['log']:
+                    self.collector.cache_miss(node)
+            return cache_hit
+        name, props = fnss.get_stack(self.model.topology, node)
+        if name == 'source' and self.session['content'] in props['contents']:
+            if self.collector is not None and self.session['log']:
+                self.collector.server_hit(node)
+            return True
+        else:
+            return False
+
     def remove_content(self, node):
         """Remove the content being handled from the cache
 
